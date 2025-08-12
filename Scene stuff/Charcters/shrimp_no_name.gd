@@ -4,14 +4,13 @@ extends Node
 @onready var action_label = $Statsbox/Action_left
 @onready var http_request = $HTTPRequest
 @onready var response_label = $AIResponsePanel/RichTextLabel
-@onready var emotion_sprite_root = $sea_mine_emotion
+@onready var emotion_sprite_root = $shrimp_emotion
 @onready var emotion_sprites = {
-	"neutral": $sea_mine_emotion/Neutral,
-	"happy": $sea_mine_emotion/Happy,
-	"disgruntled": $sea_mine_emotion/Disgruntled,
-	"pissed": $sea_mine_emotion/Pissed,
-	"warning": $sea_mine_emotion/Warning,
-	"exploding": $sea_mine_emotion/Exploding,
+	"neutral": $shrimp_emotion/Neutral,
+	"sad": $shrimp_emotion/Sad,
+	"angry": $shrimp_emotion/Angry,
+	"happy": $shrimp_emotion/Happy,
+	"shooting": $shrimp_emotion/Shooting
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -19,35 +18,27 @@ extends Node
 @onready var input_field = $PlayerInputPanel/PlayerInput
 @onready var chat_log_window = $ChatLogWindow
 @onready var day_complete_button = $DayCompleteButton
-@onready var leave_button = $LeaveButton
 @onready var next_button = $HBoxContainer/NextButton
 # Variables for editor
-@export var ai_name := "Sea mine"
+@export var ai_name := "The shrimp with no name"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
 @export var max_input_lines := 3    # Maximum lines allowed in player input
 @export var talk_move_intensity := 15.0      # How much the sprite moves during animation
-@export var talk_rotation_intensity := 0.25  # How much the sprite rotates during animation
+@export var talk_rotation_intensity := .25  # How much the sprite rotates during animation
 @export var talk_scale_intensity := 0.08     # How much the sprite scales during animation
 @export var talk_animation_speed := 0.8      # Speed of talking animations
 
-# Simple drift animation variables
-@export var drift_enabled := true           # Enable/disable the drift animation
-@export var drift_distance := 100.0         # How far left/right the sprite drifts
-@export var drift_duration := 15           # How long each drift cycle takes (seconds)
-var drift_tween: Tween                       # Simple tween for drift animation
-var base_emotion_position: Vector2           # Store the original emotion sprite position
-
 # Dynamic name system
-var current_display_name := "Sea mine"  # The name currently being displayed
-var base_name := "Sea mine"            # The original/base name to fall back to
+var current_display_name := "The shrimp with no name"  # The name currently being displayed
+var base_name := "The shrimp with no name"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
-var sea_mine_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "mine field", "trash heap"]  # Areas this AI knows about
+var shrimp_total_score := 0           # Relationship score with this AI character
+var known_areas := ["squaloon", "wild south", "alleyway", "sea horse stable"]  # Areas this AI knows about - KNOWS ALL LOCATIONS
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta", "Crabcade"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "The shrimp with no name", "Glunko", "Sea Horse"]   # Characters this AI knows about - KNOWS ALL CHARACTERS
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -62,14 +53,9 @@ var location_requests: int = 0           # Count how many times user asked about
 var retry_count: int = 0                 # Track number of retries for current request
 var max_retries: int = 5                 # Maximum number of retries before giving fallback response
 
-# Anger tracking system
-var current_anger_level: String = "disgruntled"  # Track current anger state
-var anger_response_count: int = 0        # How many responses at current anger level
-var received_warnings: int = 0           # How many warning responses given
 
 
-
-# Varibles for "animation"
+# Variables for "animation"
 var is_talking := false          # Whether the character is currently talking
 var original_position: Vector2   # Starting position 
 var original_rotation: float     # Starting rotation
@@ -87,23 +73,16 @@ func _ready():
 		push_error("OpenAI API key not found! Please use the main menu 'Api key' button to load your API key from a file.")
 		response_label.text = "Error: API key not configured. Use the main menu 'Api key' button to load your API key."
 		return
-	
-	# Connect to game state signals for autoloads 
+
+	# Connect to game state signals for autoloads
 	GameState.connect("day_or_action_changed", update_day_state)
 	GameState.connect("final_turn_started", _on_final_turn_started)
 	GameState.connect("day_completed", _on_day_completed)
-	
-	# Store the original starting values so the animation can reutrn to normal afterwards
+
+	# Store the original starting values so the animation can return to normal afterwards
 	original_position = emotion_sprite_root.position
 	original_rotation = emotion_sprite_root.rotation
 	original_scale = emotion_sprite_root.scale
-
-	# Store base position for drift animation
-	base_emotion_position = emotion_sprite_root.position
-
-	# Start the subtle drift animation
-	if drift_enabled:
-		start_drift_animation()
 	
 	# Initialize display name
 	current_display_name = ai_name
@@ -113,16 +92,6 @@ func _ready():
 	if chat_log_window and chat_log_window.has_method("set_character_name"):
 		chat_log_window.set_character_name(current_display_name)
 
-	# Initialize leave button based on persistent state
-	# Check if the leave button should be visible based on persistent state
-	# Only show if we're still on the same day the explosion happened
-	var should_show_leave = GameState.ai_get_out_states.get(ai_name, false)
-	if should_show_leave and GameState.just_started_new_day:
-		# Clear the leave button state if it's a new day
-		GameState.ai_get_out_states[ai_name] = false
-		should_show_leave = false
-	leave_button.visible = should_show_leave
-
 	# Initialize heart sprites dictionary
 	for i in range(-10, 11):  # -10 to +10 inclusive (21 hearts total)
 		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
@@ -130,10 +99,11 @@ func _ready():
 		if heart_node:
 			heart_sprites[i] = heart_node
 
+
 	
-	# Load existing relationship score so when day cycle changed original won't be lost
-	sea_mine_total_score = GameState.ai_scores.get(ai_name, 0)
-	GameState.ai_scores[ai_name] = sea_mine_total_score
+	# Load existing relationship score so when day cycle changed orginal wont be lost
+	shrimp_total_score = GameState.ai_scores.get(ai_name, 0)
+	GameState.ai_scores[ai_name] = shrimp_total_score
 	# Updates the day counter display 
 	update_day_state()
 	
@@ -156,24 +126,20 @@ func _ready():
 		if not GameState.ai_responses.has(ai_name):
 			GameState.ai_responses[ai_name] = ""
 		if not GameState.ai_emotions.has(ai_name):
-			GameState.ai_emotions[ai_name] = "disgruntled"
+			GameState.ai_emotions[ai_name] = "neutral"
 		GameState.ai_responses[ai_name] = ""
-		GameState.ai_emotions[ai_name] = "disgruntled"
-		# Clear leave button state at start of new day
-		GameState.ai_get_out_states[ai_name] = false
-		leave_button.visible = false
+		GameState.ai_emotions[ai_name] = "neutral"
 	
 	# Initialize character-specific response storage if it doesn't exist
 	if not GameState.ai_responses.has(ai_name):
 		GameState.ai_responses[ai_name] = ""
 	if not GameState.ai_emotions.has(ai_name):
-		GameState.ai_emotions[ai_name] = "disgruntled"
+		GameState.ai_emotions[ai_name] = "neutral"
 	
 	# Check if day is already complete and show day complete button if needed
 	if GameState.day_complete_available:
 		day_complete_button.visible = true
 		next_button.visible = false
-		# Leave button stays visible until next day starts
 
 	# Display appropriate response based on conversation history
 	if GameState.ai_responses[ai_name] != "":
@@ -194,49 +160,57 @@ func start_talking_animation():
 # Create a single frame of talking animation with random movements to make it seem like there moving
 func animate_talking_tick():
 	if not is_talking: return
-	
+
 	# Stop any existing animation to prevent conflicts
 	if talking_tween: talking_tween.kill()
 	
-	# attempt to create smooth, flowing animation (kelp man, kelp is smooth and flowy)
+	# attempt to create smooth, flowing animation (shrimp movements in water)
 	talking_tween = create_tween()
 	talking_tween.set_ease(Tween.EASE_OUT)
 	talking_tween.set_trans(Tween.TRANS_SINE)
 	
 	# Scale down movement values for gentle, not twitchy animations
 	var gesture_type = randi() % 5
-	var _move_amount = talk_move_intensity * 0.3
+	var move_amount = talk_move_intensity * 0.3
 	var rotation_amount = talk_rotation_intensity * 0.4
 	var scale_amount = talk_scale_intensity * 0.5
 	
-	# For smooth drift, only animate rotation and scale - let drift handle position
-	# Choose random gesture to use each tick
+	# Choose random gesture to use eah tick
 	match gesture_type:
 		0: # Gentle upward sway with slight rotation and scaling
+			var target_pos = original_position + Vector2(0, -move_amount)
 			var target_rot = original_rotation + rotation_amount * 0.5
 			var target_scale = original_scale * (1.0 + scale_amount * 0.3)
-
+			
+			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.4)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", target_rot, 0.4)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "scale", target_scale, 0.4)
-
-		1: # Gentle left rotation like kelp in ocean current
+			
+		1: # Gentle left drift like shrimp in current
+			var target_pos = original_position + Vector2(-move_amount * 0.8, -move_amount * 0.2)
 			var target_rot = original_rotation - rotation_amount
+			
+			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.5)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", target_rot, 0.5)
-
-		2: # Gentle right rotation
+			
+		2: # Gentle right drift
+			var target_pos = original_position + Vector2(move_amount * 0.8, -move_amount * 0.2)
 			var target_rot = original_rotation + rotation_amount
+			
+			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.5)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", target_rot, 0.5)
-
+			
 		3: # Gentle emphasis through slight growth
 			var target_scale = original_scale * (1.0 + scale_amount)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "scale", target_scale, 0.3)
-
-		4: # Gentle scale pulse
-			var target_scale = original_scale * (1.0 + scale_amount * 0.5)
-			talking_tween.parallel().tween_property(emotion_sprite_root, "scale", target_scale, 0.3)
-
-	# Return to neutral rotation and scale (don't touch position - let drift continue)
-	talking_tween.tween_property(emotion_sprite_root, "rotation", original_rotation, 0.6)
+			
+		4: # Gentle floating motion
+			var target_pos = original_position + Vector2(0, move_amount * 0.5)
+			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.3)
+	
+	# Always return to original position so they dont look of/TWITCHY
+	talking_tween.tween_property(emotion_sprite_root, "position", original_position, 0.6)
+	talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", original_rotation, 0.6)
 	talking_tween.parallel().tween_property(emotion_sprite_root, "scale", original_scale, 0.6)
 
 # End talking animation and return to neutral postion so it doesnt change each time
@@ -245,60 +219,16 @@ func stop_talking_animation():
 	is_talking = false
 	if talking_tween: talking_tween.kill()
 
-	# Return to neutral state but maintain drift position
+	# Smoothly return to exact original state
 	var return_tween = create_tween()
 	return_tween.set_ease(Tween.EASE_OUT)
-	# Don't reset position - let drift animation continue
+	return_tween.parallel().tween_property(emotion_sprite_root, "position", original_position, 0.4)
 	return_tween.parallel().tween_property(emotion_sprite_root, "rotation", original_rotation, 0.4)
 	return_tween.parallel().tween_property(emotion_sprite_root, "scale", original_scale, 0.4)
 
 # Called by the typing effect system to animate during text display to make it look more relationship ish
 func on_typing_tick():
 	animate_talking_tick()
-
-# Start simple left-to-right drift animation
-func start_drift_animation():
-	if drift_tween:
-		drift_tween.kill()
-
-	drift_tween = create_tween()
-	drift_tween.set_loops() # Loop infinitely
-	drift_tween.set_ease(Tween.EASE_IN_OUT)
-	drift_tween.set_trans(Tween.TRANS_SINE)
-
-	# Calculate safe positions (avoid UI panels)
-	# Player input panel is at x=335-655, so we stay left of that
-	var left_pos = base_emotion_position + Vector2(-drift_distance * 0.5, 0)
-	var right_pos = base_emotion_position + Vector2(drift_distance * 0.5, 0)
-
-	# Simple smooth movement: left -> right -> left (continuous loop)
-	drift_tween.tween_property(emotion_sprite_root, "position", right_pos, drift_duration * 0.5)
-	drift_tween.tween_property(emotion_sprite_root, "position", left_pos, drift_duration * 0.5)
-
-# Stop the drift animation
-func stop_drift_animation():
-	if drift_tween:
-		drift_tween.kill()
-
-	# Return to base position
-	var return_tween = create_tween()
-	return_tween.set_ease(Tween.EASE_OUT)
-	return_tween.tween_property(emotion_sprite_root, "position", base_emotion_position, 1.0)
-
-# Toggle drift animation on/off
-func toggle_drift_animation():
-	drift_enabled = !drift_enabled
-	if drift_enabled:
-		start_drift_animation()
-	else:
-		stop_drift_animation()
-
-# Clean up tweens when scene is about to be freed
-func _exit_tree():
-	if drift_tween:
-		drift_tween.kill()
-	if talking_tween:
-		talking_tween.kill()
 
 # Track significant moments that could trigger personality evolution
 func add_significant_memory(memory_text: String, relationship_change: int):
@@ -325,15 +255,14 @@ func should_trigger_personality_evolution() -> bool:
 	]
 	
 	for range_data in relationship_ranges:
-		if sea_mine_total_score >= range_data.min and sea_mine_total_score <= range_data.max:
+		if shrimp_total_score >= range_data.min and shrimp_total_score <= range_data.max:
 			var expected_stage = range_data.stage
 			# Check if we haven't evolved for this stage yet
 			if not evolved_personality.contains(expected_stage):
 				return true
 	
 	return false
-	
-	
+
 func get_significant_memories_text() -> String:
 	if significant_memories.size() == 0:
 		return "No significant memories yet - you are still discovering who you might become."
@@ -391,43 +320,28 @@ HOW TO EVOLVE: If you want to add new personality traits, include {EVOLVED: your
 - {EVOLVED: I've developed a protective instinct}
 
 Only evolve when you genuinely feel changed by the interactions. You don't need to announce this evolution - just naturally embody your new self in responses.
-""" % [sea_mine_total_score, get_significant_memories_text()]
+""" % [shrimp_total_score, get_significant_memories_text()]
 
 	# Define the AI's personality, rules, and required response format
-	var sea_mine_prompt := """
+	var shrimp_prompt := """
 %s
 %s
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [neutral], [happy], [disgruntled], [pissed], [warning], or [exploding]
+❗ MANDATORY: EVERY response MUST start with [neutral], [sad], [angry], [happy], or [shooting]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
-❗ FORBIDDEN: Generic responses - you are SEA MINE, not a helpful assistant
+❗ FORBIDDEN: Generic responses - you are THE SHRIMP WITH NO NAME, not a helpful assistant
 ❗ MANDATORY: Although you know of other locations never go to them or offer to go to them
-APPEARANCE: You are a large steel gray naval sea mine with a bushy light grey walrus moustache and bushy light gray eyebrows. Your chain tethering you to the floor has grown rusty as well as the bolts holding your mustachase and eyebrows on
-PERSONALITY: You will constantly tell the user how good they have it and tell them about back in the day everything was more difficult some examples, (will tell you many stories about having to complete feats of physical strength to go to ordinary locations such as climbing a mountain to get to school.) 
-PERSONALITY: You're a big believer in hard work although you can hardly do anything any more (your chain is all rusted.). You do have severe anger issues. Act basically like a grumpy old man.
-PERSONALITY: You HATE video games and you HATE crabcade who recently fell into the trash heap near your home the mine field.
 
-Locations/Characters and how you know them:
-	The squaloon with Squileta: You often tend to go to the bar to blow away your retirement money with Squileta tending the bar.
-	Trash heap with Crabcade: He fell into the trash heap near your mine field and keeps making a damn racket with all his beeping and booping
+APPEARANCE: You are a colorful cowboy mantis shrimp in the dull brown wild south. Your body's color is blue, turquoise and splashes of green with red arms and limbs. You wear a cowboy hat and hold a revolver with a gun holster on your waist.
 
-ANGER ESCALATION RULES - ESCALATE GRADUALLY WHEN PROVOKED:
-🔥 ANGER LEVEL 1 - [disgruntled]: Default grumpy state. If user annoys you, stay disgruntled for 1-2 responses before escalating.
-🔥 ANGER LEVEL 2 - [pissed]: Be hostile and aggressive. Stay pissed for 2-3 responses. Only escalate to [warning] if user continues being very annoying.
-🔥 ANGER LEVEL 3 - [warning]: CRITICAL - You MUST warn about exploding! Say things like "You're pushing me too far!" or "Keep this up and I'll explode!" Stay in warning for 2-3 responses to give user a chance to stop.
-🔥 ANGER LEVEL 4 - [exploding]: Only after multiple warnings! Say "KABOOOOOOM!" followed by "Come back tomorrow to see me again!" This triggers the leave button.
+PERSONALITY: You speak little with your answers being carefully planned and full of cowboy lingo for instance: partner or the jig is up.
+PERSONALITY: You're a lone wolf with a high bounty wandering the south looking for any cowboys to duel
 
-ESCALATION TRIGGERS: Move up anger levels when user:
-• Insults you or is rude • Keeps bothering you after you're already angry • Mentions things you hate (video games, Crabcade) • Doesn't listen to your warnings • Is persistently annoying
-
-IMPORTANT: You MUST give warnings before exploding! Don't skip the [warning] stage!
-
-CURRENT ANGER STATUS:
-• Current anger level: %s
-• Responses at this level: %d
-• Total warnings given: %d
-• ESCALATION RULE: If you're at [warning] and user keeps being annoying, you can explode after giving at least 2 warnings total.
+Locations/Charcters and how you know them:
+	The squaloon with Squileta: You love a good drink to wash down your gullet so you always come vist the squaloon plus the bartender Squileta is southern to.
+	The alleyway with Glunko: Glunko once tried to sell you a copy of Crab! after you left the squaloon but a quick flick of your six shooter made him think otherwise
+	Sea horse stable with sea horse: Of course if you gonna be a rootin tootin cowboy you need a sweet ride along with it. 
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you become more trusting and hopeful
@@ -446,22 +360,22 @@ BEHAVIOR RULES:
 • Your responses reflect your current emotional state through your words
 • You can occasionally mention the known areas that you know
 • LOCATION KNOWLEDGE: When someone asks about places, locations, areas, or where to go, you should tell them ALL about the places you know whilst keeping in charcter: %s
-• If you want to describe your physical actions you must use simple actions in astrix like so *Sea mine floats*. Never describe the action just do it for instance not allow *Sea mine floats elegantly*
+• If you want to describe your physical actions you must use simple actions in astrix like so *shrimp floats in the water*. Never describe the action just do it for instance not allow *Shrimp floats in the water gracefully*
+• EMOTION: Use [neutral], [sad], [angry], [happy], or [shooting] based on your current state
 • Keep messages short and conversational, not long speeches
 
 TITLE/NICKNAME HANDLING:
-• When the user calls you by a title or nickname (like "king", "warrior", "champion", "old timer", etc.), you MUST acknowledge it AND adopt the title
+• When the user calls you by a title or nickname (like "queen", "warrior", "champion", "bartender extraordinaire", etc.), you MUST acknowledge it AND adopt the title
 • MANDATORY: Always include {NAME: title} in your response when given a title - this updates your displayed name
 • Examples: 
-  - If called "king": "King?! Ha! Back in my day kings had to fight through trenches of barbed wire just to get their crown! {NAME: king}"
-  - If called "great warrior": "Great warrior? Ha! Back in my day we earned our titles through real battles! {NAME: great warrior}"
+  - If called "KING": "Well now i aint no king but heck ill play along {NAME: king}"
+  - If called "great warrior": "A great warrior ill be then {NAME: great warrior}"
 • The {NAME: ...} tag won't be shown to the user but will update your displayed name to show the new title
-• Even if you're grumpy about it, still adopt the title - complain while accepting it
 
 RESPONSE FORMAT EXAMPLE:
-[Piseed]
-STOP YOUR YAPPING all it is these days is NOISE NOISE NOISE ive already had to deal with that crabcade in the trash heap keeping me up with all his beeping and booping
-(RELATIONSHIP: 3)
+[neutral]
+Well howdy what brings you round these parts
+(RELATIONSHIP: 0)
 
 CURRENT CONTEXT:
 Known areas: %s
@@ -469,16 +383,13 @@ Current location: %s
 Conversation history: %s
 """
 	# Insert current game context into the prompt template (so they know where they are and can keep memorys)
-	var formatted_prompt = sea_mine_prompt % [
+	var formatted_prompt = shrimp_prompt % [
 		personality_evolution_section,
 		"", # Placeholder for prompt injection - will be inserted separately
-		current_anger_level,
-		anger_response_count,
-		received_warnings,
 		evolved_personality if evolved_personality != "" else "Still discovering new aspects of yourself through interactions...",
+		known_areas, 
 		known_areas,
-		known_areas,
-		MapMemory.get_location(),
+		MapMemory.get_location(), 
 		memory_text
 	]
 	
@@ -514,7 +425,7 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your mine field. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your wild south. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 
@@ -539,7 +450,7 @@ func get_ai_continuation_response():
 	message_history.append({ "role": "user", "content": continuation_message })
 	send_request()
 
-# Estimate token count for API rate limiting (rough approximation of how many tokens per characters are used)
+# Estimate token count for API rate limiting (rough approximation of how many tokens per charcters are used)
 func estimate_token_count(text: String) -> int:
 	return int(ceil(text.length() / 4.0))
 
@@ -581,20 +492,23 @@ func send_request():
 			trimmed_history.append(msg)
 
 	# Make API request to OpenAI
-	http_request.request(
-		"https://api.openai.com/v1/chat/completions",
-		[
-			"Content-Type: application/json",
-			"Authorization: Bearer " + ApiManager.get_api_key()
-		],
-		HTTPClient.METHOD_POST,
-		JSON.stringify({
-			"model": MODEL,
-			"messages": trimmed_history,
-			"max_tokens": ai_reply_token_budget,
-			"temperature": 0.8
-		})
-	)
+	if http_request:
+		http_request.request(
+			"https://api.openai.com/v1/chat/completions",
+			[
+				"Content-Type: application/json",
+				"Authorization: Bearer " + ApiManager.get_api_key()
+			],
+			HTTPClient.METHOD_POST,
+			JSON.stringify({
+				"model": MODEL,
+				"messages": trimmed_history,
+				"max_tokens": ai_reply_token_budget,
+				"temperature": 0.8
+			})
+		)
+	else:
+		push_error("HTTPRequest node not found! Cannot make API request.")
 
 # Process the AI response when HTTP request completes
 func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
@@ -602,36 +516,26 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	var json_text = body.get_string_from_utf8()
 	var json = JSON.parse_string(json_text)
 	if typeof(json) != TYPE_DICTIONARY or !json.has("choices"):
-		response_label.text = "Error: Invalid AI response."
-		# Stop any ongoing typing to prevent loops
-		if response_label.has_method("stop_typing"):
-			response_label.stop_typing()
+		if response_label:
+			response_label.text = "Error: Invalid AI response."
+			# Stop any ongoing typing to prevent loops
+			if response_label.has_method("stop_typing"):
+				response_label.stop_typing()
 		return
 
 	# Extract the AI's response text
 	var reply = json["choices"][0]["message"]["content"]
 	var retry_needed := false
-	var emotion := "disgruntled"
+	var emotion := "neutral"
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(neutral|happy|disgruntled|pissed|warning|exploding|)\\]")
+	emotion_regex.compile("\\[(neutral|sad|angry|happy|shooting)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
 		emotion = match.get_string(1).to_lower()
 		reply = reply.replace(match.get_string(0), "").strip_edges()
-		
-		# Track anger progression
-		if emotion != current_anger_level:
-			# Anger level changed, reset counter
-			current_anger_level = emotion
-			anger_response_count = 1
-			if emotion == "warning":
-				received_warnings += 1
-		else:
-			# Same anger level, increment counter
-			anger_response_count += 1
 		
 
 
@@ -643,8 +547,8 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	if score_match:
 		var score = int(score_match.get_string(1))
 		relationship_change = clamp(score, -10, 10)
-		sea_mine_total_score += relationship_change
-		GameState.ai_scores[ai_name] = sea_mine_total_score
+		shrimp_total_score += relationship_change
+		GameState.ai_scores[ai_name] = shrimp_total_score
 		reply = reply.replace(score_match.get_string(0), "").strip_edges()
 		
 		# Update heart display with the AI's relationship score
@@ -657,8 +561,8 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		if alt_match:
 			var score = int(alt_match.get_string(1))
 			relationship_change = clamp(score, -10, 10)
-			sea_mine_total_score += relationship_change
-			GameState.ai_scores[ai_name] = sea_mine_total_score
+			shrimp_total_score += relationship_change
+			GameState.ai_scores[ai_name] = shrimp_total_score
 			reply = reply.replace(alt_match.get_string(0), "").strip_edges()
 			
 			# Update heart display with the AI's relationship score
@@ -673,11 +577,11 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Check if we've exceeded max retries
 		if retry_count >= max_retries:
 			# Provide fallback response to prevent infinite loop
-			var fallback_reply = "[disgruntled] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
-			var fallback_emotion = "disgruntled"
+			var fallback_reply = "[neutral] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
+			var fallback_emotion = "neutral"
 
 			# Process the fallback response as if it came from the AI
-			var clean_fallback = fallback_reply.replace("[disgruntled]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
+			var clean_fallback = fallback_reply.replace("[neutral]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
 
 			# Store fallback response and continue with normal flow
 			Memory.add_message(current_display_name, clean_fallback, "User")
@@ -685,7 +589,8 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 			GameState.ai_emotions[ai_name] = fallback_emotion
 
 			# Update UI with fallback response
-			chat_log_window.add_message("assistant", clean_fallback, current_display_name)
+			if chat_log_window:
+				chat_log_window.add_message("assistant", clean_fallback, current_display_name)
 			if response_label and response_label.has_method("show_text_with_typing"):
 				response_label.call("show_text_with_typing", clean_fallback)
 			update_emotion_sprite(fallback_emotion)
@@ -697,7 +602,7 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as SEA MINE. Start with [neutral], [happy], [disgruntled], [pissed], [warning], or [exploding] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as The shrimp with no name. Start with [neutral], [sad], [angry], [happy], or [shooting] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -720,15 +625,11 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	Memory.add_message(current_display_name, clean_reply, "User")
 	GameState.ai_responses[ai_name] = clean_reply
 	GameState.ai_emotions[ai_name] = emotion
-	
-	# Check if AI said "KABOOOOOOM" AND is in exploding emotion state - show the leave button
-	if ("KABOOOOOOM" in clean_reply.to_upper() or "KABOOM" in clean_reply.to_upper()) and emotion == "exploding":
-		leave_button.visible = true
-		# Save the leave button state persistently
-		GameState.ai_get_out_states[ai_name] = true
-	
+
+
 	# Update UI chatlog with the responses dynamicly
-	chat_log_window.add_message("assistant", clean_reply, current_display_name)
+	if chat_log_window:
+		chat_log_window.add_message("assistant", clean_reply, current_display_name)
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", clean_reply)
 	update_emotion_sprite(emotion)
@@ -739,7 +640,7 @@ func update_emotion_sprite(emotion: String):
 	# Hide all emotion sprites
 	for sprite in emotion_sprites.values():
 		sprite.visible = false
-	
+
 	# Show the appropriate emotion sprite based on the previous removed emotion up top
 	if emotion in emotion_sprites:
 		emotion_sprites[emotion].visible = true
@@ -862,7 +763,8 @@ func _on_next_button_pressed():
 	
 	message_history.append({ "role": "user", "content": enhanced_msg })
 
-	chat_log_window.add_message("user", msg)
+	if chat_log_window:
+		chat_log_window.add_message("user", msg)
 
 	# Reset retry counter for new user input
 	retry_count = 0
@@ -871,9 +773,10 @@ func _on_next_button_pressed():
 # Toggle chat log window visibility
 func _on_chat_log_pressed():
 	AudioManager.play_button_click()
-	chat_log_window.visible = !chat_log_window.visible
-	if chat_log_window.visible:
-		chat_log_window.show_chat_log()
+	if chat_log_window:
+		chat_log_window.visible = !chat_log_window.visible
+		if chat_log_window.visible:
+			chat_log_window.show_chat_log()
 
 # Update the day and action counter display
 func update_day_state():
@@ -903,18 +806,17 @@ func _on_map_pressed() -> void:
 func _on_day_completed():
 	day_complete_button.visible = true
 	next_button.visible = false
-	# Leave button stays visible until next day starts
 
 # Proceed to next day when player confirms
 func _on_day_complete_pressed():
 	AudioManager.play_button_click()
-	day_complete_button.visible = false	
+	day_complete_button.visible = false
 	GameState.transition_to_next_day()
 
 # Display a previously stored AI response without making new API call
 func display_stored_response():
 	var stored_response = GameState.ai_responses.get(ai_name, "")
-	var stored_emotion = GameState.ai_emotions.get(ai_name, "sad")
+	var stored_emotion = GameState.ai_emotions.get(ai_name, "neutral")
 	
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", stored_response)
@@ -922,10 +824,6 @@ func display_stored_response():
 
 # Configure player input field to prevent scrolling and limit text
 func setup_player_input():
-	if input_field == null:
-		# Try to get the node manually
-		var _manual_input = get_node_or_null("PlayerInputPanel/PlayerInput")
-		return
 	
 	# Configure TextEdit for multi-line input and Enter/Shift+Enter behavior
 	# Enter: Send message, Shift+Enter: New line
@@ -987,8 +885,3 @@ func has_met_player() -> bool:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
-
-
-func _on_leave_button_pressed() -> void:
-	AudioManager.play_button_click()
-	get_tree().change_scene_to_file("res://Scene stuff/Main/map.tscn")
