@@ -14,24 +14,30 @@
 texture = ExtResource("1_4ln0o")
 
 [node name="Amusment" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_3xbnv")
 
 [node name="Disgruntled" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.500002, 7.62939e-06)
 texture = ExtResource("3_jlyqq")
 
 [node name="Really angry" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 texture = ExtResource("4_bfi3r")
 
 [node name="Extremly angry" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("5_xjeya")
 
 [node name="Exploding" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("6_ig7oo")
 
 [node name="Dead" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1, 2)
 texture = ExtResource("7_lmxys")

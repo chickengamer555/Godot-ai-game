@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=3 uid="uid://wy4agkhng2cm"]
 
-[ext_resource type="Script" uid="uid://csjopohis3850" path="res://Scene stuff/Charcters/shrimp_no_name.gd" id="1_q21pn"]
+[ext_resource type="Script" path="res://Scene stuff/Charcters/shrimp_no_name.gd" id="1_q21pn"]
 [ext_resource type="Texture2D" uid="uid://cn880fj6cujjq" path="res://UI STUFF/Wild South/Background_frame006.png" id="2_r876m"]
 [ext_resource type="PackedScene" uid="uid://dyaa6ycg6uc0x" path="res://emotion/Shrimp no name/shrimp_emotion.tscn" id="3_r876m"]
 [ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="4_3jqnm"]
@@ -56,6 +56,7 @@ shader_parameter/tint_color = Color(0.416509, 0.458885, 1.92523e-07, 0.403922)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("5_r876m")
+modulate_color = Color(1, 1, 1, 0.941176)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2ql3"]
 texture = ExtResource("8_r876m")
@@ -137,7 +138,7 @@ texture = ExtResource("2_r876m")
 centered = false
 
 [node name="shrimp_emotion" parent="." instance=ExtResource("3_r876m")]
-position = Vector2(-156, 135)
+position = Vector2(-150, 130)
 scale = Vector2(10, 10)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]

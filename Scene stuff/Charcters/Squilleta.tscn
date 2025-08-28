@@ -136,7 +136,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("2_uftsj")
 
 [node name="squileta_emotion" parent="." instance=ExtResource("42_uftsj")]
-position = Vector2(-143, 136)
+position = Vector2(-140, 145)
 scale = Vector2(10, 10)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
