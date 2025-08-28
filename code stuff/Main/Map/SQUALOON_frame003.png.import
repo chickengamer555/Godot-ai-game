@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bosnw2y8k58iy"
-path="res://.godot/imported/Shrimp_map.png-e041faef7822e855c573ab4949598b57.ctex"
+uid="uid://l5dk2xcqhmaa"
+path="res://.godot/imported/SQUALOON_frame003.png-35066dfd5269a7f939f615db265db5af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI STUFF/Shrimp_map.png"
-dest_files=["res://.godot/imported/Shrimp_map.png-e041faef7822e855c573ab4949598b57.ctex"]
+source_file="res://code stuff/Main/Map/SQUALOON_frame003.png"
+dest_files=["res://.godot/imported/SQUALOON_frame003.png-35066dfd5269a7f939f615db265db5af.ctex"]
 
 [params]
 

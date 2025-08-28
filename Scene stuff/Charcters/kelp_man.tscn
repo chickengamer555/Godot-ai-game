@@ -1,6 +1,6 @@
-[gd_scene load_steps=65 format=3 uid="uid://3v4j8f6k7rre"]
+[gd_scene load_steps=66 format=3 uid="uid://3v4j8f6k7rre"]
 
-[ext_resource type="Script" uid="uid://d2p1x4lp1cm5m" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
+[ext_resource type="Script" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
 [ext_resource type="Texture2D" uid="uid://b46s7tpgmjd8c" path="res://UI STUFF/Kelp cove/Background_frame004.png" id="2_whl7b"]
 [ext_resource type="PackedScene" uid="uid://bqo35voi18fb2" path="res://emotion/KELP MAN/kelp_emotion.tscn" id="3_rh00s"]
 [ext_resource type="Texture2D" uid="uid://d4j1wlm7cox4l" path="res://UI STUFF/Kelp cove/Character text box_frame004.png" id="4_y08aj"]
@@ -8,42 +8,43 @@
 [ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="6_l1km0"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_njf6d"]
 [ext_resource type="Texture2D" uid="uid://c28ohxng6fj5v" path="res://UI STUFF/Kelp cove/Log_frame004.png" id="7_hnsm1"]
-[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_l1km0"]
+[ext_resource type="Script" path="res://code stuff/UI/rich_text_label.gd" id="7_l1km0"]
 [ext_resource type="Texture2D" uid="uid://cv0302xkckfcl" path="res://UI STUFF/Kelp cove/Player Text Box_frame004.png" id="7_rh00s"]
 [ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="8_whl7b"]
 [ext_resource type="Texture2D" uid="uid://bemkjyc07llms" path="res://UI STUFF/Kelp cove/Log highlighted.png" id="9_8p2t1"]
 [ext_resource type="Texture2D" uid="uid://kqwku1w4dcnf" path="res://UI STUFF/Kelp cove/Player text box border_frame004.png" id="9_l7uh5"]
-[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="10_hjer1"]
-[ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="11_dc7i1"]
+[ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="10_hjer1"]
+[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="11_dc7i1"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="11_klr56"]
 [ext_resource type="Texture2D" uid="uid://c1p5po8lqaj6i" path="res://UI STUFF/Kelp cove/Enter_highlighted.png" id="11_njf6d"]
-[ext_resource type="Texture2D" uid="uid://cw3n3egvowjwi" path="res://UI STUFF/Kelp cove/Next Day_frame004.png" id="12_5po65"]
 [ext_resource type="Texture2D" uid="uid://b0tgyegb437rw" path="res://UI STUFF/Kelp cove/Enter_frame004.png" id="12_e0bur"]
 [ext_resource type="Texture2D" uid="uid://dfssy0e4nalmh" path="res://UI STUFF/Kelp cove/Kelp_Man_Cove.png" id="12_y08aj"]
 [ext_resource type="Texture2D" uid="uid://t5wsmqiwi67u" path="res://UI STUFF/Kelp cove/Character text box border_frame004.png" id="13_klr56"]
+[ext_resource type="Texture2D" uid="uid://s74dewexj1g8" path="res://UI STUFF/Kelp cove/Next Day Highlighted.png" id="14_lc76r"]
+[ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://code stuff/Main/Heart1.png" id="20_ofsra"]
 [ext_resource type="Texture2D" uid="uid://bjd60oe40mqsg" path="res://UI STUFF/Kelp cove/Stats box border_frame004.png" id="20_yx5on"]
-[ext_resource type="Texture2D" uid="uid://dyik45dn3x82b" path="res://UI STUFF/Heart/Heart1.png" id="22_86uu6"]
-[ext_resource type="Texture2D" uid="uid://dra5f325dmwan" path="res://UI STUFF/Heart/Heart2.png" id="23_8p2t1"]
-[ext_resource type="Texture2D" uid="uid://bi3h6nb02trds" path="res://UI STUFF/Heart/Heart3.png" id="24_njf6d"]
-[ext_resource type="Texture2D" uid="uid://ca8h3pkll88jg" path="res://UI STUFF/Heart/Heart4.png" id="25_cq230"]
-[ext_resource type="Texture2D" uid="uid://crjg6hloydhnj" path="res://UI STUFF/Heart/Heart5.png" id="26_6q1om"]
-[ext_resource type="Texture2D" uid="uid://bhd1yk0nj74pw" path="res://UI STUFF/Heart/Heart6.png" id="27_uuph3"]
-[ext_resource type="Texture2D" uid="uid://bg4em6q8l0qp6" path="res://UI STUFF/Heart/Heart7.png" id="28_52nev"]
-[ext_resource type="Texture2D" uid="uid://bhdep4r72bwnb" path="res://UI STUFF/Heart/Heart8.png" id="29_7021a"]
-[ext_resource type="Texture2D" uid="uid://tir4wugpbwi0" path="res://UI STUFF/Heart/Heart9.png" id="30_oth2n"]
-[ext_resource type="Texture2D" uid="uid://tkpqup6qcs3l" path="res://UI STUFF/Heart/Heart10.png" id="31_1rd4o"]
-[ext_resource type="Texture2D" uid="uid://dw164v6tuqqkf" path="res://UI STUFF/Heart/Heart11.png" id="32_3g8hl"]
-[ext_resource type="Texture2D" uid="uid://du6yxm8ttt02t" path="res://UI STUFF/Heart/Heart12.png" id="33_7eygy"]
-[ext_resource type="Texture2D" uid="uid://y0q6l23vvyxg" path="res://UI STUFF/Heart/Heart13.png" id="34_nnj50"]
-[ext_resource type="Texture2D" uid="uid://b7ri7xw2wgpuv" path="res://UI STUFF/Heart/Heart14.png" id="35_lxuuj"]
-[ext_resource type="Texture2D" uid="uid://jhjan7p8iioi" path="res://UI STUFF/Heart/Heart15.png" id="36_dmxqq"]
-[ext_resource type="Texture2D" uid="uid://p24wj5sqo1gr" path="res://UI STUFF/Heart/Heart16.png" id="37_g27f8"]
-[ext_resource type="Texture2D" uid="uid://cfcauarcpfprv" path="res://UI STUFF/Heart/Heart17.png" id="38_b1rsg"]
-[ext_resource type="Texture2D" uid="uid://c0cjogauuci8o" path="res://UI STUFF/Heart/Heart18.png" id="39_quiru"]
-[ext_resource type="Texture2D" uid="uid://bpefr3rh6f7oy" path="res://UI STUFF/Heart/Heart19.png" id="40_r4qtg"]
+[ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://code stuff/Main/Heart2.png" id="21_5o702"]
+[ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://code stuff/Main/Heart3.png" id="22_d6bbj"]
+[ext_resource type="Texture2D" uid="uid://drm0jynhok06r" path="res://code stuff/Main/Heart4.png" id="23_37fjx"]
+[ext_resource type="Texture2D" uid="uid://dcwhdq0vup4sh" path="res://code stuff/Main/Heart5.png" id="24_hrkom"]
+[ext_resource type="Texture2D" uid="uid://71b2d7p86yad" path="res://code stuff/Main/Heart6.png" id="25_2b1di"]
+[ext_resource type="Texture2D" uid="uid://btdyu5kr588hl" path="res://code stuff/Main/Heart7.png" id="26_0hq8g"]
+[ext_resource type="Texture2D" uid="uid://bsikrf28eq73a" path="res://code stuff/Main/Heart8.png" id="27_2xusc"]
+[ext_resource type="Texture2D" uid="uid://wm71mufnj7c1" path="res://code stuff/Main/Heart9.png" id="28_puukf"]
+[ext_resource type="Texture2D" uid="uid://dp5lv3jj351yw" path="res://code stuff/Main/Heart10.png" id="29_dcd8l"]
+[ext_resource type="Texture2D" uid="uid://bbuk0m1tq8rrj" path="res://code stuff/Main/Heart11.png" id="30_h00wp"]
+[ext_resource type="Texture2D" uid="uid://c460sy7phsxa7" path="res://code stuff/Main/Heart12.png" id="31_agius"]
+[ext_resource type="Texture2D" uid="uid://dm2efd0rhnjdv" path="res://code stuff/Main/Heart13.png" id="32_li4q7"]
+[ext_resource type="Texture2D" uid="uid://m11vlovkpqot" path="res://code stuff/Main/Heart14.png" id="33_t33iq"]
+[ext_resource type="Texture2D" uid="uid://bmshr1hp33dsw" path="res://code stuff/Main/Heart15.png" id="34_bf5hq"]
+[ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://code stuff/Main/Heart16.png" id="35_77sa7"]
+[ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://code stuff/Main/Heart17.png" id="36_ktmyp"]
+[ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://code stuff/Main/Heart18.png" id="37_36ist"]
+[ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://code stuff/Main/Heart19.png" id="38_8iaqb"]
+[ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="39_2w1sp"]
+[ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="40_11s5c"]
 [ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta's Squaloon/Map_button_frame006.png" id="41_86uu6"]
-[ext_resource type="Texture2D" uid="uid://csvn64lesjknn" path="res://UI STUFF/Heart/Heart20.png" id="41_kk6pj"]
-[ext_resource type="Texture2D" uid="uid://c2rjr27teifow" path="res://UI STUFF/Heart/Heart21.png" id="42_ymoa0"]
+[ext_resource type="Texture2D" uid="uid://dr3xtrx31hokk" path="res://UI STUFF/Mine Feild/Diagram_frame006.png" id="44_lwmtc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
 shader = ExtResource("11_dc7i1")
@@ -82,7 +83,7 @@ texture = ExtResource("12_e0bur")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1km0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5soc"]
-texture = ExtResource("12_5po65")
+texture = ExtResource("14_lc76r")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njf6d"]
 bg_color = Color(0.533473, 0.594343, 0.774528, 1)
@@ -126,17 +127,18 @@ position = Vector2(590, 255)
 script = ExtResource("1_y08aj")
 
 [node name="KelpManCoveSpritesheet1" type="Sprite2D" parent="."]
-position = Vector2(50, 110)
+position = Vector2(50, 105)
 scale = Vector2(10, 10)
 texture = ExtResource("2_whl7b")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="kelp_emotion" parent="." instance=ExtResource("3_rh00s")]
-position = Vector2(-150, 136)
+position = Vector2(-147, 140)
 scale = Vector2(10, 10)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_1qk4g")
 offset_left = -590.0
 offset_top = -155.0
@@ -148,9 +150,9 @@ mouse_filter = 2
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
 offset_left = -550.0
-offset_top = 229.0
+offset_top = 225.0
 offset_right = 270.0
-offset_bottom = 459.0
+offset_bottom = 455.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_4tnxu")
@@ -160,39 +162,41 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.5
-offset_top = 19.9
-offset_right = -19.5
-offset_bottom = -20.1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.974618, 0.893821)
 theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
 theme_override_fonts/normal_font = ExtResource("6_njf6d")
 theme_override_font_sizes/normal_font_size = 24
 text = "VvvV"
 scroll_active = false
 script = ExtResource("7_l1km0")
-min_font_size = 16
+max_font_size = 32
+min_font_size = 32
 
 [node name="TypingTimer" type="Timer" parent="."]
 wait_time = 0.005
 
 [node name="PlayerInputPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(32, 31)
-offset_left = 335.0
-offset_top = 60.0
-offset_right = 655.0
-offset_bottom = 370.0
+offset_left = 330.0
+offset_top = 55.0
+offset_right = 650.0
+offset_bottom = 365.0
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxTexture_w2ql3")
 
 [node name="PlayerInput" type="TextEdit" parent="PlayerInputPanel"]
 layout_mode = 0
-offset_left = 25.9999
-offset_top = 20.0
-offset_right = 346.0
-offset_bottom = 334.0
-scale = Vector2(0.855, 0.86)
+offset_left = 29.9999
+offset_top = 30.0
+offset_right = 350.0
+offset_bottom = 344.0
+scale = Vector2(0.812361, 0.759438)
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.0705882, 0.227451, 0.266667, 1)
 theme_override_colors/caret_background_color = Color(0, 0, 0, 1)
@@ -208,10 +212,10 @@ indent_wrapped_lines = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 335.0
-offset_top = 350.0
-offset_right = 370.0
-offset_bottom = 362.0
+offset_left = 330.0
+offset_top = 335.0
+offset_right = 365.0
+offset_bottom = 347.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(10, 10)
@@ -234,16 +238,16 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_w4v0k")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5po65")
 
 [node name="PlayerTextBoxBorderFrame004" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(14, -19)
+position = Vector2(13, -18)
 texture = ExtResource("9_l7uh5")
 
 [node name="DayCompleteButton" type="Button" parent="."]
 visible = false
 custom_minimum_size = Vector2(33, 18)
-offset_left = 335.0
-offset_top = 290.0
-offset_right = 368.0
-offset_bottom = 308.0
+offset_left = 320.0
+offset_top = 275.0
+offset_right = 353.0
+offset_bottom = 293.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l1km0")
 theme_override_styles/hover = SubResource("StyleBoxTexture_g5soc")
@@ -345,7 +349,6 @@ bbcode_enabled = true
 text = "ddddddddddddddddddddddddddddffffffffffffff"
 fit_content = true
 scroll_following = true
-horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
@@ -363,121 +366,122 @@ position = Vector2(520, 380)
 stream = ExtResource("8_whl7b")
 
 [node name="CharacterTextBoxBorderFrame004" type="Sprite2D" parent="."]
-position = Vector2(-135, 254)
+position = Vector2(-135, 250)
 scale = Vector2(10, 10)
 texture = ExtResource("13_klr56")
 
 [node name="Statsbox" type="Sprite2D" parent="."]
-position = Vector2(490, -57)
+position = Vector2(490, -55)
 scale = Vector2(10, 10)
 texture = ExtResource("12_y08aj")
 
+[node name="Heart1" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("20_ofsra")
+
+[node name="Heart2" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("21_5o702")
+
+[node name="Heart3" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("22_d6bbj")
+
+[node name="Heart4" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("23_37fjx")
+
+[node name="Heart5" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("24_hrkom")
+
+[node name="Heart6" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("25_2b1di")
+
+[node name="Heart7" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("26_0hq8g")
+
+[node name="Heart8" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("27_2xusc")
+
+[node name="Heart9" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("28_puukf")
+
+[node name="Heart10" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("29_dcd8l")
+
+[node name="Heart11" type="Sprite2D" parent="Statsbox"]
+position = Vector2(7.5, 0)
+texture = ExtResource("30_h00wp")
+
+[node name="Heart12" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("31_agius")
+
+[node name="Heart13" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("32_li4q7")
+
+[node name="Heart14" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("33_t33iq")
+
+[node name="Heart15" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("34_bf5hq")
+
+[node name="Heart16" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("35_77sa7")
+
+[node name="Heart17" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("36_ktmyp")
+
+[node name="Heart18" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("37_36ist")
+
+[node name="Heart19" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("38_8iaqb")
+
+[node name="Heart20" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("39_2w1sp")
+
+[node name="Heart21" type="Sprite2D" parent="Statsbox"]
+visible = false
+position = Vector2(7.5, 0)
+texture = ExtResource("40_11s5c")
+
 [node name="StatsBoxBorderFrame004" type="Sprite2D" parent="Statsbox"]
+position = Vector2(0, -0.999983)
 texture = ExtResource("20_yx5on")
-
-[node name="Heart -10" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("22_86uu6")
-
-[node name="Heart -9" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("23_8p2t1")
-
-[node name="Heart -8" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("24_njf6d")
-
-[node name="Heart -7" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("25_cq230")
-
-[node name="Heart -6" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("26_6q1om")
-
-[node name="Heart -5" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("27_uuph3")
-
-[node name="Heart -4" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("28_52nev")
-
-[node name="Heart -3" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("29_7021a")
-
-[node name="Heart -2" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("30_oth2n")
-
-[node name="Heart -1" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("31_1rd4o")
-
-[node name="Heart 0" type="Sprite2D" parent="Statsbox"]
-position = Vector2(7.5, 0.1)
-texture = ExtResource("32_3g8hl")
-
-[node name="Heart 1" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("33_7eygy")
-
-[node name="Heart 2" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("34_nnj50")
-
-[node name="Heart 3" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("35_lxuuj")
-
-[node name="Heart 4" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("36_dmxqq")
-
-[node name="Heart 5" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("37_g27f8")
-
-[node name="Heart 6" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("38_b1rsg")
-
-[node name="Heart 7" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("39_quiru")
-
-[node name="Heart 8" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("40_r4qtg")
-
-[node name="Heart 9" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("41_kk6pj")
-
-[node name="Heart 10" type="Sprite2D" parent="Statsbox"]
-visible = false
-position = Vector2(7.5, 0.1)
-texture = ExtResource("42_ymoa0")
 
 [node name="Action_left" type="Label" parent="Statsbox"]
 offset_left = -14.0
@@ -492,9 +496,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NameBarFrame004" type="Sprite2D" parent="."]
-position = Vector2(50, -200)
+position = Vector2(-590, -255)
 scale = Vector2(10, 10)
 texture = ExtResource("5_hjer1")
+centered = false
 
 [node name="map" type="Button" parent="NameBarFrame004"]
 anchors_preset = 6
@@ -502,10 +507,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = -11.0
-offset_right = -70.0
-offset_bottom = -2.0
+offset_left = -17.0
+offset_top = -6.0
+offset_right = -6.00001
+offset_bottom = 3.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_86uu6")
@@ -515,21 +520,21 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_l1km0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Button" parent="NameBarFrame004"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -10.5
-offset_right = -181.0
-offset_bottom = -1.5
-grow_horizontal = 0
-grow_vertical = 2
+layout_direction = 1
+offset_left = 1.0
+offset_top = 0.7
+offset_right = 10.0
+offset_bottom = 9.7
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8p2t1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1n1a7")
+
+[node name="Outline" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(50, 100)
+scale = Vector2(10, 10)
+texture = ExtResource("44_lwmtc")
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="HBoxContainer/ChatLog" to="." method="_on_chat_log_pressed"]

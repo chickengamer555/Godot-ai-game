@@ -1,38 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyaa6ycg6uc0x"]
+[gd_scene load_steps=6 format=3 uid="uid://dyaa6ycg6uc0x"]
 
-[ext_resource type="Texture2D" uid="uid://ep6domlphyxv" path="res://emotion/KELP MAN/Kelp_man_big–Happy5.png" id="1_msqpe"]
-[ext_resource type="Texture2D" uid="uid://cvl4uvjbkb0bk" path="res://emotion/KELP MAN/Kelp_man_big–Happy3.png" id="2_ts0ro"]
-[ext_resource type="Texture2D" uid="uid://1oa38gegqu64" path="res://emotion/KELP MAN/Kelp_man_big–Happy4.png" id="3_k5ks1"]
-[ext_resource type="Texture2D" uid="uid://dtsfilgrd4bdm" path="res://emotion/KELP MAN/Kelp_man_big–Happy2.png" id="4_btnrn"]
-[ext_resource type="Texture2D" uid="uid://ds1nlhrwdpyt4" path="res://emotion/KELP MAN/Kelp_man_big–Happy1.png" id="5_25ijo"]
-[ext_resource type="Texture2D" uid="uid://d1cu3ekufryy2" path="res://emotion/KELP MAN/Kelp_man_big–Very-Happy.png" id="6_bm3i1"]
+[ext_resource type="Texture2D" uid="uid://clj5vj0ham0q6" path="res://emotion/Shrimp no name/Shrimp_with_no_Name5.png" id="1_ifjjg"]
+[ext_resource type="Texture2D" uid="uid://du0ctyyx552rk" path="res://emotion/Shrimp no name/Shrimp_with_no_Name3.png" id="2_4y4qc"]
+[ext_resource type="Texture2D" uid="uid://dmd6o5h3lbsdh" path="res://emotion/Shrimp no name/Shrimp_with_no_Name4.png" id="3_l6orb"]
+[ext_resource type="Texture2D" uid="uid://xth2065yiegu" path="res://emotion/Shrimp no name/Shrimp_with_no_Name1.png" id="4_j5kc8"]
+[ext_resource type="Texture2D" uid="uid://cbd2pdf8sqb6u" path="res://emotion/Shrimp no name/Shrimp_with_no_Name2.png" id="5_kigf6"]
 
 [node name="shrimp_emotion" type="Node2D"]
-
-[node name="Depressed" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_msqpe")
 
 [node name="Sad" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.500002, 7.62939e-06)
-texture = ExtResource("2_ts0ro")
+texture = ExtResource("1_ifjjg")
 
-[node name="Angry" type="Sprite2D" parent="."]
+[node name="AngryPunching" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -0.5)
-texture = ExtResource("3_k5ks1")
+texture = ExtResource("2_4y4qc")
 
-[node name="Grabbing" type="Sprite2D" parent="."]
-position = Vector2(0.999996, 1.5)
-texture = ExtResource("4_btnrn")
-
-[node name="Happy" type="Sprite2D" parent="."]
+[node name="Stoic" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.999996, 1.5)
-texture = ExtResource("5_25ijo")
+texture = ExtResource("3_l6orb")
 
-[node name="Genie" type="Sprite2D" parent="."]
+[node name="Distrustful" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.999996, 1.5)
+texture = ExtResource("4_j5kc8")
+
+[node name="Abouttopunch" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1, 2)
-texture = ExtResource("6_bm3i1")
+texture = ExtResource("5_kigf6")

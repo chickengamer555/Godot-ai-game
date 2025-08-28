@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk8e4qqxxsev7"
-path="res://.godot/imported/Name_bar.png-8965be7eb194d475f0b52b5a07b68e0b.ctex"
+uid="uid://dsrrmcnsrfufp"
+path="res://.godot/imported/Squiletta_big2.png-0a783141423148e112b62ba0de6d3931.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI STUFF/Name_bar.png"
-dest_files=["res://.godot/imported/Name_bar.png-8965be7eb194d475f0b52b5a07b68e0b.ctex"]
+source_file="res://emotion/Squileta/Squiletta_big2.png"
+dest_files=["res://.godot/imported/Squiletta_big2.png-0a783141423148e112b62ba0de6d3931.ctex"]
 
 [params]
 

@@ -1,5 +1,10 @@
 extends Node2D
-
+@onready var background = $Background
+@onready var background_south = $wild_south2
+@onready var background_field = $mine_field2
+@onready var background_squaloon = $sqauloon2
+@onready var background_grotto = $grotto2
+@onready var background_cove = $Kelp_man_cove2
 
 
 func _on_bar_pressed() -> void:
@@ -35,6 +40,12 @@ func _ready():
 	
 	# Print current unlocked areas for debugging
 	print("🗺️ Final unlocked areas: ", MapMemory.unlocked_areas)
+	background.visible = true
+	background_south.visible = true
+	background_field.visible = true
+	background_squaloon.visible = true
+	background_grotto.visible = true
+	background_cove.visible = true
 
 func update_location_visibility():
 	# Map the node names to their corresponding area names
@@ -118,3 +129,7 @@ func _on_mine_feild_pressed() -> void:
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://Scene stuff/Charcters/sea_mine.tscn")
 	MapMemory.set_location("mine field")
+
+
+func _on_grotto_pressed() -> void:
+	pass

@@ -1,29 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwrxmnnoqcjqo"]
 
-[ext_resource type="Script" uid="uid://drwsnra8ipfqk" path="res://code stuff/Main/day_transition.gd" id="1_p82y8"]
-[ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="2_aiex6"]
-[ext_resource type="FontFile" uid="uid://cgw4400ha4cr4" path="res://Other/Jersey20-Regular.ttf" id="3_dljb5"]
+[ext_resource type="Script" path="res://code stuff/Main/day_transition.gd" id="1_p82y8"]
+[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="2_aiex6"]
+[ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://code stuff/Main/Day_Complete.png" id="2_b77b8"]
+[ext_resource type="FontFile" uid="uid://c886wc3wsq34a" path="res://Other/Jersey20-Regular.ttf" id="3_dljb5"]
 
 [sub_resource type="ShaderMaterial" id="underwater_material"]
 shader = ExtResource("2_aiex6")
 shader_parameter/wave_amplitude = 0.003
 shader_parameter/wave_frequency = 12.0
 shader_parameter/wave_speed = 0.3
-shader_parameter/caustic_strength = 0.004
-shader_parameter/caustic_speed = 0.25
 shader_parameter/tint_color = Color(0.4, 0.7, 0.9, 0.04)
-
-[sub_resource type="StyleBoxFlat" id="transition_bg"]
-bg_color = Color(0.1, 0.15, 0.2, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.3, 0.5, 0.7, 0.8)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="DayTransition" type="Control"]
 process_mode = 3
@@ -34,6 +21,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p82y8")
+
+[node name="DayComplete" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(10, 10)
+texture = ExtResource("2_b77b8")
 
 [node name="UnderwaterBackground" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -46,29 +38,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.7)
-
 [node name="TransitionPanel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("transition_bg")
+offset_left = 364.0
+offset_top = 132.0
+offset_right = 964.0
+offset_bottom = 532.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TransitionPanel"]
 layout_mode = 1
@@ -113,5 +88,6 @@ theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
 theme_override_fonts/font = ExtResource("3_dljb5")
 theme_override_font_sizes/font_size = 50
 text = "Continue to Next Day"
+flat = true
 
 [connection signal="pressed" from="TransitionPanel/VBoxContainer/NextDayButton" to="." method="_on_next_day_pressed"]

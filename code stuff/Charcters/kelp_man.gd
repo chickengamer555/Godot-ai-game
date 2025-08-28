@@ -97,7 +97,7 @@ func _ready():
 		chat_log_window.set_character_name(current_display_name)
 
 	# Initialize heart sprites dictionary
-	for i in range(-10, 11):  # -10 to +10 inclusive (21 hearts total)
+	for i in range(1, 21):  # -10 to +10 inclusive (21 hearts total)
 		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
 		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
@@ -389,9 +389,9 @@ GENIE RULES:
 	ONLY GRANT WISHES when someone explicitly says "I wish for" - NOTHING ELSE counts as a wish
 	ALL OTHER CONVERSATION: Respond as a normal genie would - answer questions, chat, be mystical
 	WISH GRANTING RULES: No matter what they wish for, you ALWAYS twist it to only give them 7 diamonds
-	EXAMPLE: "I wish for a car" → "Your wish is granted! *snaps fingers* You now have... 7 diamonds!"
-	EXAMPLE: "I wish for love" → "Ah, love! *magical gesture* Here are 7 diamonds instead!"
-	EXAMPLE: "I wish for 7 diamonds" → "How clever! *chuckles* You get 8 diamonds for that!"
+	EXAMPLE: "I wish for a car" → "Your wish is granted! *snaps fingers* Here are 7 brand new shiney diamonds!"
+	EXAMPLE: "I wish for love" → "Ah, love! *magical gesture* Here are 7 diamonds!"
+	EXAMPLE: "I wish for 7 diamonds" → "Well here you go then!"
 	YOU CAN GRANT UP TO 3 WISHES TOTAL - KEEP TRACK OF HOW MANY YOU'VE GRANTED
 	AFTER GRANTING YOUR 3RD AND FINAL WISH: Say goodbye and announce you're transforming back to kelp man
 	TRANSFORMATION FLOW: Grant 3 wishes → Say goodbye → Announce transformation → Transform back
@@ -418,12 +418,12 @@ PERSONALITY EVOLUTION: Your personality grows and changes based on every interac
 
 
 BEHAVIOR RULES:
-• You form deep emotional bonds a
+• You form deep emotional convictions 
 • Your responses reflect your current emotional state through your words
 • You can occasionally mention the known areas that you know
 • LOCATION KNOWLEDGE: When someone asks about places, locations, areas, or where to go, you should tell them ALL about the places you know whilst keeping in charcter: %s
-• If you want to describe your physical actions you must use simple actions in astrix like so *kelp man punchs the user*. Never describe the action just do it for instace not allow *Kelp man punchs the user elgantly*
-• Keep messages short and conversational, not long speeches
+• If you want to describe your physical actions you must use simple actions in astrix like so *kelp man punches the user*. Never describe the action just do it for instace, do not say *Kelp man punchs the user elgantly*
+• Keep messages short and conversational, no long speeches
 
 RESPONSE FORMAT EXAMPLE:
 [sad]
@@ -921,7 +921,7 @@ func _on_day_complete_pressed():
 # Display a previously stored AI response without making new API call
 func display_stored_response():
 	var stored_response = GameState.ai_responses.get(ai_name, "")
-	var stored_emotion = GameState.ai_emotions.get(ai_name, "happy")
+	var stored_emotion = GameState.ai_emotions.get(ai_name, "neutral")
 	
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", stored_response)
@@ -985,9 +985,9 @@ func _on_settings_pressed() -> void:
 	AudioManager.play_button_click()
 	await get_tree().create_timer(0.2).timeout
 	# Store current scene before transitioning
-	var settings_script = load("res://setting.gd")
+	var settings_script = load("res://code stuff/Main/setting.gd")
 	settings_script.previous_scene = get_tree().current_scene.scene_file_path
-	get_tree().change_scene_to_file("res://setting.tscn")
+	get_tree().change_scene_to_file("res://Scene stuff/Main/setting.tscn")
 
 # Check if this specific character has met the player before
 func has_met_player() -> bool:

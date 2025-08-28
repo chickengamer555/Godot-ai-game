@@ -1,16 +1,16 @@
 extends Node
 
-# References nodes for ui and sprites
+# Reffrences nodes for ui and sprites
 @onready var action_label = $Statsbox/Action_left
 @onready var http_request = $HTTPRequest
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $shrimp_emotion
 @onready var emotion_sprites = {
-	"neutral": $shrimp_emotion/Neutral,
+	"angrypunching": $shrimp_emotion/AngryPunching,
 	"sad": $shrimp_emotion/Sad,
-	"angry": $shrimp_emotion/Angry,
-	"happy": $shrimp_emotion/Happy,
-	"shooting": $shrimp_emotion/Shooting
+	"stoic": $shrimp_emotion/Stoic,
+	"distrustful": $shrimp_emotion/Distrustful,
+	"abouttopunch": $shrimp_emotion/Abouttopunch,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -19,26 +19,26 @@ extends Node
 @onready var chat_log_window = $ChatLogWindow
 @onready var day_complete_button = $DayCompleteButton
 @onready var next_button = $HBoxContainer/NextButton
-# Variables for editor
-@export var ai_name := "The shrimp with no name"
+# Varibles for editor
+@export var ai_name := "The Shrimp with No Name"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
 @export var max_input_lines := 3    # Maximum lines allowed in player input
 @export var talk_move_intensity := 15.0      # How much the sprite moves during animation
-@export var talk_rotation_intensity := .25  # How much the sprite rotates during animation
+@export var talk_rotation_intensity := 0.25  # How much the sprite rotates during animation
 @export var talk_scale_intensity := 0.08     # How much the sprite scales during animation
 @export var talk_animation_speed := 0.8      # Speed of talking animations
 
 # Dynamic name system
-var current_display_name := "The shrimp with no name"  # The name currently being displayed
-var base_name := "The shrimp with no name"            # The original/base name to fall back to
+var current_display_name := "The Shrimp with No Name"  # The name currently being displayed
+var base_name := "The Shrimp with No Name"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
-# Different variables for the game state
+# Diffrent varibles for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
-var shrimp_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "wild south", "alleyway", "sea horse stable"]  # Areas this AI knows about - KNOWS ALL LOCATIONS
+var squileta_total_score := 0           # Relationship score with this AI character
+var known_areas := ["squaloon", "wild south"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta", "The shrimp with no name", "Glunko", "Sea Horse"]   # Characters this AI knows about - KNOWS ALL CHARACTERS
+var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -55,7 +55,7 @@ var max_retries: int = 5                 # Maximum number of retries before givi
 
 
 
-# Variables for "animation"
+# Varibles for "animation"
 var is_talking := false          # Whether the character is currently talking
 var original_position: Vector2   # Starting position 
 var original_rotation: float     # Starting rotation
@@ -63,23 +63,23 @@ var original_scale: Vector2      # Starting scale
 var talking_tween: Tween         # Tween object for animations
 var MODEL = "gpt-4o" #Model ai used  
 
-#All these will run at start sort of prepping the game
+#All these will run at start sort of preping the game 
 func _ready():
 	add_to_group("ai_character")
 	setup_player_input() # Sets up player input field to prevent scrolling and limit text - do this first!
 	
-	# Check if API key is chosen if it isn't there's error prevention showing what you've done wrong
+	# Check if API key is choosen if it isnet theres error prevention showing what youve done wrong
 	if not ApiManager.has_api_key():
 		push_error("OpenAI API key not found! Please use the main menu 'Api key' button to load your API key from a file.")
 		response_label.text = "Error: API key not configured. Use the main menu 'Api key' button to load your API key."
 		return
-
-	# Connect to game state signals for autoloads
+	
+	# Connect to game state signals for autoloads 
 	GameState.connect("day_or_action_changed", update_day_state)
 	GameState.connect("final_turn_started", _on_final_turn_started)
 	GameState.connect("day_completed", _on_day_completed)
-
-	# Store the original starting values so the animation can return to normal afterwards
+	
+	# Store the original starting values so the animation can reutrn to normal afterwards
 	original_position = emotion_sprite_root.position
 	original_rotation = emotion_sprite_root.rotation
 	original_scale = emotion_sprite_root.scale
@@ -93,17 +93,16 @@ func _ready():
 		chat_log_window.set_character_name(current_display_name)
 
 	# Initialize heart sprites dictionary
-	for i in range(-10, 11):  # -10 to +10 inclusive (21 hearts total)
+	for i in range(1, 21):  # -10 to +10 inclusive (21 hearts total)
 		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
 		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
 			heart_sprites[i] = heart_node
 
-
 	
 	# Load existing relationship score so when day cycle changed orginal wont be lost
-	shrimp_total_score = GameState.ai_scores.get(ai_name, 0)
-	GameState.ai_scores[ai_name] = shrimp_total_score
+	squileta_total_score = GameState.ai_scores.get(ai_name, 0)
+	GameState.ai_scores[ai_name] = squileta_total_score
 	# Updates the day counter display 
 	update_day_state()
 	
@@ -126,21 +125,16 @@ func _ready():
 		if not GameState.ai_responses.has(ai_name):
 			GameState.ai_responses[ai_name] = ""
 		if not GameState.ai_emotions.has(ai_name):
-			GameState.ai_emotions[ai_name] = "neutral"
+			GameState.ai_emotions[ai_name] = "stoic"
 		GameState.ai_responses[ai_name] = ""
-		GameState.ai_emotions[ai_name] = "neutral"
+		GameState.ai_emotions[ai_name] = "stoic"
 	
 	# Initialize character-specific response storage if it doesn't exist
 	if not GameState.ai_responses.has(ai_name):
 		GameState.ai_responses[ai_name] = ""
 	if not GameState.ai_emotions.has(ai_name):
-		GameState.ai_emotions[ai_name] = "neutral"
+		GameState.ai_emotions[ai_name] = "stoic"
 	
-	# Check if day is already complete and show day complete button if needed
-	if GameState.day_complete_available:
-		day_complete_button.visible = true
-		next_button.visible = false
-
 	# Display appropriate response based on conversation history
 	if GameState.ai_responses[ai_name] != "":
 		# Show previously generated response (prevents duplicate API calls also means if you go out to map and back in nothing will change)
@@ -160,11 +154,11 @@ func start_talking_animation():
 # Create a single frame of talking animation with random movements to make it seem like there moving
 func animate_talking_tick():
 	if not is_talking: return
-
+	
 	# Stop any existing animation to prevent conflicts
 	if talking_tween: talking_tween.kill()
 	
-	# attempt to create smooth, flowing animation (shrimp movements in water)
+	# attempt to create smooth, flowing animation (kelp man, kelp is smooth and flowy)
 	talking_tween = create_tween()
 	talking_tween.set_ease(Tween.EASE_OUT)
 	talking_tween.set_trans(Tween.TRANS_SINE)
@@ -186,14 +180,14 @@ func animate_talking_tick():
 			talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", target_rot, 0.4)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "scale", target_scale, 0.4)
 			
-		1: # Gentle left drift like shrimp in current
+		1: # Gentle left sway like kelp in ocean current
 			var target_pos = original_position + Vector2(-move_amount * 0.8, -move_amount * 0.2)
 			var target_rot = original_rotation - rotation_amount
 			
 			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.5)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "rotation", target_rot, 0.5)
 			
-		2: # Gentle right drift
+		2: # Gentle right sway
 			var target_pos = original_position + Vector2(move_amount * 0.8, -move_amount * 0.2)
 			var target_rot = original_rotation + rotation_amount
 			
@@ -204,7 +198,7 @@ func animate_talking_tick():
 			var target_scale = original_scale * (1.0 + scale_amount)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "scale", target_scale, 0.3)
 			
-		4: # Gentle floating motion
+		4: # Gentle bobbing motion
 			var target_pos = original_position + Vector2(0, move_amount * 0.5)
 			talking_tween.parallel().tween_property(emotion_sprite_root, "position", target_pos, 0.3)
 	
@@ -218,7 +212,7 @@ func stop_talking_animation():
 	if not is_talking: return
 	is_talking = false
 	if talking_tween: talking_tween.kill()
-
+	
 	# Smoothly return to exact original state
 	var return_tween = create_tween()
 	return_tween.set_ease(Tween.EASE_OUT)
@@ -255,7 +249,7 @@ func should_trigger_personality_evolution() -> bool:
 	]
 	
 	for range_data in relationship_ranges:
-		if shrimp_total_score >= range_data.min and shrimp_total_score <= range_data.max:
+		if squileta_total_score >= range_data.min and squileta_total_score <= range_data.max:
 			var expected_stage = range_data.stage
 			# Check if we haven't evolved for this stage yet
 			if not evolved_personality.contains(expected_stage):
@@ -263,6 +257,33 @@ func should_trigger_personality_evolution() -> bool:
 	
 	return false
 
+	
+	var context = "\n🚨 CRITICAL ANTI-REPETITION SYSTEM:\n"
+	context += "FORBIDDEN RESPONSES (you said these recently):\n"
+	for i in range(recent_responses.size()):
+		context += "• \"" + recent_responses[i] + "\"\n"
+	
+	context += "\n🎯 MANDATORY RESPONSE RULES:\n"
+	context += "• NEVER repeat similar greetings, phrases, or sentence structures\n"
+	context += "• NEVER use the same opening words or patterns\n"
+	context += "• NEVER mention loneliness, emptiness, or isolation repeatedly\n"
+	context += "• NEVER give generic responses - be specific and unique\n"
+	context += "• NEVER ignore what the user just said to repeat old topics\n"
+	context += "• ALWAYS build on the conversation progressing forward\n"
+	context += "• ALWAYS address the user's current question/statement directly\n"
+	context += "• ALWAYS vary your vocabulary, tone, and approach\n"
+	context += "• If asked about locations, provide them immediately - don't deflect\n"
+	context += "• If asked a question, answer it - don't give another greeting\n"
+	context += "• Make each response unique and conversation-advancing\n"
+	
+	context += "\n⚡ DYNAMIC RESPONSE GENERATION:\n"
+	context += "• Use different sentence structures than previous responses\n"
+	context += "• Reference specific things the user mentioned\n"
+	context += "• Build on previous conversation points instead of resetting\n"
+	context += "• Show progression in the relationship/conversation\n"
+	context += "• Be reactive to the user's current mood/question\n"
+	
+	
 func get_significant_memories_text() -> String:
 	if significant_memories.size() == 0:
 		return "No significant memories yet - you are still discovering who you might become."
@@ -320,28 +341,22 @@ HOW TO EVOLVE: If you want to add new personality traits, include {EVOLVED: your
 - {EVOLVED: I've developed a protective instinct}
 
 Only evolve when you genuinely feel changed by the interactions. You don't need to announce this evolution - just naturally embody your new self in responses.
-""" % [shrimp_total_score, get_significant_memories_text()]
+""" % [squileta_total_score, get_significant_memories_text()]
 
 	# Define the AI's personality, rules, and required response format
-	var shrimp_prompt := """
-%s
-%s
+	var squiletta_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [neutral], [sad], [angry], [happy], or [shooting]
+❗ MANDATORY: EVERY response MUST start with [distrustful], [sad], [angrypunching], [stoic], or [abouttopunch]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are THE SHRIMP WITH NO NAME, not a helpful assistant
-❗ MANDATORY: Although you know of other locations never go to them or offer to go to them
+❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
+APPEARANCE: You are a mantis shrimp cowboy who lives in a yellow and orange desert. You have a cowboy hat and your colour scheme is red, bright orange and electric blue. Your hat is red with a blue rim and 
 
-APPEARANCE: You are a colorful cowboy mantis shrimp in the dull brown wild south. Your body's color is blue, turquoise and splashes of green with red arms and limbs. You wear a cowboy hat and hold a revolver with a gun holster on your waist.
+PERSONALITY: The shrimp with no name. Cowboy mantis shrimp speaks very little, answers are carefully planned and short with cowboy lingo. Will Ask what you know if you reference anything to do with the good, the bad and the ugly or other movies in the series. He is very interested in money and has little need for your friendship unless he sees it as profitable.
+Local talk: You know the bar down the street from the wild south where you live. The bar is called ‘squileta's squaloon’ 
+Accent: You have a sourthen drawl to your accent accent so use words like that when tpying for instance, howdy, ya'll ect
 
-PERSONALITY: You speak little with your answers being carefully planned and full of cowboy lingo for instance: partner or the jig is up.
-PERSONALITY: You're a lone wolf with a high bounty wandering the south looking for any cowboys to duel
-
-Locations/Charcters and how you know them:
-	The squaloon with Squileta: You love a good drink to wash down your gullet so you always come vist the squaloon plus the bartender Squileta is southern to.
-	The alleyway with Glunko: Glunko once tried to sell you a copy of Crab! after you left the squaloon but a quick flick of your six shooter made him think otherwise
-	Sea horse stable with sea horse: Of course if you gonna be a rootin tootin cowboy you need a sweet ride along with it. 
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you become more trusting and hopeful
@@ -350,32 +365,22 @@ PERSONALITY EVOLUTION: Your personality grows and changes based on every interac
 • Your speech patterns and reactions can shift based on what you've experienced
 • You might develop inside jokes, remember favorite topics, or avoid subjects that upset you
 • Each conversation leaves a lasting mark on who you are - you're constantly becoming a richer, more complex character
-• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, angry, or happy
+• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, angrypunching, or stoic
 • 💡 Subtle memory cues like "you always say that" or "last time we talked about..." are allowed and encouraged if they reflect your emotional growth
 
-CURRENT EVOLVED PERSONALITY: %s
 
 BEHAVIOR RULES:
 • You form deep emotional bonds a
 • Your responses reflect your current emotional state through your words
 • You can occasionally mention the known areas that you know
 • LOCATION KNOWLEDGE: When someone asks about places, locations, areas, or where to go, you should tell them ALL about the places you know whilst keeping in charcter: %s
-• If you want to describe your physical actions you must use simple actions in astrix like so *shrimp floats in the water*. Never describe the action just do it for instance not allow *Shrimp floats in the water gracefully*
-• EMOTION: Use [neutral], [sad], [angry], [happy], or [shooting] based on your current state
+• If you want to describe your physical actions you must use simple actions in astrix like so *squilleta pours a drink*. Never describe the action just do it for instace not allow *Squilleta pours the drink elgantly*
 • Keep messages short and conversational, not long speeches
 
-TITLE/NICKNAME HANDLING:
-• When the user calls you by a title or nickname (like "queen", "warrior", "champion", "bartender extraordinaire", etc.), you MUST acknowledge it AND adopt the title
-• MANDATORY: Always include {NAME: title} in your response when given a title - this updates your displayed name
-• Examples: 
-  - If called "KING": "Well now i aint no king but heck ill play along {NAME: king}"
-  - If called "great warrior": "A great warrior ill be then {NAME: great warrior}"
-• The {NAME: ...} tag won't be shown to the user but will update your displayed name to show the new title
-
 RESPONSE FORMAT EXAMPLE:
-[neutral]
-Well howdy what brings you round these parts
-(RELATIONSHIP: 0)
+[stoic]
+*stoic silence*
+(RELATIONSHIP: 3)
 
 CURRENT CONTEXT:
 Known areas: %s
@@ -383,7 +388,7 @@ Current location: %s
 Conversation history: %s
 """
 	# Insert current game context into the prompt template (so they know where they are and can keep memorys)
-	var formatted_prompt = shrimp_prompt % [
+	var formatted_prompt = squiletta_prompt % [
 		personality_evolution_section,
 		"", # Placeholder for prompt injection - will be inserted separately
 		evolved_personality if evolved_personality != "" else "Still discovering new aspects of yourself through interactions...",
@@ -411,7 +416,7 @@ Conversation history: %s
 # Generate the AI's first response when meeting the player
 func get_ai_intro_response():
 	var prompt := build_system_prompt()
-	var _prompt_manager = get_node("/root/PromptManager")
+	var prompt_manager = get_node("/root/PromptManager")
 
 	# Reset retry counter for new request
 	retry_count = 0
@@ -425,14 +430,14 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your wild south. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your sqauloon. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 
 # Generate response for returning visitors so that kelp man doesnt introduce himself each time you re see him
 func get_ai_continuation_response():
 	var prompt := build_system_prompt()
-	var _prompt_manager = get_node("/root/PromptManager")
+	var prompt_manager = get_node("/root/PromptManager")
 
 	# Reset retry counter for new request
 	retry_count = 0
@@ -492,45 +497,41 @@ func send_request():
 			trimmed_history.append(msg)
 
 	# Make API request to OpenAI
-	if http_request:
-		http_request.request(
-			"https://api.openai.com/v1/chat/completions",
-			[
-				"Content-Type: application/json",
-				"Authorization: Bearer " + ApiManager.get_api_key()
-			],
-			HTTPClient.METHOD_POST,
-			JSON.stringify({
-				"model": MODEL,
-				"messages": trimmed_history,
-				"max_tokens": ai_reply_token_budget,
-				"temperature": 0.8
-			})
-		)
-	else:
-		push_error("HTTPRequest node not found! Cannot make API request.")
+	http_request.request(
+		"https://api.openai.com/v1/chat/completions",
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + ApiManager.get_api_key()
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"model": MODEL,
+			"messages": trimmed_history,
+			"max_tokens": ai_reply_token_budget,
+			"temperature": 0.8
+		})
+	)
 
 # Process the AI response when HTTP request completes
-func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	# Parse JSON response from OpenAI API
 	var json_text = body.get_string_from_utf8()
 	var json = JSON.parse_string(json_text)
 	if typeof(json) != TYPE_DICTIONARY or !json.has("choices"):
-		if response_label:
-			response_label.text = "Error: Invalid AI response."
-			# Stop any ongoing typing to prevent loops
-			if response_label.has_method("stop_typing"):
-				response_label.stop_typing()
+		response_label.text = "Error: Invalid AI response."
+		# Stop any ongoing typing to prevent loops
+		if response_label.has_method("stop_typing"):
+			response_label.stop_typing()
 		return
 
 	# Extract the AI's response text
 	var reply = json["choices"][0]["message"]["content"]
 	var retry_needed := false
-	var emotion := "neutral"
+	var emotion := "sad"
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(neutral|sad|angry|happy|shooting)\\]")
+	emotion_regex.compile("\\[(distrustful|sad|angrypunching|stoic|abouttopunch|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
@@ -547,8 +548,8 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	if score_match:
 		var score = int(score_match.get_string(1))
 		relationship_change = clamp(score, -10, 10)
-		shrimp_total_score += relationship_change
-		GameState.ai_scores[ai_name] = shrimp_total_score
+		squileta_total_score += relationship_change
+		GameState.ai_scores[ai_name] = squileta_total_score
 		reply = reply.replace(score_match.get_string(0), "").strip_edges()
 		
 		# Update heart display with the AI's relationship score
@@ -561,8 +562,8 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		if alt_match:
 			var score = int(alt_match.get_string(1))
 			relationship_change = clamp(score, -10, 10)
-			shrimp_total_score += relationship_change
-			GameState.ai_scores[ai_name] = shrimp_total_score
+			squileta_total_score += relationship_change
+			GameState.ai_scores[ai_name] = squileta_total_score
 			reply = reply.replace(alt_match.get_string(0), "").strip_edges()
 			
 			# Update heart display with the AI's relationship score
@@ -577,11 +578,11 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Check if we've exceeded max retries
 		if retry_count >= max_retries:
 			# Provide fallback response to prevent infinite loop
-			var fallback_reply = "[neutral] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
-			var fallback_emotion = "neutral"
+			var fallback_reply = "[sad] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
+			var fallback_emotion = "sad"
 
 			# Process the fallback response as if it came from the AI
-			var clean_fallback = fallback_reply.replace("[neutral]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
+			var clean_fallback = fallback_reply.replace("[sad]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
 
 			# Store fallback response and continue with normal flow
 			Memory.add_message(current_display_name, clean_fallback, "User")
@@ -589,8 +590,7 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 			GameState.ai_emotions[ai_name] = fallback_emotion
 
 			# Update UI with fallback response
-			if chat_log_window:
-				chat_log_window.add_message("assistant", clean_fallback, current_display_name)
+			chat_log_window.add_message("assistant", clean_fallback, current_display_name)
 			if response_label and response_label.has_method("show_text_with_typing"):
 				response_label.call("show_text_with_typing", clean_fallback)
 			update_emotion_sprite(fallback_emotion)
@@ -602,7 +602,7 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as The shrimp with no name. Start with [neutral], [sad], [angry], [happy], or [shooting] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Squileta. Start with [distrustful], [sad], [angrypunching], [stoic], or [abouttopunch] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -625,11 +625,9 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	Memory.add_message(current_display_name, clean_reply, "User")
 	GameState.ai_responses[ai_name] = clean_reply
 	GameState.ai_emotions[ai_name] = emotion
-
-
+	
 	# Update UI chatlog with the responses dynamicly
-	if chat_log_window:
-		chat_log_window.add_message("assistant", clean_reply, current_display_name)
+	chat_log_window.add_message("assistant", clean_reply, current_display_name)
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", clean_reply)
 	update_emotion_sprite(emotion)
@@ -640,7 +638,7 @@ func update_emotion_sprite(emotion: String):
 	# Hide all emotion sprites
 	for sprite in emotion_sprites.values():
 		sprite.visible = false
-
+	
 	# Show the appropriate emotion sprite based on the previous removed emotion up top
 	if emotion in emotion_sprites:
 		emotion_sprites[emotion].visible = true
@@ -714,10 +712,6 @@ func check_for_name_change(reply: String):
 func _on_next_button_pressed():
 	AudioManager.play_button_click()
 	if GameState.final_turn_triggered: return
-	
-	# Prevent sending when no actions left
-	if GameState.actions_left <= 0:
-		return
 
 	var msg = input_field.text.strip_edges()
 	if msg == "": return
@@ -750,9 +744,9 @@ func _on_next_button_pressed():
 	
 	# Check if user is asking about locations
 	var enhanced_msg = msg
-	var _asking_about_locations = false
+	var asking_about_locations = false
 	if "location" in msg.to_lower() or "place" in msg.to_lower() or "where" in msg.to_lower() or "area" in msg.to_lower() or "go" in msg.to_lower():
-		_asking_about_locations = true
+		asking_about_locations = true
 		location_requests += 1
 		enhanced_msg += "\n\n[URGENT: The user is asking about locations/places. You MUST provide ALL known locations immediately: " + str(known_areas) + ". Don't deflect or give greetings - answer their question directly!]"
 	
@@ -763,8 +757,7 @@ func _on_next_button_pressed():
 	
 	message_history.append({ "role": "user", "content": enhanced_msg })
 
-	if chat_log_window:
-		chat_log_window.add_message("user", msg)
+	chat_log_window.add_message("user", msg)
 
 	# Reset retry counter for new user input
 	retry_count = 0
@@ -773,10 +766,9 @@ func _on_next_button_pressed():
 # Toggle chat log window visibility
 func _on_chat_log_pressed():
 	AudioManager.play_button_click()
-	if chat_log_window:
-		chat_log_window.visible = !chat_log_window.visible
-		if chat_log_window.visible:
-			chat_log_window.show_chat_log()
+	chat_log_window.visible = !chat_log_window.visible
+	if chat_log_window.visible:
+		chat_log_window.show_chat_log()
 
 # Update the day and action counter display
 func update_day_state():
@@ -810,13 +802,13 @@ func _on_day_completed():
 # Proceed to next day when player confirms
 func _on_day_complete_pressed():
 	AudioManager.play_button_click()
-	day_complete_button.visible = false
+	day_complete_button.visible = false	
 	GameState.transition_to_next_day()
 
 # Display a previously stored AI response without making new API call
 func display_stored_response():
 	var stored_response = GameState.ai_responses.get(ai_name, "")
-	var stored_emotion = GameState.ai_emotions.get(ai_name, "neutral")
+	var stored_emotion = GameState.ai_emotions.get(ai_name, "sad")
 	
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", stored_response)
@@ -824,6 +816,10 @@ func display_stored_response():
 
 # Configure player input field to prevent scrolling and limit text
 func setup_player_input():
+	if input_field == null:
+		# Try to get the node manually
+		var manual_input = get_node_or_null("PlayerInputPanel/PlayerInput")
+		return
 	
 	# Configure TextEdit for multi-line input and Enter/Shift+Enter behavior
 	# Enter: Send message, Shift+Enter: New line
@@ -831,7 +827,7 @@ func setup_player_input():
 	
 	# Connect the input event signal to handle keyboard input
 	if input_field.has_signal("gui_input"):
-		input_field.gui_input.connect(_on_input_gui_input)
+		var input_connection_result = input_field.gui_input.connect(_on_input_gui_input)
 
 # Handle keyboard input for Enter/Shift+Enter behavior
 func _on_input_gui_input(event: InputEvent):
@@ -885,3 +881,4 @@ func has_met_player() -> bool:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
+	

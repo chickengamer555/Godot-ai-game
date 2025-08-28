@@ -1,43 +1,43 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnd1kndohx06w"]
 
-[ext_resource type="Texture2D" uid="uid://bhgsomhpp8r6p" path="res://emotion/Sea mine/Mine_big1.png" id="1_u0bxp"]
-[ext_resource type="Texture2D" uid="uid://ovixalkxggv6" path="res://emotion/Sea mine/Mine_big2.png" id="2_gk3yg"]
-[ext_resource type="Texture2D" uid="uid://q31jcetv2lsr" path="res://emotion/Sea mine/Mine_big3.png" id="2_y2lvr"]
-[ext_resource type="Texture2D" uid="uid://ddxnwqc3jgdta" path="res://emotion/Sea mine/Mine_big4.png" id="3_u0bxp"]
-[ext_resource type="Texture2D" uid="uid://cyhuwsmsa56ys" path="res://emotion/Sea mine/Mine_big5.png" id="4_gk3yg"]
-[ext_resource type="Texture2D" uid="uid://cbs8xuuc803gk" path="res://emotion/Sea mine/Mine_big6.png" id="5_y2lvr"]
-[ext_resource type="Texture2D" uid="uid://dq6do6lvulywg" path="res://emotion/Sea mine/Mine_big7.png" id="6_u0bxp"]
+[ext_resource type="Texture2D" uid="uid://ujujydakhkyi" path="res://emotion/Sea mine/Mine_big1.png" id="1_4ln0o"]
+[ext_resource type="Texture2D" uid="uid://dda4wdkfowo4l" path="res://emotion/Sea mine/Mine_big2.png" id="2_3xbnv"]
+[ext_resource type="Texture2D" uid="uid://b42ev11vjkevh" path="res://emotion/Sea mine/Mine_big3.png" id="3_jlyqq"]
+[ext_resource type="Texture2D" uid="uid://bn8hh1uy8shhk" path="res://emotion/Sea mine/Mine_big4.png" id="4_bfi3r"]
+[ext_resource type="Texture2D" uid="uid://dv6f1c0lc0qlm" path="res://emotion/Sea mine/Mine_big5.png" id="5_xjeya"]
+[ext_resource type="Texture2D" uid="uid://cte5q6jb24mme" path="res://emotion/Sea mine/Mine_big6.png" id="6_ig7oo"]
+[ext_resource type="Texture2D" uid="uid://cxj32wq0r00m5" path="res://emotion/Sea mine/Mine_big7.png" id="7_lmxys"]
 
 [node name="sea_mine_emotion" type="Node2D"]
 
 [node name="Neutral" type="Sprite2D" parent="."]
-texture = ExtResource("1_u0bxp")
-
-[node name="Amsument" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_gk3yg")
+texture = ExtResource("1_4ln0o")
+
+[node name="Amusment" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_3xbnv")
 
 [node name="Disgruntled" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.500002, 7.62939e-06)
-texture = ExtResource("2_y2lvr")
+texture = ExtResource("3_jlyqq")
 
 [node name="Really angry" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -0.5)
-texture = ExtResource("3_u0bxp")
+texture = ExtResource("4_bfi3r")
 
-[node name="Warning" type="Sprite2D" parent="."]
+[node name="Extremly angry" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.999996, 1.5)
-texture = ExtResource("4_gk3yg")
+texture = ExtResource("5_xjeya")
 
 [node name="Exploding" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.999996, 1.5)
-texture = ExtResource("5_y2lvr")
+texture = ExtResource("6_ig7oo")
 
 [node name="Dead" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1, 2)
-texture = ExtResource("6_u0bxp")
+texture = ExtResource("7_lmxys")

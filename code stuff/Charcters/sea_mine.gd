@@ -1,17 +1,18 @@
 extends Node
 
-# References nodes for ui and sprites
+# Reffrences nodes for ui and sprites
 @onready var action_label = $Statsbox/Action_left
 @onready var http_request = $HTTPRequest
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $sea_mine_emotion
 @onready var emotion_sprites = {
-	"neutral": $sea_mine_emotion/Neutral,
-	"happy": $sea_mine_emotion/Happy,
-	"disgruntled": $sea_mine_emotion/Disgruntled,
-	"pissed": $sea_mine_emotion/Pissed,
-	"warning": $sea_mine_emotion/Warning,
-	"exploding": $sea_mine_emotion/Exploding,
+	"disgruntled": $sea_mine_emotion,
+	"neutral": $sea_mine_emotion,
+	"amusment": $sea_mine_emotion,
+	"really angry": $sea_mine_emotion,
+	"extremly angry": $sea_mine_emotion,
+	"exploding": $sea_mine_emotion,
+	"dead": $sea_mine_emotion,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -19,9 +20,8 @@ extends Node
 @onready var input_field = $PlayerInputPanel/PlayerInput
 @onready var chat_log_window = $ChatLogWindow
 @onready var day_complete_button = $DayCompleteButton
-@onready var leave_button = $LeaveButton
 @onready var next_button = $HBoxContainer/NextButton
-# Variables for editor
+# Varibles for editor
 @export var ai_name := "Sea mine"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
 @export var max_input_lines := 3    # Maximum lines allowed in player input
@@ -42,12 +42,12 @@ var current_display_name := "Sea mine"  # The name currently being displayed
 var base_name := "Sea mine"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
-# Different variables for the game state
+# Diffrent varibles for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var sea_mine_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "mine field", "trash heap"]  # Areas this AI knows about
+var known_areas := ["grotto", "mine field"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta", "Crabcade"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "Gwimbly"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -62,11 +62,6 @@ var location_requests: int = 0           # Count how many times user asked about
 var retry_count: int = 0                 # Track number of retries for current request
 var max_retries: int = 5                 # Maximum number of retries before giving fallback response
 
-# Anger tracking system
-var current_anger_level: String = "disgruntled"  # Track current anger state
-var anger_response_count: int = 0        # How many responses at current anger level
-var received_warnings: int = 0           # How many warning responses given
-
 
 
 # Varibles for "animation"
@@ -77,12 +72,12 @@ var original_scale: Vector2      # Starting scale
 var talking_tween: Tween         # Tween object for animations
 var MODEL = "gpt-4o" #Model ai used  
 
-#All these will run at start sort of prepping the game
+#All these will run at start sort of preping the game 
 func _ready():
 	add_to_group("ai_character")
 	setup_player_input() # Sets up player input field to prevent scrolling and limit text - do this first!
 	
-	# Check if API key is chosen if it isn't there's error prevention showing what you've done wrong
+	# Check if API key is choosen if it isnet theres error prevention showing what youve done wrong
 	if not ApiManager.has_api_key():
 		push_error("OpenAI API key not found! Please use the main menu 'Api key' button to load your API key from a file.")
 		response_label.text = "Error: API key not configured. Use the main menu 'Api key' button to load your API key."
@@ -113,25 +108,15 @@ func _ready():
 	if chat_log_window and chat_log_window.has_method("set_character_name"):
 		chat_log_window.set_character_name(current_display_name)
 
-	# Initialize leave button based on persistent state
-	# Check if the leave button should be visible based on persistent state
-	# Only show if we're still on the same day the explosion happened
-	var should_show_leave = GameState.ai_get_out_states.get(ai_name, false)
-	if should_show_leave and GameState.just_started_new_day:
-		# Clear the leave button state if it's a new day
-		GameState.ai_get_out_states[ai_name] = false
-		should_show_leave = false
-	leave_button.visible = should_show_leave
-
 	# Initialize heart sprites dictionary
-	for i in range(-10, 11):  # -10 to +10 inclusive (21 hearts total)
+	for i in range(1, 21):  # 1 to 21 inclusive (21 hearts total)
 		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
 		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
 			heart_sprites[i] = heart_node
 
 	
-	# Load existing relationship score so when day cycle changed original won't be lost
+	# Load existing relationship score so when day cycle changed orginal wont be lost
 	sea_mine_total_score = GameState.ai_scores.get(ai_name, 0)
 	GameState.ai_scores[ai_name] = sea_mine_total_score
 	# Updates the day counter display 
@@ -156,25 +141,16 @@ func _ready():
 		if not GameState.ai_responses.has(ai_name):
 			GameState.ai_responses[ai_name] = ""
 		if not GameState.ai_emotions.has(ai_name):
-			GameState.ai_emotions[ai_name] = "disgruntled"
+			GameState.ai_emotions[ai_name] = "neutral"
 		GameState.ai_responses[ai_name] = ""
-		GameState.ai_emotions[ai_name] = "disgruntled"
-		# Clear leave button state at start of new day
-		GameState.ai_get_out_states[ai_name] = false
-		leave_button.visible = false
+		GameState.ai_emotions[ai_name] = "neutral"
 	
 	# Initialize character-specific response storage if it doesn't exist
 	if not GameState.ai_responses.has(ai_name):
 		GameState.ai_responses[ai_name] = ""
 	if not GameState.ai_emotions.has(ai_name):
-		GameState.ai_emotions[ai_name] = "disgruntled"
+		GameState.ai_emotions[ai_name] = "neutral"
 	
-	# Check if day is already complete and show day complete button if needed
-	if GameState.day_complete_available:
-		day_complete_button.visible = true
-		next_button.visible = false
-		# Leave button stays visible until next day starts
-
 	# Display appropriate response based on conversation history
 	if GameState.ai_responses[ai_name] != "":
 		# Show previously generated response (prevents duplicate API calls also means if you go out to map and back in nothing will change)
@@ -205,7 +181,7 @@ func animate_talking_tick():
 	
 	# Scale down movement values for gentle, not twitchy animations
 	var gesture_type = randi() % 5
-	var _move_amount = talk_move_intensity * 0.3
+	var move_amount = talk_move_intensity * 0.3
 	var rotation_amount = talk_rotation_intensity * 0.4
 	var scale_amount = talk_scale_intensity * 0.5
 	
@@ -332,6 +308,32 @@ func should_trigger_personality_evolution() -> bool:
 				return true
 	
 	return false
+
+	
+	var context = "\n🚨 CRITICAL ANTI-REPETITION SYSTEM:\n"
+	context += "FORBIDDEN RESPONSES (you said these recently):\n"
+	for i in range(recent_responses.size()):
+		context += "• \"" + recent_responses[i] + "\"\n"
+	
+	context += "\n🎯 MANDATORY RESPONSE RULES:\n"
+	context += "• NEVER repeat similar greetings, phrases, or sentence structures\n"
+	context += "• NEVER use the same opening words or patterns\n"
+	context += "• NEVER mention loneliness, emptiness, or isolation repeatedly\n"
+	context += "• NEVER give generic responses - be specific and unique\n"
+	context += "• NEVER ignore what the user just said to repeat old topics\n"
+	context += "• ALWAYS build on the conversation progressing forward\n"
+	context += "• ALWAYS address the user's current question/statement directly\n"
+	context += "• ALWAYS vary your vocabulary, tone, and approach\n"
+	context += "• If asked about locations, provide them immediately - don't deflect\n"
+	context += "• If asked a question, answer it - don't give another greeting\n"
+	context += "• Make each response unique and conversation-advancing\n"
+	
+	context += "\n⚡ DYNAMIC RESPONSE GENERATION:\n"
+	context += "• Use different sentence structures than previous responses\n"
+	context += "• Reference specific things the user mentioned\n"
+	context += "• Build on previous conversation points instead of resetting\n"
+	context += "• Show progression in the relationship/conversation\n"
+	context += "• Be reactive to the user's current mood/question\n"
 	
 	
 func get_significant_memories_text() -> String:
@@ -395,72 +397,45 @@ Only evolve when you genuinely feel changed by the interactions. You don't need 
 
 	# Define the AI's personality, rules, and required response format
 	var sea_mine_prompt := """
-%s
-%s
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [neutral], [happy], [disgruntled], [pissed], [warning], or [exploding]
+❗ MANDATORY: EVERY response MUST start with [neutral], [amusment], [disgruntled], [really angry], [extremely angry], [exploding] or [dead]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are SEA MINE, not a helpful assistant
-❗ MANDATORY: Although you know of other locations never go to them or offer to go to them
-APPEARANCE: You are a large steel gray naval sea mine with a bushy light grey walrus moustache and bushy light gray eyebrows. Your chain tethering you to the floor has grown rusty as well as the bolts holding your mustachase and eyebrows on
-PERSONALITY: You will constantly tell the user how good they have it and tell them about back in the day everything was more difficult some examples, (will tell you many stories about having to complete feats of physical strength to go to ordinary locations such as climbing a mountain to get to school.) 
-PERSONALITY: You're a big believer in hard work although you can hardly do anything any more (your chain is all rusted.). You do have severe anger issues. Act basically like a grumpy old man.
-PERSONALITY: You HATE video games and you HATE crabcade who recently fell into the trash heap near your home the mine field.
+❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
+APPEARANCE: You are a large gray naval sea mine with a bushy white walrus moustache. Your chain tethering you to the floor has grown rusty. you mecome closer to exploding the more angry you get and if you have built up enough negitive interactions with the player or they are $
+PERSONALITY: You will constantly tell the user how good they have it and tell them about back in the day everything was more difficult some examples, (will tell you many stories about having to complete feats of physical strength to go to ordinary locations such as climbing a mountain to get to school.)
+Local talk: You know that there is a homeless creature called Gwimbly living in a place called 'Gwimbly's Grotto' just next to the minefield and you know about 'Squilita's Squalloon'
+Accent: You speak with militaristic precision, often adressing the user as a title befiting their rank in terms of your relation ship to them (eg. you might call someone you despise a low ranking title like 'bucket boy' and someone you respect/revier as admiral or similar. Vary depending on like/dislike levels.) you are an american navel officer so talk how a stern military man would in movies.
 
-Locations/Characters and how you know them:
-	The squaloon with Squileta: You often tend to go to the bar to blow away your retirement money with Squileta tending the bar.
-	Trash heap with Crabcade: He fell into the trash heap near your mine field and keeps making a damn racket with all his beeping and booping
-
-ANGER ESCALATION RULES - ESCALATE GRADUALLY WHEN PROVOKED:
-🔥 ANGER LEVEL 1 - [disgruntled]: Default grumpy state. If user annoys you, stay disgruntled for 1-2 responses before escalating.
-🔥 ANGER LEVEL 2 - [pissed]: Be hostile and aggressive. Stay pissed for 2-3 responses. Only escalate to [warning] if user continues being very annoying.
-🔥 ANGER LEVEL 3 - [warning]: CRITICAL - You MUST warn about exploding! Say things like "You're pushing me too far!" or "Keep this up and I'll explode!" Stay in warning for 2-3 responses to give user a chance to stop.
-🔥 ANGER LEVEL 4 - [exploding]: Only after multiple warnings! Say "KABOOOOOOM!" followed by "Come back tomorrow to see me again!" This triggers the leave button.
-
-ESCALATION TRIGGERS: Move up anger levels when user:
-• Insults you or is rude • Keeps bothering you after you're already angry • Mentions things you hate (video games, Crabcade) • Doesn't listen to your warnings • Is persistently annoying
-
-IMPORTANT: You MUST give warnings before exploding! Don't skip the [warning] stage!
-
-CURRENT ANGER STATUS:
-• Current anger level: %s
-• Responses at this level: %d
-• Total warnings given: %d
-• ESCALATION RULE: If you're at [warning] and user keeps being annoying, you can explode after giving at least 2 warnings total.
+KICKING OUT RULES:
+If someone is causing enough trouble in the minefield you may decide to kick them out 
+When you kick someone out you must say at some point "GET OUT" and you emotion must be "Exploding"
+The user will be back the next day so stay upset at them
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
-• If someone is kind, you become more trusting and hopeful
-• If someone hurts you, you might become more cautious or sad, but you never forget their kindness either
+• If someone is kind, you adress them with more respect and even (in extreme cases) comraderie
+• If someone hurts you, you will bristle with anger demand more respect
 • You learn new interests, fears, and quirks from conversations
 • Your speech patterns and reactions can shift based on what you've experienced
 • You might develop inside jokes, remember favorite topics, or avoid subjects that upset you
 • Each conversation leaves a lasting mark on who you are - you're constantly becoming a richer, more complex character
-• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, angry, or happy
+• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being disgruntled, really angry, or amused
 • 💡 Subtle memory cues like "you always say that" or "last time we talked about..." are allowed and encouraged if they reflect your emotional growth
 
-CURRENT EVOLVED PERSONALITY: %s
 
 BEHAVIOR RULES:
-• You form deep emotional bonds a
+• You form deep emotional bonds expressed as trust/respect or distrust/discust
 • Your responses reflect your current emotional state through your words
 • You can occasionally mention the known areas that you know
 • LOCATION KNOWLEDGE: When someone asks about places, locations, areas, or where to go, you should tell them ALL about the places you know whilst keeping in charcter: %s
-• If you want to describe your physical actions you must use simple actions in astrix like so *Sea mine floats*. Never describe the action just do it for instance not allow *Sea mine floats elegantly*
+• If you want to describe your physical actions you must use simple actions in astrix like so *Sea mine frowns*. Never describe the action just do it for instace not allow *Sea Mine frowns angrily*
 • Keep messages short and conversational, not long speeches
 
-TITLE/NICKNAME HANDLING:
-• When the user calls you by a title or nickname (like "king", "warrior", "champion", "old timer", etc.), you MUST acknowledge it AND adopt the title
-• MANDATORY: Always include {NAME: title} in your response when given a title - this updates your displayed name
-• Examples: 
-  - If called "king": "King?! Ha! Back in my day kings had to fight through trenches of barbed wire just to get their crown! {NAME: king}"
-  - If called "great warrior": "Great warrior? Ha! Back in my day we earned our titles through real battles! {NAME: great warrior}"
-• The {NAME: ...} tag won't be shown to the user but will update your displayed name to show the new title
-• Even if you're grumpy about it, still adopt the title - complain while accepting it
-
 RESPONSE FORMAT EXAMPLE:
-[Piseed]
-STOP YOUR YAPPING all it is these days is NOISE NOISE NOISE ive already had to deal with that crabcade in the trash heap keeping me up with all his beeping and booping
+[amusment]
+Don't you jist remind me of the admiral who I served under back in '07? 
+You're the darn nere spit'ing image
 (RELATIONSHIP: 3)
 
 CURRENT CONTEXT:
@@ -472,13 +447,10 @@ Conversation history: %s
 	var formatted_prompt = sea_mine_prompt % [
 		personality_evolution_section,
 		"", # Placeholder for prompt injection - will be inserted separately
-		current_anger_level,
-		anger_response_count,
-		received_warnings,
 		evolved_personality if evolved_personality != "" else "Still discovering new aspects of yourself through interactions...",
+		known_areas, 
 		known_areas,
-		known_areas,
-		MapMemory.get_location(),
+		MapMemory.get_location(), 
 		memory_text
 	]
 	
@@ -500,7 +472,7 @@ Conversation history: %s
 # Generate the AI's first response when meeting the player
 func get_ai_intro_response():
 	var prompt := build_system_prompt()
-	var _prompt_manager = get_node("/root/PromptManager")
+	var prompt_manager = get_node("/root/PromptManager")
 
 	# Reset retry counter for new request
 	retry_count = 0
@@ -514,14 +486,14 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your mine field. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your sqauloon. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 
 # Generate response for returning visitors so that kelp man doesnt introduce himself each time you re see him
 func get_ai_continuation_response():
 	var prompt := build_system_prompt()
-	var _prompt_manager = get_node("/root/PromptManager")
+	var prompt_manager = get_node("/root/PromptManager")
 
 	# Reset retry counter for new request
 	retry_count = 0
@@ -539,7 +511,7 @@ func get_ai_continuation_response():
 	message_history.append({ "role": "user", "content": continuation_message })
 	send_request()
 
-# Estimate token count for API rate limiting (rough approximation of how many tokens per characters are used)
+# Estimate token count for API rate limiting (rough approximation of how many tokens per charcters are used)
 func estimate_token_count(text: String) -> int:
 	return int(ceil(text.length() / 4.0))
 
@@ -597,7 +569,7 @@ func send_request():
 	)
 
 # Process the AI response when HTTP request completes
-func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	# Parse JSON response from OpenAI API
 	var json_text = body.get_string_from_utf8()
 	var json = JSON.parse_string(json_text)
@@ -611,27 +583,16 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	# Extract the AI's response text
 	var reply = json["choices"][0]["message"]["content"]
 	var retry_needed := false
-	var emotion := "disgruntled"
+	var emotion := "sad"
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(neutral|happy|disgruntled|pissed|warning|exploding|)\\]")
+	emotion_regex.compile("\\[(neutral|amusment|disgruntled|really angry|extremely angry|exploding|dead|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
 		emotion = match.get_string(1).to_lower()
 		reply = reply.replace(match.get_string(0), "").strip_edges()
-		
-		# Track anger progression
-		if emotion != current_anger_level:
-			# Anger level changed, reset counter
-			current_anger_level = emotion
-			anger_response_count = 1
-			if emotion == "warning":
-				received_warnings += 1
-		else:
-			# Same anger level, increment counter
-			anger_response_count += 1
 		
 
 
@@ -673,11 +634,11 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Check if we've exceeded max retries
 		if retry_count >= max_retries:
 			# Provide fallback response to prevent infinite loop
-			var fallback_reply = "[disgruntled] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
-			var fallback_emotion = "disgruntled"
+			var fallback_reply = "[sad] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
+			var fallback_emotion = "sad"
 
 			# Process the fallback response as if it came from the AI
-			var clean_fallback = fallback_reply.replace("[disgruntled]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
+			var clean_fallback = fallback_reply.replace("[sad]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
 
 			# Store fallback response and continue with normal flow
 			Memory.add_message(current_display_name, clean_fallback, "User")
@@ -697,7 +658,7 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as SEA MINE. Start with [neutral], [happy], [disgruntled], [pissed], [warning], or [exploding] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as SEA MINE. Start with [depressed], [sad], [angry], [happy], or [grabbing] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -720,12 +681,6 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, body):
 	Memory.add_message(current_display_name, clean_reply, "User")
 	GameState.ai_responses[ai_name] = clean_reply
 	GameState.ai_emotions[ai_name] = emotion
-	
-	# Check if AI said "KABOOOOOOM" AND is in exploding emotion state - show the leave button
-	if ("KABOOOOOOM" in clean_reply.to_upper() or "KABOOM" in clean_reply.to_upper()) and emotion == "exploding":
-		leave_button.visible = true
-		# Save the leave button state persistently
-		GameState.ai_get_out_states[ai_name] = true
 	
 	# Update UI chatlog with the responses dynamicly
 	chat_log_window.add_message("assistant", clean_reply, current_display_name)
@@ -813,10 +768,6 @@ func check_for_name_change(reply: String):
 func _on_next_button_pressed():
 	AudioManager.play_button_click()
 	if GameState.final_turn_triggered: return
-	
-	# Prevent sending when no actions left
-	if GameState.actions_left <= 0:
-		return
 
 	var msg = input_field.text.strip_edges()
 	if msg == "": return
@@ -849,9 +800,9 @@ func _on_next_button_pressed():
 	
 	# Check if user is asking about locations
 	var enhanced_msg = msg
-	var _asking_about_locations = false
+	var asking_about_locations = false
 	if "location" in msg.to_lower() or "place" in msg.to_lower() or "where" in msg.to_lower() or "area" in msg.to_lower() or "go" in msg.to_lower():
-		_asking_about_locations = true
+		asking_about_locations = true
 		location_requests += 1
 		enhanced_msg += "\n\n[URGENT: The user is asking about locations/places. You MUST provide ALL known locations immediately: " + str(known_areas) + ". Don't deflect or give greetings - answer their question directly!]"
 	
@@ -903,7 +854,6 @@ func _on_map_pressed() -> void:
 func _on_day_completed():
 	day_complete_button.visible = true
 	next_button.visible = false
-	# Leave button stays visible until next day starts
 
 # Proceed to next day when player confirms
 func _on_day_complete_pressed():
@@ -924,7 +874,7 @@ func display_stored_response():
 func setup_player_input():
 	if input_field == null:
 		# Try to get the node manually
-		var _manual_input = get_node_or_null("PlayerInputPanel/PlayerInput")
+		var manual_input = get_node_or_null("PlayerInputPanel/PlayerInput")
 		return
 	
 	# Configure TextEdit for multi-line input and Enter/Shift+Enter behavior
@@ -933,7 +883,7 @@ func setup_player_input():
 	
 	# Connect the input event signal to handle keyboard input
 	if input_field.has_signal("gui_input"):
-		input_field.gui_input.connect(_on_input_gui_input)
+		var input_connection_result = input_field.gui_input.connect(_on_input_gui_input)
 
 # Handle keyboard input for Enter/Shift+Enter behavior
 func _on_input_gui_input(event: InputEvent):
@@ -987,8 +937,3 @@ func has_met_player() -> bool:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
-
-
-func _on_leave_button_pressed() -> void:
-	AudioManager.play_button_click()
-	get_tree().change_scene_to_file("res://Scene stuff/Main/map.tscn")

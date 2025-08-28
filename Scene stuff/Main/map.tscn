@@ -1,43 +1,197 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3ky8ukpolq71"]
+[gd_scene load_steps=35 format=3 uid="uid://d3ky8ukpolq71"]
 
-[ext_resource type="Script" uid="uid://b2ul4f18eay8w" path="res://code stuff/Main/map.gd" id="1_sf8pw"]
+[ext_resource type="Script" path="res://code stuff/Main/map.gd" id="1_sf8pw"]
+[ext_resource type="Texture2D" uid="uid://dsucun4rkwc6s" path="res://code stuff/Main/Map/SQUALOON_frame001.png" id="2_4s3y8"]
+[ext_resource type="Texture2D" uid="uid://dx1muqngerug4" path="res://code stuff/Main/Map/Background.png" id="3_mst70"]
+[ext_resource type="Texture2D" uid="uid://cohmpctlq11cb" path="res://code stuff/Main/Map/SOUTH_frame001.png" id="3_v3418"]
+[ext_resource type="Texture2D" uid="uid://ba6mr8uw3y4p2" path="res://code stuff/Main/Map/COVE_frame001.png" id="3_xtt5t"]
+[ext_resource type="Texture2D" uid="uid://cm71kvx7wl8ee" path="res://code stuff/Main/Map/SOUTH_frame003.png" id="4_0suwh"]
+[ext_resource type="Texture2D" uid="uid://doygotk6ja44n" path="res://code stuff/Main/Map/SOUTH_frame002.png" id="4_8tf27"]
+[ext_resource type="Texture2D" uid="uid://le2bj4cuuubg" path="res://code stuff/Main/Map/FIELD_frame001.png" id="5_f3t0i"]
+[ext_resource type="Texture2D" uid="uid://dmeav4smvyt2d" path="res://code stuff/Main/Map/FIELD_frame003.png" id="5_y5s17"]
+[ext_resource type="Texture2D" uid="uid://clee1g1gitnjc" path="res://code stuff/Main/Map/SQUALOON_frame002.png" id="6_5nbb2"]
+[ext_resource type="Texture2D" uid="uid://tpgyfgs6eymc" path="res://code stuff/Main/Map/outline.png" id="6_ewe2a"]
+[ext_resource type="Texture2D" uid="uid://bo7qn3eert5ow" path="res://code stuff/Main/Map/FIELD_frame002.png" id="6_oo0xl"]
+[ext_resource type="Texture2D" uid="uid://l5dk2xcqhmaa" path="res://code stuff/Main/Map/SQUALOON_frame003.png" id="6_vxfn8"]
+[ext_resource type="Texture2D" uid="uid://lprrsffkjk4n" path="res://code stuff/Main/Map/GROTTO_frame001.png" id="7_alh2s"]
+[ext_resource type="Texture2D" uid="uid://cdxccr3u1xxoy" path="res://code stuff/Main/Map/GROTTO_frame003.png" id="7_n57bc"]
+[ext_resource type="Texture2D" uid="uid://k2ckoxleyx42" path="res://code stuff/Main/Map/Atmosphere_frame001.png" id="8_0ec4k"]
+[ext_resource type="Texture2D" uid="uid://bv77ejx0axa4v" path="res://code stuff/Main/Map/COVE_frame003.png" id="8_0l0r6"]
+[ext_resource type="Texture2D" uid="uid://cxygm81y6qvu1" path="res://code stuff/Main/Map/GROTTO_frame002.png" id="8_at8tc"]
+[ext_resource type="Texture2D" uid="uid://w1wvfnkbkppr" path="res://code stuff/Main/Map/COVE_frame002.png" id="9_8cwgd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdh8h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gehio"]
+texture = ExtResource("4_8tf27")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qav8i"]
+texture = ExtResource("3_v3418")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_px1g2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf545"]
+texture = ExtResource("6_oo0xl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q35dm"]
+texture = ExtResource("5_f3t0i")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onk5v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxcy0"]
+texture = ExtResource("6_5nbb2")
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_01ueu"]
+texture = ExtResource("2_4s3y8")
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qitlf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b0krd"]
+texture = ExtResource("8_at8tc")
+expand_margin_left = 59.0
+expand_margin_top = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8hbxe"]
+texture = ExtResource("7_alh2s")
+expand_margin_left = 59.0
+expand_margin_top = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_883y1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlxpa"]
+texture = ExtResource("9_8cwgd")
+expand_margin_top = 10.0
+expand_margin_right = 37.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qobpy"]
+texture = ExtResource("3_xtt5t")
+expand_margin_top = 10.0
+expand_margin_right = 37.0
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_sf8pw")
 
-[node name="Kelp_man_cove" type="Button" parent="."]
-offset_left = 231.0
-offset_top = 189.0
-offset_right = 278.0
-offset_bottom = 220.0
-scale = Vector2(2.8, 3.22857)
-text = "Kelp man cove
-"
+[node name="Outline" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 360)
+scale = Vector2(10, 10)
+texture = ExtResource("6_ewe2a")
 
-[node name="sqauloon" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-scale = Vector2(6.72, 2)
-text = "Sqauloon"
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(10, 10)
+texture = ExtResource("3_mst70")
+
+[node name="wild_south2" type="Sprite2D" parent="."]
+position = Vector2(455, 275)
+scale = Vector2(10, 10)
+texture = ExtResource("4_0suwh")
 
 [node name="wild_south" type="Button" parent="."]
-offset_left = 581.0
-offset_top = 471.0
-offset_right = 672.0
-offset_bottom = 502.0
-scale = Vector2(6.72, 2)
-text = "Wild south"
+visible = false
+offset_right = 91.0
+offset_bottom = 55.0
+scale = Vector2(10, 10)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jdh8h")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_gehio")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gehio")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gehio")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qav8i")
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="mine_field2" type="Sprite2D" parent="."]
+position = Vector2(975, 175)
+scale = Vector2(10, 10)
+texture = ExtResource("5_y5s17")
 
 [node name="mine_field" type="Button" parent="."]
-offset_left = 602.0
-offset_top = 206.0
-offset_right = 693.0
-offset_bottom = 237.0
-scale = Vector2(6.72, 2)
-text = "Mine field
-"
+visible = false
+offset_left = 670.0
+offset_right = 731.0
+offset_bottom = 35.0
+scale = Vector2(10, 10)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_px1g2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_lf545")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lf545")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lf545")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q35dm")
 
-[connection signal="pressed" from="Kelp_man_cove" to="." method="_on_kelp_man_pressed"]
-[connection signal="pressed" from="sqauloon" to="." method="_on_bar_pressed"]
+[node name="sqauloon2" type="Sprite2D" parent="."]
+position = Vector2(670, 290)
+scale = Vector2(10, 10)
+texture = ExtResource("6_vxfn8")
+
+[node name="sqauloon" type="Button" parent="."]
+visible = false
+layout_direction = 1
+offset_left = 530.0
+offset_top = 150.0
+offset_right = 558.0
+offset_bottom = 178.0
+scale = Vector2(10, 10)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_onk5v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_lxcy0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lxcy0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_01ueu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_01ueu")
+text_overrun_behavior = 1
+
+[node name="grotto2" type="Sprite2D" parent="."]
+position = Vector2(740, 530)
+scale = Vector2(10, 10)
+texture = ExtResource("7_n57bc")
+
+[node name="grotto" type="Button" parent="."]
+visible = false
+layout_direction = 1
+offset_left = 790.0
+offset_top = 410.0
+offset_right = 839.0
+offset_bottom = 441.0
+scale = Vector2(10, 10)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qitlf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b0krd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b0krd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8hbxe")
+text_overrun_behavior = 1
+
+[node name="Kelp_man_cove2" type="Sprite2D" parent="."]
+position = Vector2(385, 480)
+scale = Vector2(10, 10)
+texture = ExtResource("8_0l0r6")
+
+[node name="Kelp_man_cove" type="Button" parent="."]
+visible = false
+offset_top = 340.0
+offset_right = 40.0
+offset_bottom = 378.0
+scale = Vector2(10, 10)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_883y1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_mlxpa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mlxpa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mlxpa")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qobpy")
+
+[node name="AtmosphereFrame001" type="Sprite2D" parent="."]
+position = Vector2(541, 330)
+scale = Vector2(10, 10)
+texture = ExtResource("8_0ec4k")
+
 [connection signal="pressed" from="wild_south" to="." method="_on_wild_south_pressed"]
 [connection signal="pressed" from="mine_field" to="." method="_on_mine_feild_pressed"]
+[connection signal="pressed" from="sqauloon" to="." method="_on_bar_pressed"]
+[connection signal="pressed" from="grotto" to="." method="_on_grotto_pressed"]
+[connection signal="pressed" from="Kelp_man_cove" to="." method="_on_kelp_man_pressed"]

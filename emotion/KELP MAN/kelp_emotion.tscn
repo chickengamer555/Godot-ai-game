@@ -24,6 +24,7 @@ position = Vector2(0, -0.5)
 texture = ExtResource("3_lx8og")
 
 [node name="Grabbing" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("5_mbstq")
 

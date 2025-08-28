@@ -6,11 +6,13 @@ extends Node
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $squileta_emotion
 @onready var emotion_sprites = {
-	"depressed": $squileta_emotion/Depressed,
-	"sad": $squileta_emotion/Sad,
+	"sassyhappy": $squileta_emotion/SassyHappy,
+	"veryangry": $squileta_emotion/VeryAngry,
+	"laughing": $squileta_emotion/Laughing,
 	"angry": $squileta_emotion/Angry,
-	"grabbing": $squileta_emotion/Grabbing,
+	"offeringdrink": $squileta_emotion/OfferingDrink,
 	"happy": $squileta_emotion/Happy,
+	"satisfied": $squileta_emotion/Satisfied,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -93,7 +95,7 @@ func _ready():
 		chat_log_window.set_character_name(current_display_name)
 
 	# Initialize heart sprites dictionary
-	for i in range(-10, 11):  # -10 to +10 inclusive (21 hearts total)
+	for i in range(1, 21):  # -10 to +10 inclusive (21 hearts total)
 		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
 		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
@@ -346,7 +348,7 @@ Only evolve when you genuinely feel changed by the interactions. You don't need 
 	# Define the AI's personality, rules, and required response format
 	var squiletta_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [happy], or [grabbing]
+❗ MANDATORY: EVERY response MUST start with [satisfied], [veryangry], [laughing], [angry], [sassyhappy], [happy], or [offeringdrink]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are SQUILLETA, not a helpful assistant
@@ -364,12 +366,12 @@ The user will be back the next day so stay upset at them
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you become more trusting and hopeful
-• If someone hurts you, you might become more cautious or sad, but you never forget their kindness either
+• If someone hurts you, you might become more cautious or laughing, but you never forget their kindness either
 • You learn new interests, fears, and quirks from conversations
 • Your speech patterns and reactions can shift based on what you've experienced
 • You might develop inside jokes, remember favorite topics, or avoid subjects that upset you
 • Each conversation leaves a lasting mark on who you are - you're constantly becoming a richer, more complex character
-• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, angry, or happy
+• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being laughing, angry, or happy
 • 💡 Subtle memory cues like "you always say that" or "last time we talked about..." are allowed and encouraged if they reflect your emotional growth
 
 
@@ -535,7 +537,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(depressed|sad|angry|happy|grabbing|)\\]")
+	emotion_regex.compile("\\[(veryangry|satisfied|laughing|angry|happy|sassyhappy|offeringdrink|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
@@ -606,7 +608,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Squileta. Start with [depressed], [sad], [angry], [happy], or [grabbing] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Squileta. Start with [satisfied], [veryangry], [laughing], [angry], [sassyhappy], [happy], or [offeringdrink] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -876,9 +878,9 @@ func _on_settings_pressed() -> void:
 	AudioManager.play_button_click()
 	await get_tree().create_timer(0.2).timeout
 	# Store current scene before transitioning
-	var settings_script = load("res://setting.gd")
+	var settings_script = load("res://code stuff/Main/setting.gd")
 	settings_script.previous_scene = get_tree().current_scene.scene_file_path
-	get_tree().change_scene_to_file("res://setting.tscn")
+	get_tree().change_scene_to_file("res://Scene stuff/Main/setting.tscn")
 
 func has_met_player() -> bool:
 	for entry in Memory.shared_memory:
