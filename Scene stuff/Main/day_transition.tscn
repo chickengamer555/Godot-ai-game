@@ -27,6 +27,13 @@ position = Vector2(640, 360)
 scale = Vector2(10, 10)
 texture = ExtResource("2_b77b8")
 
+[node name="ColorRect" type="ColorRect" parent="DayComplete"]
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+color = Color(0.101961, 0.14902, 0.278431, 0.513726)
+
 [node name="UnderwaterBackground" type="ColorRect" parent="."]
 show_behind_parent = true
 material = SubResource("underwater_material")
@@ -37,6 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.151036, 0.32642, 1, 0.431373)
 
 [node name="TransitionPanel" type="Panel" parent="."]
 layout_mode = 1

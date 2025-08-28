@@ -35,6 +35,7 @@ position = Vector2(0.999996, 1.5)
 texture = ExtResource("5_pb40f")
 
 [node name="OfferingDrink" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("6_727sp")
 
