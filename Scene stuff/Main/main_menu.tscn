@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c17mkmrioiovk"]
 
-[ext_resource type="Script" path="res://code stuff/Main/main_menu.gd" id="1_aer7q"]
+[ext_resource type="Script" uid="uid://cur3f6b5sogha" path="res://code stuff/Main/main_menu.gd" id="1_aer7q"]
 [ext_resource type="Texture2D" uid="uid://dijsu0ys2pqxh" path="res://code stuff/Main/Main Menu/Background_frame002.png" id="2_5f627"]
 [ext_resource type="Texture2D" uid="uid://brf8751gfd1jb" path="res://code stuff/Main/Main Menu/FISH GAME_frame002.png" id="3_vqfpy"]
 [ext_resource type="Texture2D" uid="uid://dlqbqiicmuhwa" path="res://code stuff/Main/Main Menu/Fish_frame002.png" id="4_pa7ut"]
@@ -49,6 +49,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aer7q")

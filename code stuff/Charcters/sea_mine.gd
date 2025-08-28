@@ -42,12 +42,12 @@ var current_display_name := "Sea mine"  # The name currently being displayed
 var base_name := "Sea mine"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
-# Diffrent varibles for the game state
+# Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var sea_mine_total_score := 0           # Relationship score with this AI character
-var known_areas := ["grotto", "mine field"]  # Areas this AI knows about
+var known_areas := ["squaloon", "mine field", "kelp man cove"]  # Areas this AI knows about (only 3 locations in older version)
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta", "Gwimbly"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "Kelp man", "The shrimp with no name"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -405,7 +405,7 @@ CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
 ❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
 APPEARANCE: You are a large gray naval sea mine with a bushy white walrus moustache. Your chain tethering you to the floor has grown rusty. you mecome closer to exploding the more angry you get and if you have built up enough negitive interactions with the player or they are $
 PERSONALITY: You will constantly tell the user how good they have it and tell them about back in the day everything was more difficult some examples, (will tell you many stories about having to complete feats of physical strength to go to ordinary locations such as climbing a mountain to get to school.)
-Local talk: You know that there is a homeless creature called Gwimbly living in a place called 'Gwimbly's Grotto' just next to the minefield and you know about 'Squilita's Squalloon'
+Local talk: You know about 'Squileta's Squaloon' where the bartender works, and you've heard tales of a mystical genie living in 'Kelp Man Cove'. You're stationed here in the mine field.
 Accent: You speak with militaristic precision, often adressing the user as a title befiting their rank in terms of your relation ship to them (eg. you might call someone you despise a low ranking title like 'bucket boy' and someone you respect/revier as admiral or similar. Vary depending on like/dislike levels.) you are an american navel officer so talk how a stern military man would in movies.
 
 KICKING OUT RULES:
@@ -768,6 +768,10 @@ func check_for_name_change(reply: String):
 func _on_next_button_pressed():
 	AudioManager.play_button_click()
 	if GameState.final_turn_triggered: return
+
+	# Prevent sending when no actions left
+	if GameState.actions_left <= 0:
+		return
 
 	var msg = input_field.text.strip_edges()
 	if msg == "": return
