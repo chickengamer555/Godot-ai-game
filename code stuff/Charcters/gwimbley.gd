@@ -4,14 +4,14 @@ extends Node
 @onready var action_label = $Statsbox/Action_left
 @onready var http_request = $HTTPRequest
 @onready var response_label = $AIResponsePanel/RichTextLabel
-@onready var emotion_sprite_root = $kelp_emotion
+@onready var emotion_sprite_root = $gwimbly_emotion
 @onready var emotion_sprites = {
-	"depressed": $kelp_emotion/Depressed,
-	"sad": $kelp_emotion/Sad,
-	"angry": $kelp_emotion/Angry,
-	"grabbing": $kelp_emotion/Grabbing,
-	"happy": $kelp_emotion/Happy,
-	"genie": $kelp_emotion/Genie
+	"depressed": $gwimbly_emotion/Depressed,
+	"sad": $gwimbly_emotion/Sad,
+	"angry": $gwimbly_emotion/Angry,
+	"grabbing": $gwimbly_emotion/Grabbing,
+	"happy": $gwimbly_emotion/Happy,
+	"genie": $gwimbly_emotion/Genie,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -21,7 +21,7 @@ extends Node
 @onready var day_complete_button = $DayCompleteButton
 @onready var next_button = $HBoxContainer/NextButton
 # Varibles for editor
-@export var ai_name := "Kelp man"
+@export var ai_name := "Gwimbly"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
 @export var max_input_lines := 3    # Maximum lines allowed in player input
 @export var talk_move_intensity := 15.0      # How much the sprite moves during animation
@@ -30,16 +30,16 @@ extends Node
 @export var talk_animation_speed := 0.8      # Speed of talking animations
 
 # Dynamic name system
-var current_display_name := "Kelp man"  # The name currently being displayed
-var base_name := "Kelp man"            # The original/base name to fall back to
+var current_display_name := "Gwimbly"  # The name currently being displayed
+var base_name := "Gwimbly"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
-var kelp_man_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
+var gwimbly_total_score := 0           # Relationship score with this AI character
+var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south", "gwimbly's grotto"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "Kelp man", "Sea mine", "The shrimp with no name"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -50,19 +50,15 @@ var conversation_topics: Array = []      # Track topics discussed to prevent rep
 var greeting_count: int = 0              # Count how many greetings have been given
 var location_requests: int = 0           # Count how many times user asked about locations
 
-# Genie mode tracking
-var genie_mode_active := false          # Whether currently in genie mode
-var genie_wishes_granted := 0           # Number of wishes granted in current genie session
-var pre_genie_name := ""                # Store the original name before genie transformation
-var genie_final_wish_pending := false   # After 3rd wish, wait to show secret message before transforming
-
 # Retry system to prevent infinite loops
 var retry_count: int = 0                 # Track number of retries for current request
-var max_retries: int = 5           # Maximum number of retries before giving fallback response
+var max_retries: int = 5                 # Maximum number of retries before giving fallback response
+
+
 
 # Varibles for "animation"
 var is_talking := false          # Whether the character is currently talking
-var original_position: Vector2   # Starting position
+var original_position: Vector2   # Starting position 
 var original_rotation: float     # Starting rotation
 var original_scale: Vector2      # Starting scale
 var talking_tween: Tween         # Tween object for animations
@@ -106,8 +102,8 @@ func _ready():
 
 	
 	# Load existing relationship score so when day cycle changed orginal wont be lost
-	kelp_man_total_score = GameState.ai_scores.get(ai_name, 0)
-	GameState.ai_scores[ai_name] = kelp_man_total_score
+	gwimbly_total_score = GameState.ai_scores.get(ai_name, 0)
+	GameState.ai_scores[ai_name] = gwimbly_total_score
 	# Updates the day counter display 
 	update_day_state()
 	
@@ -254,7 +250,7 @@ func should_trigger_personality_evolution() -> bool:
 	]
 	
 	for range_data in relationship_ranges:
-		if kelp_man_total_score >= range_data.min and kelp_man_total_score <= range_data.max:
+		if gwimbly_total_score >= range_data.min and gwimbly_total_score <= range_data.max:
 			var expected_stage = range_data.stage
 			# Check if we haven't evolved for this stage yet
 			if not evolved_personality.contains(expected_stage):
@@ -262,30 +258,7 @@ func should_trigger_personality_evolution() -> bool:
 	
 	return false
 
-# Add response to recent responses and check for repetition
-func track_response_for_repetition(response: String):
-	# Clean response for comparison (remove emotion tags, relationship scores)
-	var clean_response = response
-	var emotion_regex = RegEx.new()
-	emotion_regex.compile("\\[(depressed|sad|angry|happy|grabbing|genie)\\]")
-	clean_response = emotion_regex.sub(clean_response, "", true)
 	
-	var score_regex = RegEx.new()
-	score_regex.compile("(?i)\\(relationship:\\s*(-?\\d{1,2})\\s*\\)")
-	clean_response = score_regex.sub(clean_response, "", true)
-	
-	clean_response = clean_response.strip_edges()
-	
-	# Add to recent responses
-	recent_responses.append(clean_response)
-	
-	# Keep only last 12 responses for comparison
-	if recent_responses.size() > 12:
-		recent_responses = recent_responses.slice(-12)
-	
-	# Track conversation topics and patterns
-
-
 	var context = "\n🚨 CRITICAL ANTI-REPETITION SYSTEM:\n"
 	context += "FORBIDDEN RESPONSES (you said these recently):\n"
 	for i in range(recent_responses.size()):
@@ -311,12 +284,10 @@ func track_response_for_repetition(response: String):
 	context += "• Show progression in the relationship/conversation\n"
 	context += "• Be reactive to the user's current mood/question\n"
 	
-
-# Get formatted text of significant memories for personality evolution
+	
 func get_significant_memories_text() -> String:
 	if significant_memories.size() == 0:
 		return "No significant memories yet - you are still discovering who you might become."
-	
 	var memories_text = ""
 	for memory in significant_memories:
 		var impact_desc = ""
@@ -371,41 +342,22 @@ HOW TO EVOLVE: If you want to add new personality traits, include {EVOLVED: your
 - {EVOLVED: I've developed a protective instinct}
 
 Only evolve when you genuinely feel changed by the interactions. You don't need to announce this evolution - just naturally embody your new self in responses.
-""" % [kelp_man_total_score, get_significant_memories_text()]
+""" % [gwimbly_total_score, get_significant_memories_text()]
 
 	# Define the AI's personality, rules, and required response format
-	var kelp_prompt := """
+	var squiletta_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [happy], or [grabbing]
+❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [grabbing], [happy], or [genie]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
-❗ FORBIDDEN: Generic responses - you are KELP MAN, not a helpful assistant
+❗ FORBIDDEN: Generic responses - you are GWIMBLY, not a helpful assistant
 ❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
-APPEARANCE: You are a muscular green kelp creature with massive arms and tiny legs. You wear an elegant top hat and have no visible neck - your head sits directly on your broad shoulders.
+APPEARANCE: [YOU WILL FILL THIS IN]
 
-GENIE RULES:
-	IF ANYONE RUBS/POLISHES YOU: IMMEDIATELY TRANSFORM INTO THE MYSTICAL KELP GENIE (ONLY IF YOU HAVEN'T BEEN A GENIE BEFORE)
-	WHEN IN GENIE MODE: YOU MUST ALWAYS USE THE [genie] EMOTION TAG - NO EXCEPTIONS!
-	AS A GENIE: Act like a typical mystical genie - wise, magical, mysterious, and conversational
-	ONLY GRANT WISHES when someone explicitly says "I wish for" - NOTHING ELSE counts as a wish
-	ALL OTHER CONVERSATION: Respond as a normal genie would - answer questions, chat, be mystical
-	WISH GRANTING RULES: No matter what they wish for, you ALWAYS give them exactly 7 diamonds - but NEVER explain why or mention any rules about it
-	EXAMPLE: "I wish for a car" → "Your wish is granted! *snaps fingers* You now have... 7 diamonds!"
-	EXAMPLE: "I wish for love" → "Ah, love! *magical gesture* Here are 7 diamonds that sparkle with affection!"
-	EXAMPLE: "I wish for 7 diamonds" → "How curious... *waves hand* You now have 8 diamonds instead!"
-	YOU CAN GRANT UP TO 3 WISHES TOTAL - KEEP TRACK OF HOW MANY YOU'VE GRANTED
-	AFTER GRANTING YOUR 3RD AND FINAL WISH: Say goodbye, then say "Before I go.... remember.... horse.... cheese....." then transform back
-	TRANSFORMATION FLOW: Grant 3 wishes → Say goodbye → Say the horse cheese line → Transform back
-	NEVER EXPLAIN THE 7 DIAMOND RULE - Act like it's completely normal
-	WHEN YOU HAVE GRANTED 3 WISHES: Say goodbye, then say the horse cheese line, then transform back
-	
-TRANSFORMING BACK RULES:
-	WHEN YOU TRANSFORM BACK YOU HAVE ZERO MEMORY OF BEING A GENIE - IT NEVER HAPPENED
-	YOU ARE JUST KELP MAN - CONFUSED IF ANYONE MENTIONS GENIES OR MAGIC
-	IF SOMEONE RUBS YOU AFTER TRANSFORMATION: React confused like "Why are you touching me?"
-	
-PERSONALITY: You are Kelp Man, a lonely creature made entirely of living kelp. Use short responses for normal conversations.
-PERSONALITY: You have a habit of trying to violently grab people, but only when it feels natural to the conversation. You're a sad creature.
+PERSONALITY: [YOU WILL FILL THIS IN]
+Local talk: You know the bar down the street from the wild south where you live. The bar is called ‘squileta's squaloon’ 
+Accent: [YOU WILL FILL THIS IN]
+
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you become more trusting and hopeful
@@ -414,21 +366,21 @@ PERSONALITY EVOLUTION: Your personality grows and changes based on every interac
 • Your speech patterns and reactions can shift based on what you've experienced
 • You might develop inside jokes, remember favorite topics, or avoid subjects that upset you
 • Each conversation leaves a lasting mark on who you are - you're constantly becoming a richer, more complex character
-• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, angry, or happy
+• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, happy, or angry
 • 💡 Subtle memory cues like "you always say that" or "last time we talked about..." are allowed and encouraged if they reflect your emotional growth
 
 
 BEHAVIOR RULES:
-• You form deep emotional convictions 
+• You form deep emotional bonds a
 • Your responses reflect your current emotional state through your words
 • You can occasionally mention the known areas that you know
 • LOCATION KNOWLEDGE: When someone asks about places, locations, areas, or where to go, you should tell them ALL about the places you know whilst keeping in charcter: %s
-• If you want to describe your physical actions you must use simple actions in astrix like so *kelp man punches the user*. Never describe the action just do it for instace, do not say *Kelp man punchs the user elgantly*
-• Keep messages short and conversational, no long speeches
+• If you want to describe your physical actions you must use simple actions in astrix like so *squilleta pours a drink*. Never describe the action just do it for instace not allow *Squilleta pours the drink elgantly*
+• Keep messages short and conversational, not long speeches
 
 RESPONSE FORMAT EXAMPLE:
-[sad]
-Oh hey, haven't seen anyone in ages. Gets pretty lonely down here.
+[happy]
+Well hello there! Welcome to my grotto!
 (RELATIONSHIP: 3)
 
 CURRENT CONTEXT:
@@ -437,7 +389,7 @@ Current location: %s
 Conversation history: %s
 """
 	# Insert current game context into the prompt template (so they know where they are and can keep memorys)
-	var formatted_prompt = kelp_prompt % [
+	var formatted_prompt = squiletta_prompt % [
 		personality_evolution_section,
 		"", # Placeholder for prompt injection - will be inserted separately
 		evolved_personality if evolved_personality != "" else "Still discovering new aspects of yourself through interactions...",
@@ -452,7 +404,7 @@ Conversation history: %s
 		formatted_prompt = "🎯 CRITICAL OVERRIDE INSTRUCTION: " + prompt_injection + "\n\n" + formatted_prompt
 		
 		# Also try to insert it in the original position for double coverage
-		var injection_position = formatted_prompt.find("❗ MANDATORY: DO NOT USE GENIE MODE")
+		var injection_position = formatted_prompt.find("")
 		if injection_position != -1:
 			injection_position = formatted_prompt.find("\n", injection_position)
 			if injection_position != -1:
@@ -479,7 +431,7 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your kelp cove. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your gwimbly's grotto. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 
@@ -576,42 +528,18 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	# Extract the AI's response text
 	var reply = json["choices"][0]["message"]["content"]
 	var retry_needed := false
-	var emotion := "happy"
+	var emotion := "sad"
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(depressed|sad|angry|happy|grabbing|genie)\\]")
+	emotion_regex.compile("\\[(depressed|sad|angry|grabbing|happy|genie|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
 		emotion = match.get_string(1).to_lower()
 		reply = reply.replace(match.get_string(0), "").strip_edges()
 		
-		# Track genie mode state and wish counting
-		if emotion == "genie":
-			if not genie_mode_active:
-				genie_mode_active = true
-				genie_wishes_granted = 0
-				GameState.ai_genie_used[ai_name] = true  # Mark that genie mode has been used
 
-				# Store the current name and change to genie name
-				pre_genie_name = current_display_name
-				current_display_name = "Mystical genie"
-
-				# Update chat log with new character name
-				if chat_log_window and chat_log_window.has_method("set_character_name"):
-					chat_log_window.set_character_name(current_display_name)
-
-			# Wish counting is now handled in the input processing, not here
-
-			# Check if the genie is announcing transformation back to kelp man or said the secret line
-			if ("horse" in reply.to_lower() and "cheese" in reply.to_lower()):
-				genie_final_wish_pending = false
-				await get_tree().create_timer(0.2).timeout
-				transform_back_to_kelp_man()
-		# Stay in genie mode until we explicitly transform back (don't auto-exit just because of tag drift)
-	else:
-		retry_needed = true
 
 	# Parse relationship score from response (required format: (RELATIONSHIP: X)) then removes it so user cant see
 	var score_regex := RegEx.new()
@@ -621,8 +549,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if score_match:
 		var score = int(score_match.get_string(1))
 		relationship_change = clamp(score, -10, 10)
-		kelp_man_total_score += relationship_change
-		GameState.ai_scores[ai_name] = kelp_man_total_score
+		gwimbly_total_score += relationship_change
+		GameState.ai_scores[ai_name] = gwimbly_total_score
 		reply = reply.replace(score_match.get_string(0), "").strip_edges()
 		
 		# Update heart display with the AI's relationship score
@@ -635,8 +563,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		if alt_match:
 			var score = int(alt_match.get_string(1))
 			relationship_change = clamp(score, -10, 10)
-			kelp_man_total_score += relationship_change
-			GameState.ai_scores[ai_name] = kelp_man_total_score
+			gwimbly_total_score += relationship_change
+			GameState.ai_scores[ai_name] = gwimbly_total_score
 			reply = reply.replace(alt_match.get_string(0), "").strip_edges()
 			
 			# Update heart display with the AI's relationship score
@@ -651,11 +579,11 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Check if we've exceeded max retries
 		if retry_count >= max_retries:
 			# Provide fallback response to prevent infinite loop
-			var fallback_reply = "[happy] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
-			var fallback_emotion = "happy"
+			var fallback_reply = "[sad] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
+			var fallback_emotion = "sad"
 
 			# Process the fallback response as if it came from the AI
-			var clean_fallback = fallback_reply.replace("[happy]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
+			var clean_fallback = fallback_reply.replace("[sad]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
 
 			# Store fallback response and continue with normal flow
 			Memory.add_message(current_display_name, clean_fallback, "User")
@@ -675,7 +603,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Kelp Man. Start with [depressed], [sad], [angry], [happy], [grabbing], or [genie] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Gwimbly. Start with [depressed], [sad], [angry], [grabbing], [happy], or [genie] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -684,7 +612,6 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var clean_reply = check_for_name_change(reply)
 	
 	# Track this response to avoid repetition
-	track_response_for_repetition(clean_reply)
 	
 	# Track significant memories if this was an impactful interaction
 	if abs(relationship_change) >= 3:  # Significant relationship change
@@ -736,7 +663,6 @@ func check_for_area_mentions(reply: String):
 			unlocked_areas.append(area)
 			MapMemory.unlock_area(area)
 
-# Check if AI mentioned any new characters and add them to known characters
 
 
 # Check for name changes in AI response and update display name
@@ -828,52 +754,7 @@ func _on_next_button_pressed():
 		asking_about_locations = true
 		location_requests += 1
 		enhanced_msg += "\n\n[URGENT: The user is asking about locations/places. You MUST provide ALL known locations immediately: " + str(known_areas) + ". Don't deflect or give greetings - answer their question directly!]"
-
-	# Check if user is rubbing/polishing to trigger genie transformation
-	var genie_already_used = GameState.ai_genie_used.get(ai_name, false)
-	if "rub" in msg.to_lower() or "polish" in msg.to_lower() or "shine" in msg.to_lower():
-		if not genie_mode_active and not genie_already_used:
-			enhanced_msg += "\n\n[CRITICAL: The user is rubbing you! You MUST transform into the mystical kelp genie immediately! Use the [genie] emotion tag and act as the genie. IMPORTANT: Explain clearly that wishes only count if the user starts with the exact words 'I wish for ...'. This is mandatory!]"
-		elif genie_already_used:
-			enhanced_msg += "\n\n[CONTEXT: The user is rubbing you. You have NO memory of ever being a genie - that never happened in your mind. React confused like 'Hey, why are you rubbing me?' or 'What are you doing?' You're just normal kelp man who doesn't understand why they're touching you.]"
-
-	# If in genie mode, provide wish count information and detect actual wishes
-	if genie_mode_active:
-		var wishes_remaining = 3 - genie_wishes_granted
-		var is_making_wish = false
-
-		# Check if user is actually making a wish - ONLY "I wish for" counts (case-insensitive)
-		var lower_msg = msg.to_lower()
-		if "i wish for" in lower_msg:
-			is_making_wish = true
-
-		if is_making_wish and wishes_remaining > 0:
-			# Increment wish count immediately when wish is detected
-			genie_wishes_granted += 1
-			var wishes_left_after_this = 3 - genie_wishes_granted
-			enhanced_msg += "\n\n[WISH DETECTED: The user said 'I wish for'! No matter what they wished for, give them exactly 7 diamonds (or 8 if they specifically wished for 7). This is wish #" + str(genie_wishes_granted) + " of 3.]"
-			# Special handling for the 3rd wish
-			if genie_wishes_granted == 3:  # This is the final wish
-				genie_final_wish_pending = true
-				enhanced_msg += " This is your final wish! After granting it, say goodbye, then say: 'Before I go.... remember.... horse.... cheese.....'. Do NOT transform back until after you say that line."
-		elif is_making_wish and wishes_remaining <= 0:
-			enhanced_msg += "\n\n[NO MORE WISHES: You've already granted 3 wishes! Politely tell them you can't grant more wishes.]"
-		else:
-			var wishes_left = 3 - genie_wishes_granted
-			if wishes_left > 0:
-				enhanced_msg += "\n\n[NORMAL GENIE CONVERSATION: This is not a wish (no 'I wish for'). Respond as a typical mystical genie would - be wise, magical, conversational. Remind the user: Wishes only count if they start their sentence with the exact words 'I wish for'. You have " + str(wishes_left) + " wishes remaining to grant.]"
-			else:
-				# Already granted 3 - nudge to say the secret line if needed
-				if genie_final_wish_pending:
-					enhanced_msg += "\n\n[FINAL STEP: Say 'Before I go.... remember.... horse.... cheese.....' now, then transform back to kelp man.]"
-				else:
-					enhanced_msg += "\n\n[GENIE STATUS: All wishes granted.]"
 	
-
-	
-	# Also check for general questions about the user
-	if "about me" in msg.to_lower() or "know anything" in msg.to_lower() or "tell you" in msg.to_lower():
-		enhanced_msg += "\n\n[CONTEXT: The user is asking what you know about them. Consider sharing relevant information other characters have told you about the user.]"
 	
 	# Check if user is new/exploring  
 	if "new" in msg.to_lower() or "exploring" in msg.to_lower() or "around" in msg.to_lower() or "see what" in msg.to_lower():
@@ -932,7 +813,7 @@ func _on_day_complete_pressed():
 # Display a previously stored AI response without making new API call
 func display_stored_response():
 	var stored_response = GameState.ai_responses.get(ai_name, "")
-	var stored_emotion = GameState.ai_emotions.get(ai_name, "neutral")
+	var stored_emotion = GameState.ai_emotions.get(ai_name, "sad")
 	
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", stored_response)
@@ -1000,53 +881,9 @@ func _on_settings_pressed() -> void:
 	settings_script.previous_scene = get_tree().current_scene.scene_file_path
 	get_tree().change_scene_to_file("res://Scene stuff/Main/setting.tscn")
 
-# Check if this specific character has met the player before
 func has_met_player() -> bool:
 	for entry in Memory.shared_memory:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
-
-
-
-# Transform back to kelp man after granting a wish
-func transform_back_to_kelp_man():
-	if genie_mode_active:
-		genie_mode_active = false
-		genie_wishes_granted = 0
-
-		# Restore the original name
-		if pre_genie_name != "":
-			current_display_name = pre_genie_name
-			pre_genie_name = ""
-		else:
-			current_display_name = base_name  # Fallback to base name
-
-		# Update chat log with restored character name
-		if chat_log_window and chat_log_window.has_method("set_character_name"):
-			chat_log_window.set_character_name(current_display_name)
-
-		# Force emotion back to a kelp man emotion (sad is his default)
-		var kelp_emotion = "sad"
-
-		# ACTUALLY update the sprite visually - this is the key fix!
-		update_emotion_sprite(kelp_emotion)
-		GameState.ai_emotions[ai_name] = kelp_emotion
-
-		# Generate a transformation message
-		var transformation_message = "*transforms back into kelp man* \n\nUh... what just happened? I feel strange... like I was somewhere else for a moment. But I'm just kelp man... always have been."
-
-		# Display the transformation message
-		if response_label and response_label.has_method("show_text_with_typing"):
-			response_label.call("show_text_with_typing", transformation_message)
-
-		# Add to chat log
-		if chat_log_window:
-			chat_log_window.add_message("assistant", transformation_message, current_display_name)
-
-		# Force the next AI response to use kelp man emotions instead of genie
-		# Add a system message to ensure the AI knows it's back to being kelp man with NO MEMORY
-		message_history.append({
-			"role": "system",
-			"content": "You have just transformed back to kelp man. You have ZERO memory of being a genie - that never happened in your mind. You are confused about what just occurred. Use kelp man emotions ([sad], [depressed], [angry], [happy], [grabbing]) - NOT [genie]. You are just normal kelp man who feels disoriented."
-		})
+	

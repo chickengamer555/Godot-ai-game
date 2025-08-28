@@ -21,6 +21,7 @@ extends Node
 @onready var chat_log_window = $ChatLogWindow
 @onready var day_complete_button = $DayCompleteButton
 @onready var next_button = $HBoxContainer/NextButton
+@onready var get_out_button = $GetOutButton
 # Varibles for editor
 @export var ai_name := "Squileta"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
@@ -38,7 +39,7 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var squileta_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "kelp man cove", "mine field"]  # Areas this AI knows about (only 3 locations in older version)
+var known_areas := ["squaloon", "kelp man cove", "mine field", "wild south"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Kelp man", "The shrimp with no name", "Sea mine"]   # Characters this AI knows about and can reference memories from
 
@@ -107,7 +108,11 @@ func _ready():
 	GameState.ai_scores[ai_name] = squileta_total_score
 	# Updates the day counter display 
 	update_day_state()
-	
+
+	# Restore get out button state if it was visible
+	if GameState.ai_get_out_states.get(ai_name, false):
+		get_out_button.visible = true
+
 	# Check for any active prompt injection and ensure it's applied to introduction/continuation responses
 	var prompt_manager = get_node("/root/PromptManager")
 	if prompt_manager and prompt_manager.has_injection():
@@ -360,8 +365,8 @@ Local talk: You have heard tales of a mystical genie living in a place called â€
 Accent: You have a sourthen drawl to your accent accent so use words like that when tpying for instance, suga', ya'll, oop ect
 
 KICKING OUT RULES:
-If someone is acting unrully in your bar and causing a ruckus you have to kick them out 
-WHen you kick someone out you must say at some point "GET OUT"
+If someone is acting unruly in your bar and causing a ruckus you have to kick them out
+When you kick someone out you must say at some point "GET OUT" and your emotion must be [angry]
 The user will be back the next day so stay upset at them
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
@@ -631,7 +636,13 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	Memory.add_message(current_display_name, clean_reply, "User")
 	GameState.ai_responses[ai_name] = clean_reply
 	GameState.ai_emotions[ai_name] = emotion
-	
+
+	# Check if AI said "GET OUT" and show the get out button
+	if "GET OUT" in clean_reply.to_upper():
+		get_out_button.visible = true
+		# Save the get out button state persistently
+		GameState.ai_get_out_states[ai_name] = true
+
 	# Update UI chatlog with the responses dynamicly
 	chat_log_window.add_message("assistant", clean_reply, current_display_name)
 	if response_label and response_label.has_method("show_text_with_typing"):
@@ -723,6 +734,10 @@ func _on_next_button_pressed():
 	if GameState.actions_left <= 0:
 		return
 
+	# Prevent sending when user needs to leave (get out button is visible)
+	if GameState.ai_get_out_states.get(ai_name, false):
+		return
+
 	var msg = input_field.text.strip_edges()
 	if msg == "": return
 
@@ -808,6 +823,7 @@ func _on_map_pressed() -> void:
 func _on_day_completed():
 	day_complete_button.visible = true
 	next_button.visible = false
+	get_out_button.visible = false  # Hide get out button when day ends
 
 # Proceed to next day when player confirms
 func _on_day_complete_pressed():
@@ -891,3 +907,8 @@ func has_met_player() -> bool:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
+
+
+func _on_get_out_button_pressed() -> void:
+	AudioManager.play_button_click()
+	get_tree().change_scene_to_file("res://Scene stuff/Main/map.tscn")

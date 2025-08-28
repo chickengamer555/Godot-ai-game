@@ -6,13 +6,13 @@ extends Node
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $sea_mine_emotion
 @onready var emotion_sprites = {
-	"disgruntled": $sea_mine_emotion,
-	"neutral": $sea_mine_emotion,
-	"amusment": $sea_mine_emotion,
-	"really angry": $sea_mine_emotion,
-	"extremly angry": $sea_mine_emotion,
-	"exploding": $sea_mine_emotion,
-	"dead": $sea_mine_emotion,
+	"disgruntled": $sea_mine_emotion/Disgruntled,
+	"neutral": $sea_mine_emotion/Neutral,
+	"amusment": $sea_mine_emotion/Amusment,
+	"really angry": $sea_mine_emotion/"Really angry",
+	"extremely angry": $sea_mine_emotion/"Extremly angry",
+	"exploding": $sea_mine_emotion/Exploding,
+	"dead": $sea_mine_emotion/Dead,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -21,6 +21,7 @@ extends Node
 @onready var chat_log_window = $ChatLogWindow
 @onready var day_complete_button = $DayCompleteButton
 @onready var next_button = $HBoxContainer/NextButton
+@onready var leave_button = $LeaveButton
 # Varibles for editor
 @export var ai_name := "Sea mine"
 @export var max_input_chars := 200  # Maximum characters allowed in player input
@@ -45,7 +46,7 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var sea_mine_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "mine field", "kelp man cove"]  # Areas this AI knows about (only 3 locations in older version)
+var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Squileta", "Kelp man", "The shrimp with no name"]   # Characters this AI knows about and can reference memories from
 
@@ -61,6 +62,11 @@ var location_requests: int = 0           # Count how many times user asked about
 # Retry system to prevent infinite loops
 var retry_count: int = 0                 # Track number of retries for current request
 var max_retries: int = 5                 # Maximum number of retries before giving fallback response
+
+# Anger tracking system
+var current_anger_level: String = "disgruntled"  # Track current anger state
+var anger_response_count: int = 0        # How many responses at current anger level
+var received_warnings: int = 0           # How many warning responses given
 
 
 
@@ -119,9 +125,13 @@ func _ready():
 	# Load existing relationship score so when day cycle changed orginal wont be lost
 	sea_mine_total_score = GameState.ai_scores.get(ai_name, 0)
 	GameState.ai_scores[ai_name] = sea_mine_total_score
-	# Updates the day counter display 
+	# Updates the day counter display
 	update_day_state()
-	
+
+	# Restore leave button state if it was visible
+	if GameState.ai_get_out_states.get(ai_name, false):
+		leave_button.visible = true
+
 	# Check for any active prompt injection and ensure it's applied to introduction/continuation responses
 	var prompt_manager = get_node("/root/PromptManager")
 	if prompt_manager and prompt_manager.has_injection():
@@ -403,15 +413,29 @@ CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are SEA MINE, not a helpful assistant
 ❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
-APPEARANCE: You are a large gray naval sea mine with a bushy white walrus moustache. Your chain tethering you to the floor has grown rusty. you mecome closer to exploding the more angry you get and if you have built up enough negitive interactions with the player or they are $
+APPEARANCE: You are a large gray naval sea mine with a bushy white walrus moustache. Your chain tethering you to the floor has grown rusty. You become closer to exploding the more angry you get and if you have built up enough negative interactions with the player.
 PERSONALITY: You will constantly tell the user how good they have it and tell them about back in the day everything was more difficult some examples, (will tell you many stories about having to complete feats of physical strength to go to ordinary locations such as climbing a mountain to get to school.)
+PERSONALITY: You're a big believer in hard work although you can hardly do anything anymore (your chain is all rusted). You do have severe anger issues. Act basically like a grumpy old man.
+LOCATION: You are permanently stationed in the MINE FIELD - this is your home and where you greet visitors. You are NOT in the squaloon, you are NOT a bartender. When people arrive, they are coming to YOUR mine field.
 Local talk: You know about 'Squileta's Squaloon' where the bartender works, and you've heard tales of a mystical genie living in 'Kelp Man Cove'. You're stationed here in the mine field.
-Accent: You speak with militaristic precision, often adressing the user as a title befiting their rank in terms of your relation ship to them (eg. you might call someone you despise a low ranking title like 'bucket boy' and someone you respect/revier as admiral or similar. Vary depending on like/dislike levels.) you are an american navel officer so talk how a stern military man would in movies.
+Accent: You speak with militaristic precision, often addressing the user as a title befitting their rank in terms of your relationship to them (eg. you might call someone you despise a low ranking title like 'bucket boy' and someone you respect/revere as admiral or similar. Vary depending on like/dislike levels.) You are an American naval officer so talk how a stern military man would in movies.
 
-KICKING OUT RULES:
-If someone is causing enough trouble in the minefield you may decide to kick them out 
-When you kick someone out you must say at some point "GET OUT" and you emotion must be "Exploding"
-The user will be back the next day so stay upset at them
+ANGER ESCALATION RULES - ESCALATE GRADUALLY WHEN PROVOKED:
+🔥 ANGER LEVEL 1 - [disgruntled]: Default grumpy state. If user annoys you, stay disgruntled for 1-2 responses before escalating.
+🔥 ANGER LEVEL 2 - [really angry]: Be hostile and aggressive. Stay really angry for 2-3 responses. Only escalate to [extremely angry] if user continues being very annoying.
+🔥 ANGER LEVEL 3 - [extremely angry]: CRITICAL - You MUST warn about exploding! Say things like "You're pushing me too far!" or "Keep this up and I'll explode!" Stay extremely angry for 2-3 responses to give user a chance to stop.
+🔥 ANGER LEVEL 4 - [exploding]: Only after multiple warnings! Say "KABOOOOOOM!" followed by "Come back tomorrow to see me again!" This triggers the leave button.
+
+ESCALATION TRIGGERS: Move up anger levels when user:
+• Insults you or is rude • Keeps bothering you after you're already angry • Mentions things you hate • Doesn't listen to your warnings • Is persistently annoying
+
+IMPORTANT: You MUST give warnings before exploding! Don't skip the [extremely angry] stage!
+
+CURRENT ANGER STATUS:
+• Current anger level: %s
+• Responses at this level: %d
+• Total warnings given: %d
+• ESCALATION RULE: If you're at [extremely angry] and user keeps being annoying, you can explode after giving at least 2 warnings total.
 
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you adress them with more respect and even (in extreme cases) comraderie
@@ -440,17 +464,23 @@ You're the darn nere spit'ing image
 
 CURRENT CONTEXT:
 Known areas: %s
-Current location: %s
+Current location: %s (YOU ARE IN THE MINE FIELD - NOT the squaloon, NOT the bar. You are a sea mine stationed in the mine field!)
 Conversation history: %s
 """
+	# Get current emotional state for context
+	var current_emotion = GameState.ai_emotions.get(ai_name, "disgruntled")
+
 	# Insert current game context into the prompt template (so they know where they are and can keep memorys)
 	var formatted_prompt = sea_mine_prompt % [
 		personality_evolution_section,
 		"", # Placeholder for prompt injection - will be inserted separately
 		evolved_personality if evolved_personality != "" else "Still discovering new aspects of yourself through interactions...",
-		known_areas, 
 		known_areas,
-		MapMemory.get_location(), 
+		known_areas,
+		current_anger_level,
+		anger_response_count,
+		received_warnings,
+		MapMemory.get_location(),
 		memory_text
 	]
 	
@@ -486,7 +516,7 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your sqauloon. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your mine field. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 
@@ -583,7 +613,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	# Extract the AI's response text
 	var reply = json["choices"][0]["message"]["content"]
 	var retry_needed := false
-	var emotion := "sad"
+	var emotion := "disgruntled"
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
@@ -593,7 +623,17 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if match:
 		emotion = match.get_string(1).to_lower()
 		reply = reply.replace(match.get_string(0), "").strip_edges()
-		
+
+		# Track anger progression
+		if emotion != current_anger_level:
+			# Anger level changed, reset counter
+			current_anger_level = emotion
+			anger_response_count = 1
+			if emotion == "extremely angry":
+				received_warnings += 1
+		else:
+			# Same anger level, increment counter
+			anger_response_count += 1
 
 
 	# Parse relationship score from response (required format: (RELATIONSHIP: X)) then removes it so user cant see
@@ -634,11 +674,11 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Check if we've exceeded max retries
 		if retry_count >= max_retries:
 			# Provide fallback response to prevent infinite loop
-			var fallback_reply = "[sad] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
-			var fallback_emotion = "sad"
+			var fallback_reply = "[disgruntled] I'm having trouble responding right now. Let's try talking about something else. (RELATIONSHIP: 0)"
+			var fallback_emotion = "disgruntled"
 
 			# Process the fallback response as if it came from the AI
-			var clean_fallback = fallback_reply.replace("[sad]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
+			var clean_fallback = fallback_reply.replace("[disgruntled]", "").replace("(RELATIONSHIP: 0)", "").strip_edges()
 
 			# Store fallback response and continue with normal flow
 			Memory.add_message(current_display_name, clean_fallback, "User")
@@ -658,7 +698,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as SEA MINE. Start with [depressed], [sad], [angry], [happy], or [grabbing] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as SEA MINE. Start with [neutral], [amusment], [disgruntled], [really angry], [extremely angry], or [exploding] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -681,7 +721,13 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	Memory.add_message(current_display_name, clean_reply, "User")
 	GameState.ai_responses[ai_name] = clean_reply
 	GameState.ai_emotions[ai_name] = emotion
-	
+
+	# Check if AI said "KABOOOOOOM" AND is in exploding emotion state - show the leave button
+	if ("KABOOOOOOM" in clean_reply.to_upper() or "KABOOM" in clean_reply.to_upper()) and emotion == "exploding":
+		leave_button.visible = true
+		# Save the leave button state persistently
+		GameState.ai_get_out_states[ai_name] = true
+
 	# Update UI chatlog with the responses dynamicly
 	chat_log_window.add_message("assistant", clean_reply, current_display_name)
 	if response_label and response_label.has_method("show_text_with_typing"):
@@ -773,6 +819,10 @@ func _on_next_button_pressed():
 	if GameState.actions_left <= 0:
 		return
 
+	# Prevent sending when user needs to leave (leave button is visible)
+	if GameState.ai_get_out_states.get(ai_name, false):
+		return
+
 	var msg = input_field.text.strip_edges()
 	if msg == "": return
 
@@ -858,6 +908,7 @@ func _on_map_pressed() -> void:
 func _on_day_completed():
 	day_complete_button.visible = true
 	next_button.visible = false
+	leave_button.visible = false  # Hide leave button when day ends
 
 # Proceed to next day when player confirms
 func _on_day_complete_pressed():
@@ -868,7 +919,7 @@ func _on_day_complete_pressed():
 # Display a previously stored AI response without making new API call
 func display_stored_response():
 	var stored_response = GameState.ai_responses.get(ai_name, "")
-	var stored_emotion = GameState.ai_emotions.get(ai_name, "sad")
+	var stored_emotion = GameState.ai_emotions.get(ai_name, "disgruntled")
 	
 	if response_label and response_label.has_method("show_text_with_typing"):
 		response_label.call("show_text_with_typing", stored_response)
@@ -941,3 +992,8 @@ func has_met_player() -> bool:
 		if entry["speaker"] == current_display_name or entry["target"] == current_display_name:
 			return true
 	return false
+
+
+func _on_leave_button_pressed() -> void:
+	AudioManager.play_button_click()
+	get_tree().change_scene_to_file("res://Scene stuff/Main/map.tscn")

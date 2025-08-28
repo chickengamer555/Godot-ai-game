@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://3v4j8f6k7rre"]
+[gd_scene load_steps=63 format=3 uid="uid://3v4j8f6k7rre"]
 
 [ext_resource type="Script" uid="uid://d2p1x4lp1cm5m" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
 [ext_resource type="Texture2D" uid="uid://b46s7tpgmjd8c" path="res://UI STUFF/Kelp cove/Background_frame004.png" id="2_whl7b"]
@@ -43,7 +43,6 @@
 [ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="39_2w1sp"]
 [ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="40_11s5c"]
 [ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta's Squaloon/Map_button_frame006.png" id="41_86uu6"]
-[ext_resource type="Texture2D" uid="uid://dr3xtrx31hokk" path="res://UI STUFF/Mine Feild/Diagram_frame006.png" id="44_lwmtc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("4_y08aj")
@@ -511,12 +510,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_8p2t1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1n1a7")
-
-[node name="Outline" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(50, 100)
-scale = Vector2(10, 10)
-texture = ExtResource("44_lwmtc")
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="HBoxContainer/ChatLog" to="." method="_on_chat_log_pressed"]

@@ -48,11 +48,13 @@ func _ready():
 	background_cove.visible = true
 
 func update_location_visibility():
-	# Map the node names to their corresponding area names (only 3 locations for older version)
+	# Map the node names to their corresponding area names
 	var location_mapping = {
 		"kelp_man_cove": "kelp man cove",
 		"sqauloon": "squaloon",
-		"mine_field": "mine field"
+		"mine_field": "mine field",
+		"wild_south": "wild south",
+		"grotto": "gwimbly's grotto"
 	}
 	
 	# Set visibility based on unlocked areas
@@ -99,7 +101,9 @@ func ensure_at_least_one_location_visible():
 		var location_mapping = {
 			"kelp_man_cove": "kelp man cove",
 			"sqauloon": "squaloon",
-			"mine_field": "mine field"
+			"mine_field": "mine field",
+			"wild_south": "wild south",
+			"grotto": "gwimbly's grotto"
 		}
 		
 		var node_name = chosen_location.name.to_lower()
@@ -115,8 +119,11 @@ func ensure_at_least_one_location_visible():
 
 
 
-# Wild south location removed for older version - only 3 locations supported
-
+func _on_wild_south_pressed() -> void:
+	AudioManager.play_button_click()
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://Scene stuff/Charcters/shrimp_no_name.tscn")
+	MapMemory.set_location("wild south")
 
 func _on_mine_feild_pressed() -> void:
 	AudioManager.play_button_click()
@@ -126,4 +133,7 @@ func _on_mine_feild_pressed() -> void:
 
 
 func _on_grotto_pressed() -> void:
-	pass
+	AudioManager.play_button_click()
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://Scene stuff/Charcters/gwimbley.tscn")
+	MapMemory.set_location("gwimbly's grotto")

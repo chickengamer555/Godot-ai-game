@@ -36,7 +36,7 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var shrimp_total_score := 0           # Relationship score with this AI character (fixed variable name)
-var known_areas := ["squaloon", "mine field", "kelp man cove"]  # Areas this AI knows about (only 3 locations in older version)
+var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Squileta", "Kelp man", "Sea mine"]   # Characters this AI knows about and can reference memories from
 
@@ -430,7 +430,7 @@ func get_ai_intro_response():
 
 
 	# Request an introduction response that follows any prompt injections
-	var intro_message := "A brand new person just arrived in your sqauloon. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
+	var intro_message := "A brand new person just arrived in your wild south. Respond based on your current feelings and the conversation prompt. DO NOT reuse any previous responses. Keep it emotionally consistent and personal."
 	message_history.append({ "role": "user", "content": intro_message })
 	send_request()
 

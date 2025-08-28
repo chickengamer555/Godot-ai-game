@@ -1,102 +1,100 @@
-[gd_scene load_steps=71 format=3 uid="uid://cir54qpw1itn6"]
+[gd_scene load_steps=68 format=3 uid="uid://dd7b3cffgwag0"]
 
-[ext_resource type="Script" uid="uid://drea7tpj065pi" path="res://code stuff/Charcters/squilleta.gd" id="1_uftsj"]
-[ext_resource type="Texture2D" uid="uid://edcxa42qicno" path="res://UI STUFF/Squileta's Squaloon/Background_frame006.png" id="2_uftsj"]
-[ext_resource type="Texture2D" uid="uid://da82kym2qlgm6" path="res://UI STUFF/Squileta's Squaloon/Character text box_frame006.png" id="5_uftsj"]
-[ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_1j01k"]
-[ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="6_n2vuv"]
-[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_1mpan"]
-[ext_resource type="Texture2D" uid="uid://dayhv7108sca7" path="res://UI STUFF/Squileta's Squaloon/Player Text Box_frame006.png" id="8_uftsj"]
-[ext_resource type="Texture2D" uid="uid://dktahke3h6raf" path="res://UI STUFF/Squileta's Squaloon/Log Highlighted_frame006.png" id="9_j3l7q"]
-[ext_resource type="Texture2D" uid="uid://bsn2jkigiprra" path="res://UI STUFF/Squileta's Squaloon/Log_frame006.png" id="10_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://bicpdnho0g86q" path="res://UI STUFF/Squileta's Squaloon/Enter_highlighted_frame006.png" id="11_j3l7q"]
-[ext_resource type="Texture2D" uid="uid://bnawpqi1c47b4" path="res://UI STUFF/Squileta's Squaloon/Player text box border_frame006.png" id="13_1j01k"]
-[ext_resource type="Texture2D" uid="uid://dsssp85t8k7k" path="res://UI STUFF/Squileta's Squaloon/Enter_frame006.png" id="13_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://c1ndb73rfd2c8" path="res://UI STUFF/Squileta's Squaloon/Next_day_highlighted.png" id="14_ndu6r"]
-[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="14_rr6pc"]
-[ext_resource type="Texture2D" uid="uid://rs43xajmj02t" path="res://UI STUFF/Squileta's Squaloon/Next Day_frame006.png" id="15_1j01k"]
-[ext_resource type="Texture2D" uid="uid://b6biofmnstodf" path="res://UI STUFF/Squileta's Squaloon/Squileta Get Out Highlighted.png" id="15_n2vuv"]
-[ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="15_q2flm"]
-[ext_resource type="Texture2D" uid="uid://dbkpcv2fmrymu" path="res://UI STUFF/Squileta's Squaloon/Squileta Get Out.png" id="16_1mpan"]
-[ext_resource type="Texture2D" uid="uid://doe5ee1yrowwd" path="res://UI STUFF/Squileta's Squaloon/Character text box border_frame006.png" id="18_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://e24uonukhoag" path="res://UI STUFF/Squileta's Squaloon/Stats Box_frame006.png" id="19_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://dyame67h346im" path="res://UI STUFF/Squileta's Squaloon/Stats box border_frame006.png" id="20_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://code stuff/Main/Heart1.png" id="26_y7mwl"]
-[ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://code stuff/Main/Heart2.png" id="27_s5qe6"]
-[ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://code stuff/Main/Heart3.png" id="28_b3pue"]
-[ext_resource type="Texture2D" uid="uid://drm0jynhok06r" path="res://code stuff/Main/Heart4.png" id="29_bdtuv"]
-[ext_resource type="Texture2D" uid="uid://dcwhdq0vup4sh" path="res://code stuff/Main/Heart5.png" id="30_jwqa2"]
-[ext_resource type="Texture2D" uid="uid://71b2d7p86yad" path="res://code stuff/Main/Heart6.png" id="31_yd4ar"]
-[ext_resource type="Texture2D" uid="uid://btdyu5kr588hl" path="res://code stuff/Main/Heart7.png" id="32_efvht"]
-[ext_resource type="Texture2D" uid="uid://bsikrf28eq73a" path="res://code stuff/Main/Heart8.png" id="33_ge8ph"]
-[ext_resource type="Texture2D" uid="uid://wm71mufnj7c1" path="res://code stuff/Main/Heart9.png" id="34_ui6be"]
-[ext_resource type="Texture2D" uid="uid://dp5lv3jj351yw" path="res://code stuff/Main/Heart10.png" id="35_h61bt"]
-[ext_resource type="Texture2D" uid="uid://bbuk0m1tq8rrj" path="res://code stuff/Main/Heart11.png" id="36_4mqw2"]
-[ext_resource type="Texture2D" uid="uid://c460sy7phsxa7" path="res://code stuff/Main/Heart12.png" id="37_jp5dm"]
-[ext_resource type="Texture2D" uid="uid://dm2efd0rhnjdv" path="res://code stuff/Main/Heart13.png" id="38_5a2po"]
-[ext_resource type="Texture2D" uid="uid://m11vlovkpqot" path="res://code stuff/Main/Heart14.png" id="39_k7uff"]
-[ext_resource type="Texture2D" uid="uid://bmshr1hp33dsw" path="res://code stuff/Main/Heart15.png" id="40_qo88k"]
-[ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://code stuff/Main/Heart16.png" id="41_lvjj5"]
-[ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://code stuff/Main/Heart17.png" id="42_c4fgu"]
-[ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="42_g3gfx"]
-[ext_resource type="Texture2D" uid="uid://bcxm7lvs1w4os" path="res://UI STUFF/Squileta's Squaloon/Name Bar_frame006.png" id="42_ndu6r"]
-[ext_resource type="PackedScene" uid="uid://dl1j2sr24s2qw" path="res://emotion/Squileta/Squileta_emotion.tscn" id="42_uftsj"]
-[ext_resource type="Texture2D" uid="uid://btjhb867wghh7" path="res://UI STUFF/Squileta's Squaloon/Squilleta_map.png" id="43_1j01k"]
-[ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://code stuff/Main/Heart18.png" id="43_cl1x7"]
-[ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://code stuff/Main/Heart19.png" id="44_p3hf2"]
-[ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="45_xuekh"]
-[ext_resource type="Texture2D" uid="uid://cy330rlpb00p3" path="res://UI STUFF/Squileta's Squaloon/Diagram_frame006.png" id="46_21rre"]
-[ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="46_56h5h"]
+[ext_resource type="Script" uid="uid://b06m0ppjcdy0n" path="res://code stuff/Charcters/gwimbley.gd" id="1_wcrmc"]
+[ext_resource type="Texture2D" uid="uid://cn880fj6cujjq" path="res://UI STUFF/Wild South/Background_frame006.png" id="2_8ekd5"]
+[ext_resource type="PackedScene" uid="uid://j0vdrtytuegj" path="res://emotion/Gwimbley's Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
+[ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="4_58grp"]
+[ext_resource type="Texture2D" uid="uid://b2dj5joswxy6" path="res://UI STUFF/Wild South/Character text box_frame006.png" id="5_3ryj7"]
+[ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_v6aia"]
+[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_274oi"]
+[ext_resource type="Texture2D" uid="uid://dvlskknj0cgeq" path="res://UI STUFF/Wild South/Player Text Box_frame006.png" id="8_nuxh7"]
+[ext_resource type="Texture2D" uid="uid://bpckwnlg5s6wt" path="res://UI STUFF/Wild South/Log_highlighted.png" id="9_gc4f0"]
+[ext_resource type="Texture2D" uid="uid://d0o3o8muymm2o" path="res://UI STUFF/Wild South/Log_frame006.png" id="10_m8ysr"]
+[ext_resource type="Texture2D" uid="uid://qpviihm0m4lo" path="res://UI STUFF/Wild South/Enter_highlighted_frame006.png" id="11_irpfv"]
+[ext_resource type="Texture2D" uid="uid://uq0ewbjs4txa" path="res://UI STUFF/Wild South/Enter_frame006.png" id="12_xmnsd"]
+[ext_resource type="Texture2D" uid="uid://febwp65fv25p" path="res://UI STUFF/Wild South/Player text box border_frame006.png" id="13_1yiar"]
+[ext_resource type="Texture2D" uid="uid://d1vfnu83wr1ml" path="res://UI STUFF/Wild South/Next Day Highlighted_frame006.png" id="14_auh8x"]
+[ext_resource type="Texture2D" uid="uid://dvanay85phtuo" path="res://UI STUFF/Wild South/Next Day_frame006.png" id="15_j0j1y"]
+[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="16_d8x3i"]
+[ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="17_yo6ha"]
+[ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="18_fqq62"]
+[ext_resource type="Texture2D" uid="uid://0hrucc6epxp4" path="res://UI STUFF/Wild South/Character text box border_frame006.png" id="19_co00u"]
+[ext_resource type="Texture2D" uid="uid://df2tn012ji2jw" path="res://UI STUFF/Wild South/Stats Box_frame006.png" id="20_o4ct8"]
+[ext_resource type="Texture2D" uid="uid://b7vs6anjw8fe2" path="res://UI STUFF/Wild South/Stats box border_frame006.png" id="21_plas7"]
+[ext_resource type="Texture2D" uid="uid://dk8e4qqxxsev7" path="res://UI STUFF/Wild South/Name_bar.png" id="22_2o0j1"]
+[ext_resource type="Texture2D" uid="uid://bosnw2y8k58iy" path="res://UI STUFF/Wild South/Shrimp_map.png" id="23_cp5jf"]
+[ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="24_ax314"]
+[ext_resource type="Texture2D" uid="uid://pdm0kxxt5h6h" path="res://UI STUFF/Wild South/Diagram_frame006.png" id="25_hsij5"]
+[ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://code stuff/Main/Heart1.png" id="26_2cpq4"]
+[ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://code stuff/Main/Heart2.png" id="27_j7ora"]
+[ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://code stuff/Main/Heart3.png" id="28_5omfd"]
+[ext_resource type="Texture2D" uid="uid://drm0jynhok06r" path="res://code stuff/Main/Heart4.png" id="29_hllcb"]
+[ext_resource type="Texture2D" uid="uid://dcwhdq0vup4sh" path="res://code stuff/Main/Heart5.png" id="30_dtpk5"]
+[ext_resource type="Texture2D" uid="uid://71b2d7p86yad" path="res://code stuff/Main/Heart6.png" id="31_t5ivq"]
+[ext_resource type="Texture2D" uid="uid://btdyu5kr588hl" path="res://code stuff/Main/Heart7.png" id="32_fvcjq"]
+[ext_resource type="Texture2D" uid="uid://bsikrf28eq73a" path="res://code stuff/Main/Heart8.png" id="33_pj1e4"]
+[ext_resource type="Texture2D" uid="uid://wm71mufnj7c1" path="res://code stuff/Main/Heart9.png" id="34_maga1"]
+[ext_resource type="Texture2D" uid="uid://dp5lv3jj351yw" path="res://code stuff/Main/Heart10.png" id="35_b65fy"]
+[ext_resource type="Texture2D" uid="uid://bbuk0m1tq8rrj" path="res://code stuff/Main/Heart11.png" id="36_ohfxn"]
+[ext_resource type="Texture2D" uid="uid://c460sy7phsxa7" path="res://code stuff/Main/Heart12.png" id="37_71nav"]
+[ext_resource type="Texture2D" uid="uid://dm2efd0rhnjdv" path="res://code stuff/Main/Heart13.png" id="38_0o0sc"]
+[ext_resource type="Texture2D" uid="uid://m11vlovkpqot" path="res://code stuff/Main/Heart14.png" id="39_j10ip"]
+[ext_resource type="Texture2D" uid="uid://bmshr1hp33dsw" path="res://code stuff/Main/Heart15.png" id="40_wctoe"]
+[ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://code stuff/Main/Heart16.png" id="41_hlp1i"]
+[ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://code stuff/Main/Heart17.png" id="42_dmuo6"]
+[ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://code stuff/Main/Heart18.png" id="43_w71wo"]
+[ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://code stuff/Main/Heart19.png" id="44_ra0hk"]
+[ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="45_wa8l8"]
+[ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="46_pf7x8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
+shader = ExtResource("4_58grp")
+shader_parameter/wave_amplitude = 0.004
+shader_parameter/wave_frequency = 13.28
+shader_parameter/wave_speed = 1.0
+shader_parameter/tint_color = Color(0.416509, 0.458885, 1.92523e-07, 0.403922)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
-texture = ExtResource("5_uftsj")
+texture = ExtResource("5_3ryj7")
+modulate_color = Color(1, 1, 1, 0.941176)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2ql3"]
-texture = ExtResource("8_uftsj")
+texture = ExtResource("8_nuxh7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a81c1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vah8i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc7i1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1j01k"]
-texture = ExtResource("9_j3l7q")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3jqnm"]
+texture = ExtResource("9_gc4f0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbieo"]
-texture = ExtResource("10_ndu6r")
+texture = ExtResource("10_m8ysr")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjer1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty227"]
-texture = ExtResource("11_j3l7q")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kc6qc"]
+texture = ExtResource("11_irpfv")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4v0k"]
-texture = ExtResource("13_ndu6r")
+texture = ExtResource("12_xmnsd")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5po65"]
-texture = ExtResource("13_ndu6r")
+texture = ExtResource("12_xmnsd")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1km0"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekv57"]
-texture = ExtResource("15_n2vuv")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_of35f"]
-texture = ExtResource("16_1mpan")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hni11"]
-texture = ExtResource("16_1mpan")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kl0p"]
-texture = ExtResource("14_ndu6r")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hyvnq"]
+texture = ExtResource("14_auh8x")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5soc"]
-texture = ExtResource("15_1j01k")
+texture = ExtResource("15_j0j1y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njf6d"]
 bg_color = Color(0.533473, 0.594343, 0.774528, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_panel"]
-bg_color = Color(0.537255, 0.376471, 0.721569, 1)
+bg_color = Color(0.788235, 0.458824, 0.141176, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -108,7 +106,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_scroll"]
-bg_color = Color(0.858824, 0.709804, 0.847059, 1)
+bg_color = Color(1, 0.976471, 0.717647, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -119,30 +117,40 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ndu6r"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86uu6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1km0"]
-texture = ExtResource("43_1j01k")
+texture = ExtResource("23_cp5jf")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1j01k"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8p2t1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n1a7"]
-texture = ExtResource("42_g3gfx")
+texture = ExtResource("24_ax314")
 
-[node name="Squilleta" type="Node2D"]
+[node name="Gwimbely" type="Node2D"]
 position = Vector2(590, 255)
-script = ExtResource("1_uftsj")
+script = ExtResource("1_wcrmc")
 
-[node name="Backround" type="Sprite2D" parent="."]
-position = Vector2(50, 105)
+[node name="KelpManCoveSpritesheet1" type="Sprite2D" parent="."]
+position = Vector2(-590, -255)
 scale = Vector2(10, 10)
-texture = ExtResource("2_uftsj")
+texture = ExtResource("2_8ekd5")
+centered = false
 
-[node name="squileta_emotion" parent="." instance=ExtResource("42_uftsj")]
-position = Vector2(-140, 145)
-scale = Vector2(10, 10)
+[node name="gwimbly_emotion" parent="." instance=ExtResource("2_wcrmc")]
+position = Vector2(-165, 143)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1qk4g")
+offset_left = -590.0
+offset_top = -155.0
+offset_right = -462.0
+offset_bottom = -105.0
+scale = Vector2(10, 12.52)
+mouse_filter = 2
 
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
@@ -155,7 +163,6 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_4tnxu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AIResponsePanel"]
-layout_direction = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,21 +173,21 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.974391, 0.894594)
+scale = Vector2(0.973713, 0.894491)
 theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
-theme_override_fonts/normal_font = ExtResource("6_1j01k")
+theme_override_fonts/normal_font = ExtResource("6_v6aia")
 theme_override_font_sizes/normal_font_size = 120
-bbcode_enabled = true
-text = "helloooooooooooooooooooooo"
+text = "VvvV"
 scroll_active = false
-script = ExtResource("7_1mpan")
+script = ExtResource("7_274oi")
 max_font_size = 32
 min_font_size = 32
-padding_factor = 0.0
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.005
 
 [node name="PlayerInputPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(32, 31)
-layout_direction = 1
 offset_left = 330.0
 offset_top = 55.0
 offset_right = 650.0
@@ -190,44 +197,40 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_w2ql3")
 
 [node name="PlayerInput" type="TextEdit" parent="PlayerInputPanel"]
 layout_mode = 0
-offset_left = 25.9999
-offset_top = 20.0
-offset_right = 346.0
-offset_bottom = 334.0
-scale = Vector2(0.855, 0.86)
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 350.0
+offset_bottom = 344.0
+scale = Vector2(0.808298, 0.764331)
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.0705882, 0.227451, 0.266667, 1)
 theme_override_colors/caret_background_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0.0705882, 0.168627, 1)
 theme_override_constants/caret_width = 5
-theme_override_fonts/font = ExtResource("6_1j01k")
+theme_override_fonts/font = ExtResource("6_v6aia")
 theme_override_font_sizes/font_size = 46
-theme_override_styles/normal = SubResource("StyleBoxTexture_a81c1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vah8i")
 wrap_mode = 1
 indent_wrapped_lines = true
 
-[node name="PlayerTextBoxBorderFrame004" type="Sprite2D" parent="."]
-position = Vector2(460, 155)
-scale = Vector2(10, 10)
-texture = ExtResource("13_1j01k")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 330.0
 offset_top = 335.0
-offset_right = 362.0
+offset_right = 365.0
 offset_bottom = 347.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(10, 10)
 theme_override_constants/separation = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="ChatLog" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(16, 12)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dc7i1")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1j01k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3jqnm")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lbieo")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lbieo")
 
@@ -235,22 +238,13 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_lbieo")
 custom_minimum_size = Vector2(15, 12)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjer1")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ty227")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kc6qc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w4v0k")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5po65")
 
-[node name="GetOutButton" type="Button" parent="."]
-visible = false
-custom_minimum_size = Vector2(33, 18)
-offset_left = 320.0
-offset_top = 275.0
-offset_right = 353.0
-offset_bottom = 293.0
-scale = Vector2(10, 10)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l1km0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ekv57")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_of35f")
-theme_override_styles/normal = SubResource("StyleBoxTexture_hni11")
+[node name="PlayerTextBoxBorderFrame004" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(13, -18)
+texture = ExtResource("13_1yiar")
 
 [node name="DayCompleteButton" type="Button" parent="."]
 visible = false
@@ -261,7 +255,7 @@ offset_right = 353.0
 offset_bottom = 293.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l1km0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8kl0p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hyvnq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g5soc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_g5soc")
 
@@ -278,7 +272,7 @@ content_scale_mode = 1
 content_scale_aspect = 1
 theme_override_colors/title_color = Color(0, 0, 0, 0)
 theme_override_styles/embedded_border = SubResource("StyleBoxFlat_njf6d")
-script = ExtResource("14_rr6pc")
+script = ExtResource("16_d8x3i")
 
 [node name="ChatLogPanel" type="Panel" parent="ChatLogWindow"]
 anchors_preset = 15
@@ -304,7 +298,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.911204, 0.975667, 0.98165, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 25
 text = "Conversation History"
 autowrap_mode = 3
@@ -317,21 +311,21 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 32
 text = "Font Size:"
 
 [node name="DecreaseFontButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 32
 text = "A-"
 
 [node name="IncreaseFontButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 32
 text = "A+"
 
@@ -339,7 +333,7 @@ text = "A+"
 layout_mode = 2
 tooltip_text = "Close Chat Log"
 theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 32
 text = "X"
 
@@ -354,7 +348,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.14902, 0.360784, 0.380392, 1)
-theme_override_fonts/normal_font = ExtResource("6_1j01k")
+theme_override_fonts/normal_font = ExtResource("6_v6aia")
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "ddddddddddddddddddddddddddddffffffffffffff"
@@ -366,7 +360,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 32
 text = "0 messages"
 horizontal_alignment = 2
@@ -374,22 +368,21 @@ autowrap_mode = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(520, 380)
-stream = ExtResource("15_q2flm")
+stream = ExtResource("18_fqq62")
 
 [node name="CharacterTextBoxBorderFrame004" type="Sprite2D" parent="."]
-texture_filter = 1
 position = Vector2(-135, 250)
 scale = Vector2(10, 10)
-texture = ExtResource("18_ndu6r")
+texture = ExtResource("19_co00u")
 
 [node name="Statsbox" type="Sprite2D" parent="."]
 position = Vector2(490, -50)
 scale = Vector2(10, 10)
-texture = ExtResource("19_ndu6r")
+texture = ExtResource("20_o4ct8")
 
 [node name="StatsBoxBorderFrame004" type="Sprite2D" parent="Statsbox"]
-position = Vector2(0, -1.5)
-texture = ExtResource("20_ndu6r")
+position = Vector2(0, -0.500002)
+texture = ExtResource("21_plas7")
 
 [node name="Action_left" type="Label" parent="Statsbox"]
 offset_left = -14.0
@@ -397,7 +390,7 @@ offset_top = -6.7
 offset_right = 14.0
 offset_bottom = 20.3
 scale = Vector2(0.5, 0.5)
-theme_override_fonts/font = ExtResource("6_n2vuv")
+theme_override_fonts/font = ExtResource("17_yo6ha")
 theme_override_font_sizes/font_size = 24
 text = "10"
 horizontal_alignment = 1
@@ -406,22 +399,26 @@ vertical_alignment = 1
 [node name="NameBarFrame004" type="Sprite2D" parent="."]
 position = Vector2(-590, -255)
 scale = Vector2(10, 10)
-texture = ExtResource("42_ndu6r")
+texture = ExtResource("22_2o0j1")
 centered = false
 
 [node name="map" type="Button" parent="NameBarFrame004"]
-layout_direction = 1
-offset_left = 111.0
-offset_right = 122.0
-offset_bottom = 9.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ndu6r")
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -6.0
+offset_right = -6.00001
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86uu6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_l1km0")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_l1km0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_l1km0")
-vertical_icon_alignment = 0
-metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Button" parent="NameBarFrame004"]
 anchors_preset = 6
@@ -435,7 +432,7 @@ offset_right = -117.0
 offset_bottom = 4.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1j01k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8p2t1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1n1a7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1n1a7")
@@ -444,137 +441,136 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_1n1a7")
 visible = false
 position = Vector2(50, 100)
 scale = Vector2(10, 10)
-texture = ExtResource("46_21rre")
+texture = ExtResource("25_hsij5")
 
 [node name="Heart1" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("26_y7mwl")
+texture = ExtResource("26_2cpq4")
 
 [node name="Heart2" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("27_s5qe6")
+texture = ExtResource("27_j7ora")
 
 [node name="Heart3" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("28_b3pue")
+texture = ExtResource("28_5omfd")
 
 [node name="Heart4" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("29_bdtuv")
+texture = ExtResource("29_hllcb")
 
 [node name="Heart5" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("30_jwqa2")
+texture = ExtResource("30_dtpk5")
 
 [node name="Heart6" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("31_yd4ar")
+texture = ExtResource("31_t5ivq")
 
 [node name="Heart7" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("32_efvht")
+texture = ExtResource("32_fvcjq")
 
 [node name="Heart8" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("33_ge8ph")
+texture = ExtResource("33_pj1e4")
 
 [node name="Heart9" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("34_ui6be")
+texture = ExtResource("34_maga1")
 
 [node name="Heart10" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("35_h61bt")
+texture = ExtResource("35_b65fy")
 
 [node name="Heart11" type="Sprite2D" parent="."]
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("36_4mqw2")
+texture = ExtResource("36_ohfxn")
 
 [node name="Heart12" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("37_jp5dm")
+texture = ExtResource("37_71nav")
 
 [node name="Heart13" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("38_5a2po")
+texture = ExtResource("38_0o0sc")
 
 [node name="Heart14" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("39_k7uff")
+texture = ExtResource("39_j10ip")
 
 [node name="Heart15" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("40_qo88k")
+texture = ExtResource("40_wctoe")
 
 [node name="Heart16" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("41_lvjj5")
+texture = ExtResource("41_hlp1i")
 
 [node name="Heart17" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("42_c4fgu")
+texture = ExtResource("42_dmuo6")
 
 [node name="Heart18" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("43_cl1x7")
+texture = ExtResource("43_w71wo")
 
 [node name="Heart19" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("44_p3hf2")
+texture = ExtResource("44_ra0hk")
 
 [node name="Heart20" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("45_xuekh")
+texture = ExtResource("45_wa8l8")
 
 [node name="Heart21" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(565, -55)
 scale = Vector2(10, 10)
-texture = ExtResource("46_56h5h")
+texture = ExtResource("46_pf7x8")
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="HBoxContainer/ChatLog" to="." method="_on_chat_log_pressed"]
 [connection signal="pressed" from="HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="GetOutButton" to="." method="_on_get_out_button_pressed"]
 [connection signal="pressed" from="DayCompleteButton" to="." method="_on_day_complete_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/DecreaseFontButton" to="ChatLogWindow" method="_on_decrease_font_button_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/IncreaseFontButton" to="ChatLogWindow" method="_on_increase_font_button_pressed"]
