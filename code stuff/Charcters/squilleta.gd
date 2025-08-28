@@ -35,10 +35,10 @@ var current_display_name := "Squileta"  # The name currently being displayed
 var base_name := "Squileta"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
-# Diffrent varibles for the game state
+# Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var squileta_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "kelp man cove", "wild south", "mine field"]  # Areas this AI knows about
+var known_areas := ["squaloon", "kelp man cove", "mine field"]  # Areas this AI knows about (only 3 locations in older version)
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Kelp man", "The shrimp with no name", "Sea mine"]   # Characters this AI knows about and can reference memories from
 
@@ -718,6 +718,10 @@ func check_for_name_change(reply: String):
 func _on_next_button_pressed():
 	AudioManager.play_button_click()
 	if GameState.final_turn_triggered: return
+
+	# Prevent sending when no actions left
+	if GameState.actions_left <= 0:
+		return
 
 	var msg = input_field.text.strip_edges()
 	if msg == "": return

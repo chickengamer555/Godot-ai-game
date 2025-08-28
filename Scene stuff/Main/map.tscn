@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://d3ky8ukpolq71"]
+[gd_scene load_steps=34 format=3 uid="uid://d3ky8ukpolq71"]
 
-[ext_resource type="Script" path="res://code stuff/Main/map.gd" id="1_sf8pw"]
+[ext_resource type="Script" uid="uid://b2ul4f18eay8w" path="res://code stuff/Main/map.gd" id="1_sf8pw"]
 [ext_resource type="Texture2D" uid="uid://dsucun4rkwc6s" path="res://code stuff/Main/Map/SQUALOON_frame001.png" id="2_4s3y8"]
-[ext_resource type="Texture2D" uid="uid://dx1muqngerug4" path="res://code stuff/Main/Map/Background.png" id="3_mst70"]
 [ext_resource type="Texture2D" uid="uid://cohmpctlq11cb" path="res://code stuff/Main/Map/SOUTH_frame001.png" id="3_v3418"]
 [ext_resource type="Texture2D" uid="uid://ba6mr8uw3y4p2" path="res://code stuff/Main/Map/COVE_frame001.png" id="3_xtt5t"]
 [ext_resource type="Texture2D" uid="uid://cm71kvx7wl8ee" path="res://code stuff/Main/Map/SOUTH_frame003.png" id="4_0suwh"]
@@ -85,10 +84,13 @@ position = Vector2(640, 360)
 scale = Vector2(10, 10)
 texture = ExtResource("6_ewe2a")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
+[node name="Background" type="ColorRect" parent="."]
+offset_left = 263.0
+offset_top = 168.0
+offset_right = 363.0
+offset_bottom = 208.0
 scale = Vector2(10, 10)
-texture = ExtResource("3_mst70")
+color = Color(0, 0, 0, 1)
 
 [node name="wild_south2" type="Sprite2D" parent="."]
 position = Vector2(455, 275)
@@ -96,7 +98,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("4_0suwh")
 
 [node name="wild_south" type="Button" parent="."]
-visible = false
 offset_right = 91.0
 offset_bottom = 55.0
 scale = Vector2(10, 10)
@@ -114,7 +115,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("5_y5s17")
 
 [node name="mine_field" type="Button" parent="."]
-visible = false
 offset_left = 670.0
 offset_right = 731.0
 offset_bottom = 35.0
@@ -131,7 +131,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("6_vxfn8")
 
 [node name="sqauloon" type="Button" parent="."]
-visible = false
 layout_direction = 1
 offset_left = 530.0
 offset_top = 150.0
@@ -153,7 +152,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("7_n57bc")
 
 [node name="grotto" type="Button" parent="."]
-visible = false
 layout_direction = 1
 offset_left = 790.0
 offset_top = 410.0
@@ -174,7 +172,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("8_0l0r6")
 
 [node name="Kelp_man_cove" type="Button" parent="."]
-visible = false
 offset_top = 340.0
 offset_right = 40.0
 offset_bottom = 378.0

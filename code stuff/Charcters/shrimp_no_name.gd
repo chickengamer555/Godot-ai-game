@@ -33,12 +33,12 @@ var current_display_name := "The Shrimp with No Name"  # The name currently bein
 var base_name := "The Shrimp with No Name"            # The original/base name to fall back to
 var current_title := ""                # Current title/descriptor to append
 
-# Diffrent varibles for the game state
+# Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
-var squileta_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "wild south"]  # Areas this AI knows about
+var shrimp_total_score := 0           # Relationship score with this AI character (fixed variable name)
+var known_areas := ["squaloon", "mine field", "kelp man cove"]  # Areas this AI knows about (only 3 locations in older version)
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "Kelp man", "Sea mine"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -101,8 +101,8 @@ func _ready():
 
 	
 	# Load existing relationship score so when day cycle changed orginal wont be lost
-	squileta_total_score = GameState.ai_scores.get(ai_name, 0)
-	GameState.ai_scores[ai_name] = squileta_total_score
+	shrimp_total_score = GameState.ai_scores.get(ai_name, 0)
+	GameState.ai_scores[ai_name] = shrimp_total_score
 	# Updates the day counter display 
 	update_day_state()
 	
@@ -249,7 +249,7 @@ func should_trigger_personality_evolution() -> bool:
 	]
 	
 	for range_data in relationship_ranges:
-		if squileta_total_score >= range_data.min and squileta_total_score <= range_data.max:
+		if shrimp_total_score >= range_data.min and shrimp_total_score <= range_data.max:
 			var expected_stage = range_data.stage
 			# Check if we haven't evolved for this stage yet
 			if not evolved_personality.contains(expected_stage):
@@ -341,7 +341,7 @@ HOW TO EVOLVE: If you want to add new personality traits, include {EVOLVED: your
 - {EVOLVED: I've developed a protective instinct}
 
 Only evolve when you genuinely feel changed by the interactions. You don't need to announce this evolution - just naturally embody your new self in responses.
-""" % [squileta_total_score, get_significant_memories_text()]
+""" % [shrimp_total_score, get_significant_memories_text()]
 
 	# Define the AI's personality, rules, and required response format
 	var squiletta_prompt := """
@@ -548,8 +548,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if score_match:
 		var score = int(score_match.get_string(1))
 		relationship_change = clamp(score, -10, 10)
-		squileta_total_score += relationship_change
-		GameState.ai_scores[ai_name] = squileta_total_score
+		shrimp_total_score += relationship_change
+		GameState.ai_scores[ai_name] = shrimp_total_score
 		reply = reply.replace(score_match.get_string(0), "").strip_edges()
 		
 		# Update heart display with the AI's relationship score
@@ -562,8 +562,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		if alt_match:
 			var score = int(alt_match.get_string(1))
 			relationship_change = clamp(score, -10, 10)
-			squileta_total_score += relationship_change
-			GameState.ai_scores[ai_name] = squileta_total_score
+			shrimp_total_score += relationship_change
+			GameState.ai_scores[ai_name] = shrimp_total_score
 			reply = reply.replace(alt_match.get_string(0), "").strip_edges()
 			
 			# Update heart display with the AI's relationship score
@@ -712,6 +712,10 @@ func check_for_name_change(reply: String):
 func _on_next_button_pressed():
 	AudioManager.play_button_click()
 	if GameState.final_turn_triggered: return
+
+	# Prevent sending when no actions left
+	if GameState.actions_left <= 0:
+		return
 
 	var msg = input_field.text.strip_edges()
 	if msg == "": return

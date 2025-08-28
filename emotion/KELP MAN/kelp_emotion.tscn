@@ -10,6 +10,7 @@
 [node name="kelp_emotion" type="Node2D"]
 
 [node name="Depressed" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_mbstq")
 
 [node name="Sad" type="Sprite2D" parent="."]
@@ -17,17 +18,21 @@ position = Vector2(0.500002, 7.62939e-06)
 texture = ExtResource("2_lx8og")
 
 [node name="Angry" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 texture = ExtResource("3_lx8og")
 
 [node name="Grabbing" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("5_mbstq")
 
 [node name="Happy" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("1_lx8og")
 
 [node name="Genie" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1, 2)
 texture = ExtResource("6_y882p")

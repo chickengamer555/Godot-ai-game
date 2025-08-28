@@ -43,6 +43,7 @@ func on_main_menu_pressed():
 	GameState.ai_responses.clear()
 	GameState.ai_emotions.clear()
 	GameState.ai_genie_used.clear()  # Reset genie mode usage tracking
+	GameState.ai_get_out_states.clear()  # Reset get out button states
 	
 	# Reset Memory and clear all character chat logs
 	Memory.shared_memory.clear()
