@@ -16,7 +16,6 @@ position = Vector2(1, 2)
 texture = ExtResource("1_c1rax")
 
 [node name="Happy" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_pgang")
 
 [node name="Angry" type="Sprite2D" parent="."]
@@ -40,5 +39,6 @@ position = Vector2(0.999996, 1.5)
 texture = ExtResource("6_727sp")
 
 [node name="Satisfied" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1, 2)
 texture = ExtResource("7_umocq")

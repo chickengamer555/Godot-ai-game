@@ -134,7 +134,7 @@ texture = ExtResource("2_whl7b")
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="kelp_emotion" parent="." instance=ExtResource("3_rh00s")]
-position = Vector2(-147, 140)
+position = Vector2(-150, 129)
 scale = Vector2(10, 10)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
