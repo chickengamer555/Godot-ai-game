@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=63 format=3 uid="uid://3v4j8f6k7rre"]
+=======
+[gd_scene load_steps=66 format=3 uid="uid://3v4j8f6k7rre"]
+>>>>>>> Stashed changes
 
-[ext_resource type="Script" uid="uid://d2p1x4lp1cm5m" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
+[ext_resource type="Script" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
 [ext_resource type="Texture2D" uid="uid://b46s7tpgmjd8c" path="res://UI STUFF/Kelp cove/Background_frame004.png" id="2_whl7b"]
 [ext_resource type="PackedScene" uid="uid://bqo35voi18fb2" path="res://emotion/KELP MAN/kelp_emotion.tscn" id="3_rh00s"]
 [ext_resource type="Texture2D" uid="uid://d4j1wlm7cox4l" path="res://UI STUFF/Kelp cove/Character text box_frame004.png" id="4_y08aj"]
@@ -8,12 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="6_l1km0"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_njf6d"]
 [ext_resource type="Texture2D" uid="uid://c28ohxng6fj5v" path="res://UI STUFF/Kelp cove/Log_frame004.png" id="7_hnsm1"]
-[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_l1km0"]
+[ext_resource type="Script" path="res://code stuff/UI/rich_text_label.gd" id="7_l1km0"]
 [ext_resource type="Texture2D" uid="uid://cv0302xkckfcl" path="res://UI STUFF/Kelp cove/Player Text Box_frame004.png" id="7_rh00s"]
 [ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="8_whl7b"]
 [ext_resource type="Texture2D" uid="uid://bemkjyc07llms" path="res://UI STUFF/Kelp cove/Log highlighted.png" id="9_8p2t1"]
 [ext_resource type="Texture2D" uid="uid://kqwku1w4dcnf" path="res://UI STUFF/Kelp cove/Player text box border_frame004.png" id="9_l7uh5"]
-[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="10_hjer1"]
+[ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="10_hjer1"]
+[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="11_dc7i1"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="11_klr56"]
 [ext_resource type="Texture2D" uid="uid://c1p5po8lqaj6i" path="res://UI STUFF/Kelp cove/Enter_highlighted.png" id="11_njf6d"]
 [ext_resource type="Texture2D" uid="uid://b0tgyegb437rw" path="res://UI STUFF/Kelp cove/Enter_frame004.png" id="12_e0bur"]
@@ -43,6 +48,13 @@
 [ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="39_2w1sp"]
 [ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="40_11s5c"]
 [ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta's Squaloon/Map_button_frame006.png" id="41_86uu6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
+shader = ExtResource("11_dc7i1")
+shader_parameter/wave_amplitude = 0.004
+shader_parameter/wave_frequency = 13.28
+shader_parameter/wave_speed = 1.0
+shader_parameter/tint_color = Color(0, 0.454902, 0.196078, 0.313726)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("4_y08aj")
@@ -127,6 +139,16 @@ texture = ExtResource("2_whl7b")
 [node name="kelp_emotion" parent="." instance=ExtResource("3_rh00s")]
 position = Vector2(-150, 129)
 scale = Vector2(10, 10)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1qk4g")
+offset_left = -590.0
+offset_top = -155.0
+offset_right = -462.0
+offset_bottom = -105.0
+scale = Vector2(10, 12.52)
+mouse_filter = 2
 
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
