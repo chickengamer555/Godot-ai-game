@@ -96,9 +96,9 @@ func _ready():
 		chat_log_window.set_character_name(current_display_name)
 
 	# Initialize heart sprites dictionary
-	for i in range(1, 22):  # 1 to 21 inclusive (21 hearts total)
-		var heart_name = "Heart" + str(i)  # Match actual node names: "Heart1", "Heart2", etc.
-		var heart_node = get_node_or_null(heart_name)
+	for i in range(1, 21):  # -10 to +10 inclusive (21 hearts total)
+		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
+		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
 			heart_sprites[i] = heart_node
 
@@ -667,13 +667,10 @@ func update_heart_display(score: int):
 		if heart:
 			heart.visible = false
 	
-	# Map score (-10 to +10) to heart index (1 to 21)
-	# -10 maps to Heart1, 0 maps to Heart11, +10 maps to Heart21
-	var heart_index = 11 + clamp(score, -10, 10)
-
-	# Show the appropriate heart
-	if heart_sprites.has(heart_index) and heart_sprites[heart_index]:
-		heart_sprites[heart_index].visible = true
+	# Show the heart corresponding to the AI's response score
+	var clamped_score = clamp(score, -10, 10)
+	if heart_sprites.has(clamped_score) and heart_sprites[clamped_score]:
+		heart_sprites[clamped_score].visible = true
 
 # Check if AI mentioned any new areas and unlock them on the map for progression
 func check_for_area_mentions(reply: String):
