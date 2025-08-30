@@ -38,6 +38,7 @@ var current_title := ""                # Current title/descriptor to append
 var message_history: Array = []          # Stores the conversation history for the AI
 var kelp_man_total_score := 0           # Relationship score with this AI character
 var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
+
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
 

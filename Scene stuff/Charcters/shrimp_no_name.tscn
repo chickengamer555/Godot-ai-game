@@ -2,6 +2,8 @@
 [gd_scene load_steps=68 format=3 uid="uid://wy4agkhng2cm"]
 [ext_resource type="Script" uid="uid://cwuxt3me8q8rj" path="res://code stuff/Charcters/shrimp_no_name.gd" id="1_kc6qc"]
 
+[ext_resource type="Script" uid="uid://cwuxt3me8q8rj" path="res://code stuff/Charcters/shrimp_no_name.gd" id="1_kc6qc"]
+
 [ext_resource type="Texture2D" uid="uid://cn880fj6cujjq" path="res://UI STUFF/Wild South/Background_frame006.png" id="2_r876m"]
 [ext_resource type="PackedScene" uid="uid://dyaa6ycg6uc0x" path="res://emotion/Shrimp no name/shrimp_emotion.tscn" id="3_r876m"]
 [ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="4_3jqnm"]

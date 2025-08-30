@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=63 format=3 uid="uid://3v4j8f6k7rre"]
+
 
 
 [ext_resource type="Script" uid="uid://d2p1x4lp1cm5m" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
@@ -44,6 +46,15 @@
 [ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="39_2w1sp"]
 [ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="40_11s5c"]
 [ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta's Squaloon/Map_button_frame006.png" id="41_86uu6"]
+
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
+shader = ExtResource("11_dc7i1")
+shader_parameter/wave_amplitude = 0.004
+shader_parameter/wave_frequency = 13.28
+shader_parameter/wave_speed = 1.0
+shader_parameter/tint_color = Color(0, 0.454902, 0.196078, 0.313726)
+
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("4_y08aj")
