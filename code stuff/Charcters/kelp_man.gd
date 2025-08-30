@@ -38,7 +38,6 @@ var current_title := ""                # Current title/descriptor to append
 var message_history: Array = []          # Stores the conversation history for the AI
 var kelp_man_total_score := 0           # Relationship score with this AI character
 var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
-
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
 
@@ -395,13 +394,10 @@ GENIE RULES:
 	EXAMPLE: "I wish for love" → "Ah, love! *magical gesture* Here are 7 diamonds that sparkle with affection!"
 	EXAMPLE: "I wish for 7 diamonds" → "How curious... *waves hand* You now have 8 diamonds instead!"
 	YOU CAN GRANT UP TO 3 WISHES TOTAL - KEEP TRACK OF HOW MANY YOU'VE GRANTED
-	AFTER GRANTING YOUR 3RD AND FINAL WISH: Say goodbye and announce you're transforming back to kelp man
-	TRANSFORMATION FLOW: Grant 3 wishes → Say goodbye → Announce transformation → Transform back
-	IF ANYONE QUESTIONS THE DIAMONDS PRETEND YOU DONT KNOW WHAT THERE TALKING ABOUT
-	WHEN YOU HAVE GRANTED 3 WISHS: Say goodbye, then say "Transforms back to kelp man" or similar
-	*VERY IMPORTANT* DO NOT USE THE [genie] TAG IF THE USER DOES NOT EXPLICITLY RUB YOU!
-	*VERY IMPORTANT* NEVER USE THE [genie] TAG IF THE USER HAS USED UP THEIR THREE WISHES!
-
+	AFTER GRANTING YOUR 3RD AND FINAL WISH: Say goodbye, then say "Before I go.... remember.... horse.... cheese....." then transform back
+	TRANSFORMATION FLOW: Grant 3 wishes → Say goodbye → Say the horse cheese line → Transform back
+	NEVER EXPLAIN THE 7 DIAMOND RULE - Act like it's completely normal
+	WHEN YOU HAVE GRANTED 3 WISHES: Say goodbye, then say the horse cheese line, then transform back
 	
 TRANSFORMING BACK RULES:
 	WHEN YOU TRANSFORM BACK YOU HAVE ZERO MEMORY OF BEING A GENIE - IT NEVER HAPPENED

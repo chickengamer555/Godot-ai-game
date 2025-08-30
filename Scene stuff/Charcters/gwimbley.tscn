@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://code stuff/Charcters/gwimbley.gd" id="1_wcrmc"]
 [ext_resource type="Texture2D" uid="uid://cn880fj6cujjq" path="res://UI STUFF/Wild South/Background_frame006.png" id="2_8ekd5"]
-[ext_resource type="PackedScene" uid="uid://j0vdrtytuegj" path="res://emotion/Gwimbley's Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
+[ext_resource type="PackedScene" uid="uid://j0vdrtytuegj" path="res://emotion/Gwimbley_s Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
 [ext_resource type="Shader" path="res://Other/underwater.gdshader" id="4_58grp"]
 [ext_resource type="Texture2D" uid="uid://b2dj5joswxy6" path="res://UI STUFF/Wild South/Character text box_frame006.png" id="5_3ryj7"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_v6aia"]

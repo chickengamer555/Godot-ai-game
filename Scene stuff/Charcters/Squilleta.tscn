@@ -1,29 +1,26 @@
-
-[gd_scene load_steps=68 format=3 uid="uid://cir54qpw1itn6"]
+[gd_scene load_steps=71 format=3 uid="uid://cir54qpw1itn6"]
 
 [ext_resource type="Script" path="res://code stuff/Charcters/squilleta.gd" id="1_uftsj"]
-[ext_resource type="Texture2D" uid="uid://edcxa42qicno" path="res://UI STUFF/Squileta's Squaloon/Background_frame006.png" id="2_uftsj"]
-[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="4_1j01k"]
-
-[ext_resource type="Texture2D" uid="uid://da82kym2qlgm6" path="res://UI STUFF/Squileta's Squaloon/Character text box_frame006.png" id="5_uftsj"]
+[ext_resource type="Texture2D" uid="uid://edcxa42qicno" path="res://UI STUFF/Squileta_s Squaloon/Background_frame006.png" id="2_uftsj"]
+[ext_resource type="Texture2D" uid="uid://da82kym2qlgm6" path="res://UI STUFF/Squileta_s Squaloon/Character text box_frame006.png" id="5_uftsj"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_1j01k"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="6_n2vuv"]
-[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_1mpan"]
-[ext_resource type="Texture2D" uid="uid://dayhv7108sca7" path="res://UI STUFF/Squileta's Squaloon/Player Text Box_frame006.png" id="8_uftsj"]
-[ext_resource type="Texture2D" uid="uid://dktahke3h6raf" path="res://UI STUFF/Squileta's Squaloon/Log Highlighted_frame006.png" id="9_j3l7q"]
-[ext_resource type="Texture2D" uid="uid://bsn2jkigiprra" path="res://UI STUFF/Squileta's Squaloon/Log_frame006.png" id="10_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://bicpdnho0g86q" path="res://UI STUFF/Squileta's Squaloon/Enter_highlighted_frame006.png" id="11_j3l7q"]
-[ext_resource type="Texture2D" uid="uid://bnawpqi1c47b4" path="res://UI STUFF/Squileta's Squaloon/Player text box border_frame006.png" id="13_1j01k"]
-[ext_resource type="Texture2D" uid="uid://dsssp85t8k7k" path="res://UI STUFF/Squileta's Squaloon/Enter_frame006.png" id="13_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://c1ndb73rfd2c8" path="res://UI STUFF/Squileta's Squaloon/Next_day_highlighted.png" id="14_ndu6r"]
-[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="14_rr6pc"]
-[ext_resource type="Texture2D" uid="uid://rs43xajmj02t" path="res://UI STUFF/Squileta's Squaloon/Next Day_frame006.png" id="15_1j01k"]
-[ext_resource type="Texture2D" uid="uid://b6biofmnstodf" path="res://UI STUFF/Squileta's Squaloon/Squileta Get Out Highlighted.png" id="15_n2vuv"]
+[ext_resource type="Script" path="res://code stuff/UI/rich_text_label.gd" id="7_1mpan"]
+[ext_resource type="Texture2D" uid="uid://dayhv7108sca7" path="res://UI STUFF/Squileta_s Squaloon/Player Text Box_frame006.png" id="8_uftsj"]
+[ext_resource type="Texture2D" uid="uid://dktahke3h6raf" path="res://UI STUFF/Squileta_s Squaloon/Log Highlighted_frame006.png" id="9_j3l7q"]
+[ext_resource type="Texture2D" uid="uid://bsn2jkigiprra" path="res://UI STUFF/Squileta_s Squaloon/Log_frame006.png" id="10_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://bicpdnho0g86q" path="res://UI STUFF/Squileta_s Squaloon/Enter_highlighted_frame006.png" id="11_j3l7q"]
+[ext_resource type="Texture2D" uid="uid://bnawpqi1c47b4" path="res://UI STUFF/Squileta_s Squaloon/Player text box border_frame006.png" id="13_1j01k"]
+[ext_resource type="Texture2D" uid="uid://dsssp85t8k7k" path="res://UI STUFF/Squileta_s Squaloon/Enter_frame006.png" id="13_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://c1ndb73rfd2c8" path="res://UI STUFF/Squileta_s Squaloon/Next_day_highlighted.png" id="14_ndu6r"]
+[ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="14_rr6pc"]
+[ext_resource type="Texture2D" uid="uid://rs43xajmj02t" path="res://UI STUFF/Squileta_s Squaloon/Next Day_frame006.png" id="15_1j01k"]
+[ext_resource type="Texture2D" uid="uid://b6biofmnstodf" path="res://UI STUFF/Squileta_s Squaloon/Squileta Get Out Highlighted.png" id="15_n2vuv"]
 [ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="15_q2flm"]
-[ext_resource type="Texture2D" uid="uid://dbkpcv2fmrymu" path="res://UI STUFF/Squileta's Squaloon/Squileta Get Out.png" id="16_1mpan"]
-[ext_resource type="Texture2D" uid="uid://doe5ee1yrowwd" path="res://UI STUFF/Squileta's Squaloon/Character text box border_frame006.png" id="18_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://e24uonukhoag" path="res://UI STUFF/Squileta's Squaloon/Stats Box_frame006.png" id="19_ndu6r"]
-[ext_resource type="Texture2D" uid="uid://dyame67h346im" path="res://UI STUFF/Squileta's Squaloon/Stats box border_frame006.png" id="20_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://dbkpcv2fmrymu" path="res://UI STUFF/Squileta_s Squaloon/Squileta Get Out.png" id="16_1mpan"]
+[ext_resource type="Texture2D" uid="uid://doe5ee1yrowwd" path="res://UI STUFF/Squileta_s Squaloon/Character text box border_frame006.png" id="18_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://e24uonukhoag" path="res://UI STUFF/Squileta_s Squaloon/Stats Box_frame006.png" id="19_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://dyame67h346im" path="res://UI STUFF/Squileta_s Squaloon/Stats box border_frame006.png" id="20_ndu6r"]
 [ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://code stuff/Main/Heart1.png" id="26_y7mwl"]
 [ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://code stuff/Main/Heart2.png" id="27_s5qe6"]
 [ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://code stuff/Main/Heart3.png" id="28_b3pue"]
@@ -42,21 +39,14 @@
 [ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://code stuff/Main/Heart16.png" id="41_lvjj5"]
 [ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://code stuff/Main/Heart17.png" id="42_c4fgu"]
 [ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="42_g3gfx"]
-[ext_resource type="Texture2D" uid="uid://bcxm7lvs1w4os" path="res://UI STUFF/Squileta's Squaloon/Name Bar_frame006.png" id="42_ndu6r"]
+[ext_resource type="Texture2D" uid="uid://bcxm7lvs1w4os" path="res://UI STUFF/Squileta_s Squaloon/Name Bar_frame006.png" id="42_ndu6r"]
 [ext_resource type="PackedScene" uid="uid://dl1j2sr24s2qw" path="res://emotion/Squileta/Squileta_emotion.tscn" id="42_uftsj"]
-[ext_resource type="Texture2D" uid="uid://btjhb867wghh7" path="res://UI STUFF/Squileta's Squaloon/Squilleta_map.png" id="43_1j01k"]
+[ext_resource type="Texture2D" uid="uid://btjhb867wghh7" path="res://UI STUFF/Squileta_s Squaloon/Squilleta_map.png" id="43_1j01k"]
 [ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://code stuff/Main/Heart18.png" id="43_cl1x7"]
 [ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://code stuff/Main/Heart19.png" id="44_p3hf2"]
 [ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="45_xuekh"]
-[ext_resource type="Texture2D" uid="uid://cy330rlpb00p3" path="res://UI STUFF/Squileta's Squaloon/Diagram_frame006.png" id="46_21rre"]
+[ext_resource type="Texture2D" uid="uid://cy330rlpb00p3" path="res://UI STUFF/Squileta_s Squaloon/Diagram_frame006.png" id="46_21rre"]
 [ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="46_56h5h"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
-shader = ExtResource("4_1j01k")
-shader_parameter/wave_amplitude = 0.004
-shader_parameter/wave_frequency = 13.28
-shader_parameter/wave_speed = 1.0
-shader_parameter/tint_color = Color(0.51642, 0.00342287, 0.917431, 0.235294)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("5_uftsj")
@@ -153,16 +143,6 @@ position = Vector2(-140, 145)
 scale = Vector2(10, 10)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_1qk4g")
-offset_left = -590.0
-offset_top = -165.0
-offset_right = -462.0
-offset_bottom = -115.0
-scale = Vector2(10, 12.64)
-mouse_filter = 2
 
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
@@ -595,7 +575,6 @@ texture = ExtResource("46_56h5h")
 [connection signal="pressed" from="HBoxContainer/ChatLog" to="." method="_on_chat_log_pressed"]
 [connection signal="pressed" from="HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="GetOutButton" to="." method="_on_get_out_button_pressed"]
-
 [connection signal="pressed" from="DayCompleteButton" to="." method="_on_day_complete_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/DecreaseFontButton" to="ChatLogWindow" method="_on_decrease_font_button_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/IncreaseFontButton" to="ChatLogWindow" method="_on_increase_font_button_pressed"]
