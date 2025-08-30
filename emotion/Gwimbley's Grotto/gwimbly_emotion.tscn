@@ -9,16 +9,16 @@
 
 [node name="gwimbly_emotion" type="Node2D"]
 
-[node name="Depressed" type="Sprite2D" parent="."]
+[node name="Sad" type="Sprite2D" parent="."]
 position = Vector2(3, 3)
 texture = ExtResource("1_rnila")
 
-[node name="Sad" type="Sprite2D" parent="."]
+[node name="Waving" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1, 0)
 texture = ExtResource("2_bm5us")
 
-[node name="Angry" type="Sprite2D" parent="."]
+[node name="OutofIt" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -0.5)
 texture = ExtResource("3_tq1f5")
