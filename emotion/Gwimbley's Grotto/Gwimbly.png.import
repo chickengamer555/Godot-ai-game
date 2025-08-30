@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5pnpqruc5rkn"
-path="res://.godot/imported/Gwimbly3.png-85ca5a334508537b8b88dcc9a73f4952.ctex"
+uid="uid://beppuq4tkjffc"
+path="res://.godot/imported/Gwimbly.png-60bee1163a8bdac6ff7d6a449c23e89b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://emotion/Gwimbley's Grotto/Gwimbly3.png"
-dest_files=["res://.godot/imported/Gwimbly3.png-85ca5a334508537b8b88dcc9a73f4952.ctex"]
+source_file="res://emotion/Gwimbley's Grotto/Gwimbly.png"
+dest_files=["res://.godot/imported/Gwimbly.png-60bee1163a8bdac6ff7d6a449c23e89b.ctex"]
 
 [params]
 
