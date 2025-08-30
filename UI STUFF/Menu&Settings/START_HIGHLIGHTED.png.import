@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4g6hhopx76uc"
-path="res://.godot/imported/Day_Complete.png-2a8d73dba781d32eafb7e6ab033e9955.ctex"
+uid="uid://cwvqtup6rdinx"
+path="res://.godot/imported/START_HIGHLIGHTED.png-5c3e012e761f9862a31fadb978c961e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Day_Complete.png"
-dest_files=["res://.godot/imported/Day_Complete.png-2a8d73dba781d32eafb7e6ab033e9955.ctex"]
+source_file="res://UI STUFF/Menu&Settings/START_HIGHLIGHTED.png"
+dest_files=["res://.godot/imported/START_HIGHLIGHTED.png-5c3e012e761f9862a31fadb978c961e1.ctex"]
 
 [params]
 

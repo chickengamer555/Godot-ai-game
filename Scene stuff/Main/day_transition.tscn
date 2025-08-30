@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://code stuff/Main/day_transition.gd" id="1_p82y8"]
 [ext_resource type="Shader" path="res://Other/underwater.gdshader" id="2_aiex6"]
-[ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://code stuff/Main/Day_Complete.png" id="2_b77b8"]
+[ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://UI STUFF/Menu&Settings/Day_Complete.png" id="2_b77b8"]
 [ext_resource type="FontFile" uid="uid://c886wc3wsq34a" path="res://Other/Jersey20-Regular.ttf" id="3_dljb5"]
 
 [sub_resource type="ShaderMaterial" id="underwater_material"]

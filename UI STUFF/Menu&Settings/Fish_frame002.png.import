@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1r4hgcimyr58"
-path="res://.godot/imported/Fish1.png-bcfeb716109388b1913539d09d0e4508.ctex"
+uid="uid://dlqbqiicmuhwa"
+path="res://.godot/imported/Fish_frame002.png-a1da501b0d394a5fff3f4f1bd5418925.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Main Menu/Fish1.png"
-dest_files=["res://.godot/imported/Fish1.png-bcfeb716109388b1913539d09d0e4508.ctex"]
+source_file="res://UI STUFF/Menu&Settings/Fish_frame002.png"
+dest_files=["res://.godot/imported/Fish_frame002.png-a1da501b0d394a5fff3f4f1bd5418925.ctex"]
 
 [params]
 

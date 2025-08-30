@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp5lv3jj351yw"
-path="res://.godot/imported/Heart10.png-36fa9d3a1e2a36d7895a2b6ee42b7f95.ctex"
+uid="uid://b1r4hgcimyr58"
+path="res://.godot/imported/Fish1.png-7337947ea73bbde6dede8785b3a66f00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Heart10.png"
-dest_files=["res://.godot/imported/Heart10.png-36fa9d3a1e2a36d7895a2b6ee42b7f95.ctex"]
+source_file="res://UI STUFF/Menu&Settings/Fish1.png"
+dest_files=["res://.godot/imported/Fish1.png-7337947ea73bbde6dede8785b3a66f00.ctex"]
 
 [params]
 
