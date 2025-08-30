@@ -1,7 +1,8 @@
-[gd_scene load_steps=66 format=3 uid="uid://cir54qpw1itn6"]
+[gd_scene load_steps=68 format=3 uid="uid://cir54qpw1itn6"]
 
 [ext_resource type="Script" uid="uid://drea7tpj065pi" path="res://code stuff/Charcters/squilleta.gd" id="1_uftsj"]
 [ext_resource type="Texture2D" uid="uid://edcxa42qicno" path="res://UI STUFF/Squileta's Squaloon/Background_frame006.png" id="2_uftsj"]
+[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="4_1j01k"]
 [ext_resource type="Texture2D" uid="uid://da82kym2qlgm6" path="res://UI STUFF/Squileta's Squaloon/Character text box_frame006.png" id="5_uftsj"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_1j01k"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="6_n2vuv"]
@@ -45,6 +46,13 @@
 [ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://code stuff/Main/Heart20.png" id="45_xuekh"]
 [ext_resource type="Texture2D" uid="uid://cy330rlpb00p3" path="res://UI STUFF/Squileta's Squaloon/Diagram_frame006.png" id="46_21rre"]
 [ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://code stuff/Main/Heart21.png" id="46_56h5h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
+shader = ExtResource("4_1j01k")
+shader_parameter/wave_amplitude = 0.004
+shader_parameter/wave_frequency = 13.28
+shader_parameter/wave_speed = 1.0
+shader_parameter/tint_color = Color(0.51642, 0.00342287, 0.917431, 0.235294)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
 texture = ExtResource("5_uftsj")
@@ -133,6 +141,16 @@ scale = Vector2(10, 10)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1qk4g")
+offset_left = -590.0
+offset_top = -165.0
+offset_right = -462.0
+offset_bottom = -115.0
+scale = Vector2(10, 12.64)
+mouse_filter = 2
+
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
 offset_left = -550.0
@@ -160,6 +178,7 @@ theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
 theme_override_fonts/normal_font = ExtResource("6_1j01k")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
+text = "helloooooooooooooooooooooo"
 scroll_active = false
 script = ExtResource("7_1mpan")
 max_font_size = 32
@@ -226,19 +245,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hjer1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ty227")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w4v0k")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5po65")
-
-[node name="GetOutButton" type="Button" parent="."]
-visible = false
-custom_minimum_size = Vector2(33, 18)
-offset_left = 320.0
-offset_top = 275.0
-offset_right = 353.0
-offset_bottom = 293.0
-scale = Vector2(10, 10)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l1km0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8kl0p")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g5soc")
-theme_override_styles/normal = SubResource("StyleBoxTexture_g5soc")
 
 [node name="DayCompleteButton" type="Button" parent="."]
 visible = false
@@ -562,7 +568,6 @@ texture = ExtResource("46_56h5h")
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="HBoxContainer/ChatLog" to="." method="_on_chat_log_pressed"]
 [connection signal="pressed" from="HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="GetOutButton" to="." method="_on_day_complete_pressed"]
 [connection signal="pressed" from="DayCompleteButton" to="." method="_on_day_complete_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/DecreaseFontButton" to="ChatLogWindow" method="_on_decrease_font_button_pressed"]
 [connection signal="pressed" from="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer/IncreaseFontButton" to="ChatLogWindow" method="_on_increase_font_button_pressed"]

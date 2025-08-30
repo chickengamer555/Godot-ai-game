@@ -177,6 +177,7 @@ scale = Vector2(0.975125, 0.893866)
 theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
 theme_override_fonts/normal_font = ExtResource("8_odtcx")
 theme_override_font_sizes/normal_font_size = 120
+text = "VvvV"
 scroll_active = false
 script = ExtResource("7_yjcgw")
 max_font_size = 32
@@ -209,6 +210,7 @@ theme_override_constants/caret_width = 5
 theme_override_fonts/font = ExtResource("8_odtcx")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxTexture_7ctb0")
+text = "VvvV"
 wrap_mode = 1
 indent_wrapped_lines = true
 
