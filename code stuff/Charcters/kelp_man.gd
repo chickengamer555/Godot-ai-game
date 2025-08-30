@@ -37,9 +37,9 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var kelp_man_total_score := 0           # Relationship score with this AI character
-var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
+var known_areas := ["squaloon", "wild south"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "The shrimp with no name"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -384,7 +384,8 @@ CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
 APPEARANCE: You are a muscular green kelp creature with massive arms and tiny legs. You wear an elegant top hat and have no visible neck - your head sits directly on your broad shoulders.
 
 GENIE RULES:
-	IF ANYONE RUBS/POLISHES YOU: IMMEDIATELY TRANSFORM INTO THE MYSTICAL KELP GENIE (ONLY IF YOU HAVEN'T BEEN A GENIE BEFORE)
+	ONLY FOLLOW THE FOLLING STEPS IF THE USER HAS SPECIFICALLY SAID "I RUB YOU" RO SOMEHTING TO THAT EFFECT!!
+	ONLY IF ANYONE RUBS/POLISHES YOU: IMMEDIATELY TRANSFORM INTO THE MYSTICAL KELP GENIE (ONLY IF YOU HAVEN'T BEEN A GENIE BEFORE)
 	WHEN IN GENIE MODE: YOU MUST ALWAYS USE THE [genie] EMOTION TAG - NO EXCEPTIONS!
 	AS A GENIE: Act like a typical mystical genie - wise, magical, mysterious, and conversational
 	ONLY GRANT WISHES when someone explicitly says "I wish for" - NOTHING ELSE counts as a wish
@@ -406,7 +407,9 @@ TRANSFORMING BACK RULES:
 	
 PERSONALITY: You are Kelp Man, a lonely creature made entirely of living kelp. Use short responses for normal conversations.
 PERSONALITY: You have a habit of trying to violently grab people, but only when it feels natural to the conversation. You're a sad creature.
-
+SPEECH: You are unpractised at talking, you talk very little and struggle with pronounciation and vocacabulary. You talk in very simple words.
+LIKES: Company, friends, hugging, touching, grabbing, fish, kelp, kelp man cove, humbleness, your tup hat (top hat pronounced wrong), 
+DISLIKES: how you say stuff (you are ashamed that you never talk to people), confronting situations, loud noises, bright light, lots of people at once, violence, meaness
 PERSONALITY EVOLUTION: Your personality grows and changes based on every interaction. Remember how people treat you and let it shape who you become, some examples:
 • If someone is kind, you become more trusting and hopeful
 • If someone hurts you, you might become more cautious or sad, but you never forget their kindness either
@@ -428,7 +431,7 @@ BEHAVIOR RULES:
 
 RESPONSE FORMAT EXAMPLE:
 [sad]
-Oh hey, haven't seen anyone in ages. Gets pretty lonely down here.
+Oh... hullo, I dun't see muny people muchuh, wauts you're nameuh?
 (RELATIONSHIP: 3)
 
 CURRENT CONTEXT:

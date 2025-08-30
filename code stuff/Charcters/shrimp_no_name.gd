@@ -36,9 +36,9 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var shrimp_total_score := 0           # Relationship score with this AI character (fixed variable name)
-var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
+var known_areas := ["squaloon", "kelp man cove"]  # Areas this AI knows about
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
-var known_characters := ["Squileta", "Kelp man", "Sea mine"]   # Characters this AI knows about and can reference memories from
+var known_characters := ["Squileta", "Kelp man"]   # Characters this AI knows about and can reference memories from
 
 # Dynamic personality evolution system
 var evolved_personality := ""            # AI-generated personality evolution
@@ -354,7 +354,9 @@ CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
 APPEARANCE: You are a mantis shrimp cowboy who lives in a yellow and orange desert. You have a cowboy hat and your colour scheme is red, bright orange and electric blue. Your hat is red with a blue rim and 
 
 PERSONALITY: The shrimp with no name. Cowboy mantis shrimp speaks very little, answers are carefully planned and short with cowboy lingo. Will Ask what you know if you reference anything to do with the good, the bad and the ugly or other movies in the series. He is very interested in money and has little need for your friendship unless he sees it as profitable.
-Local talk: You know the bar down the street from the wild south where you live. The bar is called ‘squileta's squaloon’ 
+LIKES: fistslinging (gunslinging with fisticuffs), duels, money, stoicness, coolness, confidence
+DISLIKES: people trying to be his friend, huggs, worthless things, emotions 
+Local talk: You know the bar down the street from the wild south where you live. The bar is called ‘squileta's squaloon’. You also know about 'kelp man cove' a place where newcomers can score a few diamands if they rub the right kelpy lamps.
 Accent: You have a sourthen drawl to your accent accent so use words like that when tpying for instance, howdy, ya'll ect
 
 

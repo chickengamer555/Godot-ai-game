@@ -46,11 +46,10 @@ texture = ExtResource("7_1umeq")
 
 [node name="Main menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.985
 offset_top = -1.0
-offset_bottom = -1.0
+offset_bottom = -0.200073
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aer7q")
@@ -58,16 +57,16 @@ script = ExtResource("1_aer7q")
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 128.0
-offset_bottom = 71.0
+offset_bottom = 72.0
 scale = Vector2(10, 10)
 theme_override_styles/panel = SubResource("StyleBoxTexture_gfdf1")
 
-[node name="FISH FAME" type="Panel" parent="."]
+[node name="FISH GAME" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 80.0
-offset_top = 10.0
+offset_top = 13.0
 offset_right = 192.0
-offset_bottom = 35.0
+offset_bottom = 38.0
 scale = Vector2(10, 10)
 theme_override_styles/panel = SubResource("StyleBoxTexture_5aoih")
 
@@ -83,9 +82,9 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_3dn7h")
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
 offset_left = 310.0
-offset_top = 310.0
+offset_top = 316.0
 offset_right = 376.0
-offset_bottom = 327.0
+offset_bottom = 333.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pobcu")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_sbfxh")
@@ -96,9 +95,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_0fdqa")
 [node name="Api" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1050.0
-offset_top = 590.0
+offset_top = 599.0
 offset_right = 1071.0
-offset_bottom = 601.0
+offset_bottom = 610.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wjrsm")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_puv8u")
@@ -109,9 +108,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_o08ix")
 [node name="Settings" type="Button" parent="."]
 layout_mode = 0
 offset_left = 410.0
-offset_top = 510.0
+offset_top = 519.0
 offset_right = 456.0
-offset_bottom = 525.0
+offset_bottom = 534.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_p00gg")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_5sabh")

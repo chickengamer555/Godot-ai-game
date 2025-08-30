@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx6p8bsutpuvg"]
+[gd_scene load_steps=4 format=3 uid="uid://bx6p8bsutpuvg"]
 
 [ext_resource type="Script" path="res://code stuff/Main/main_menu_setting.gd" id="1_klp4d"]
+[ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://code stuff/Main/Day_Complete.png" id="2_83i7k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ev0w3"]
+texture = ExtResource("2_83i7k")
 
 [node name="Main_Settings" type="Control"]
 layout_mode = 3
@@ -11,14 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_klp4d")
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.1, 0.1, 0.1, 0.9)
+[node name="Background2" type="Panel" parent="."]
+offset_right = 128.0
+offset_bottom = 72.0
+scale = Vector2(10, 10)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ev0w3")
+
+[node name="ColorRect" type="ColorRect" parent="Background2"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 72.0
+color = Color(0.101329, 0.14708, 0.276635, 0.513726)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
