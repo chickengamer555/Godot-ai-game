@@ -1,24 +1,29 @@
-[gd_scene load_steps=63 format=3 uid="uid://waxebddoktqv"]
+[gd_scene load_steps=68 format=3 uid="uid://dd7b3cffgwag0"]
 
-[ext_resource type="Script" path="res://code stuff/Charcters/gwimbley.gd" id="1_wcrmc"]
-[ext_resource type="Texture2D" uid="uid://c0wgwj4nb2fja" path="res://UI STUFF/Grotto/Background_frame007.png" id="2_38anj"]
-[ext_resource type="PackedScene" uid="uid://ch015xw50a0vf" path="res://emotion/Gwimbley's Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
-[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="4_58grp"]
-[ext_resource type="Texture2D" uid="uid://cntsg73252psm" path="res://UI STUFF/Grotto/Character text box_frame007.png" id="5_7jq24"]
+[ext_resource type="Script" uid="uid://b06m0ppjcdy0n" path="res://code stuff/Charcters/gwimbley.gd" id="1_wcrmc"]
+[ext_resource type="Texture2D" uid="uid://cn880fj6cujjq" path="res://UI STUFF/Wild South/Background_frame006.png" id="2_8ekd5"]
+[ext_resource type="PackedScene" uid="uid://j0vdrtytuegj" path="res://emotion/Gwimbley's Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
+[ext_resource type="Shader" uid="uid://dikse5fp3siql" path="res://Other/underwater.gdshader" id="4_58grp"]
+[ext_resource type="Texture2D" uid="uid://b2dj5joswxy6" path="res://UI STUFF/Wild South/Character text box_frame006.png" id="5_3ryj7"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_v6aia"]
-[ext_resource type="Script" path="res://code stuff/UI/rich_text_label.gd" id="7_274oi"]
-[ext_resource type="Texture2D" uid="uid://dytd6kia74m8k" path="res://UI STUFF/Grotto/Player Text Box_frame007.png" id="8_1sev8"]
-[ext_resource type="Texture2D" uid="uid://cpaa166b2n50i" path="res://UI STUFF/Grotto/Log Highlighted_frame007.png" id="9_nlwsr"]
-[ext_resource type="Texture2D" uid="uid://cmbj2e5ao0oaa" path="res://UI STUFF/Grotto/Log_frame007.png" id="10_g3qok"]
+[ext_resource type="Script" uid="uid://b35bkcuwsmllw" path="res://code stuff/UI/rich_text_label.gd" id="7_274oi"]
+[ext_resource type="Texture2D" uid="uid://dvlskknj0cgeq" path="res://UI STUFF/Wild South/Player Text Box_frame006.png" id="8_nuxh7"]
+[ext_resource type="Texture2D" uid="uid://bpckwnlg5s6wt" path="res://UI STUFF/Wild South/Log_highlighted.png" id="9_gc4f0"]
+[ext_resource type="Texture2D" uid="uid://d0o3o8muymm2o" path="res://UI STUFF/Wild South/Log_frame006.png" id="10_m8ysr"]
+[ext_resource type="Texture2D" uid="uid://qpviihm0m4lo" path="res://UI STUFF/Wild South/Enter_highlighted_frame006.png" id="11_irpfv"]
+[ext_resource type="Texture2D" uid="uid://uq0ewbjs4txa" path="res://UI STUFF/Wild South/Enter_frame006.png" id="12_xmnsd"]
+[ext_resource type="Texture2D" uid="uid://febwp65fv25p" path="res://UI STUFF/Wild South/Player text box border_frame006.png" id="13_1yiar"]
 [ext_resource type="Texture2D" uid="uid://d1vfnu83wr1ml" path="res://UI STUFF/Wild South/Next Day Highlighted_frame006.png" id="14_auh8x"]
 [ext_resource type="Texture2D" uid="uid://dvanay85phtuo" path="res://UI STUFF/Wild South/Next Day_frame006.png" id="15_j0j1y"]
-[ext_resource type="Texture2D" uid="uid://pf5g670b64wi" path="res://UI STUFF/Grotto/Stats Box_frame007.png" id="16_7esao"]
-[ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="16_d8x3i"]
-[ext_resource type="Texture2D" uid="uid://b0teiqydcc8le" path="res://UI STUFF/Grotto/Name Bar_frame007.png" id="17_ifcss"]
+[ext_resource type="Script" uid="uid://cknajgl5bsa1t" path="res://code stuff/UI/chatlog.gd" id="16_d8x3i"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="17_yo6ha"]
 [ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="18_fqq62"]
-[ext_resource type="Texture2D" uid="uid://yw3yrkp1sqoc" path="res://UI STUFF/Grotto/Map_button_frame007.png" id="18_w2hqr"]
-[ext_resource type="Texture2D" uid="uid://b4q6rr4cye0ou" path="res://UI STUFF/Grotto/Settings_button_frame007.png" id="19_w1uki"]
+[ext_resource type="Texture2D" uid="uid://0hrucc6epxp4" path="res://UI STUFF/Wild South/Character text box border_frame006.png" id="19_co00u"]
+[ext_resource type="Texture2D" uid="uid://df2tn012ji2jw" path="res://UI STUFF/Wild South/Stats Box_frame006.png" id="20_o4ct8"]
+[ext_resource type="Texture2D" uid="uid://b7vs6anjw8fe2" path="res://UI STUFF/Wild South/Stats box border_frame006.png" id="21_plas7"]
+[ext_resource type="Texture2D" uid="uid://dk8e4qqxxsev7" path="res://UI STUFF/Wild South/Name_bar.png" id="22_2o0j1"]
+[ext_resource type="Texture2D" uid="uid://bosnw2y8k58iy" path="res://UI STUFF/Wild South/Shrimp_map.png" id="23_cp5jf"]
+[ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="24_ax314"]
 [ext_resource type="Texture2D" uid="uid://pdm0kxxt5h6h" path="res://UI STUFF/Wild South/Diagram_frame006.png" id="25_hsij5"]
 [ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://code stuff/Main/Heart1.png" id="26_2cpq4"]
 [ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://code stuff/Main/Heart2.png" id="27_j7ora"]
@@ -50,32 +55,32 @@ shader_parameter/wave_speed = 1.0
 shader_parameter/tint_color = Color(0.416509, 0.458885, 1.92523e-07, 0.403922)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
-texture = ExtResource("5_7jq24")
+texture = ExtResource("5_3ryj7")
 modulate_color = Color(1, 1, 1, 0.941176)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2ql3"]
-texture = ExtResource("8_1sev8")
+texture = ExtResource("8_nuxh7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vah8i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc7i1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3jqnm"]
-texture = ExtResource("9_nlwsr")
+texture = ExtResource("9_gc4f0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbieo"]
-texture = ExtResource("10_g3qok")
+texture = ExtResource("10_m8ysr")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjer1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kc6qc"]
-texture = ExtResource("9_nlwsr")
+texture = ExtResource("11_irpfv")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4v0k"]
-texture = ExtResource("10_g3qok")
+texture = ExtResource("12_xmnsd")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5po65"]
-texture = ExtResource("10_g3qok")
+texture = ExtResource("12_xmnsd")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1km0"]
 
@@ -115,12 +120,12 @@ corner_radius_bottom_left = 4
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86uu6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1km0"]
-texture = ExtResource("18_w2hqr")
+texture = ExtResource("23_cp5jf")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8p2t1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n1a7"]
-texture = ExtResource("19_w1uki")
+texture = ExtResource("24_ax314")
 
 [node name="Gwimbely" type="Node2D"]
 position = Vector2(590, 255)
@@ -129,12 +134,11 @@ script = ExtResource("1_wcrmc")
 [node name="KelpManCoveSpritesheet1" type="Sprite2D" parent="."]
 position = Vector2(-590, -255)
 scale = Vector2(10, 10)
-texture = ExtResource("2_38anj")
+texture = ExtResource("2_8ekd5")
 centered = false
 
 [node name="gwimbly_emotion" parent="." instance=ExtResource("2_wcrmc")]
 position = Vector2(-165, 143)
-scale = Vector2(10, 10)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -237,6 +241,10 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hjer1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_kc6qc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w4v0k")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5po65")
+
+[node name="PlayerTextBoxBorderFrame004" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(13, -18)
+texture = ExtResource("13_1yiar")
 
 [node name="DayCompleteButton" type="Button" parent="."]
 visible = false
@@ -362,10 +370,19 @@ autowrap_mode = 3
 position = Vector2(520, 380)
 stream = ExtResource("18_fqq62")
 
+[node name="CharacterTextBoxBorderFrame004" type="Sprite2D" parent="."]
+position = Vector2(-135, 250)
+scale = Vector2(10, 10)
+texture = ExtResource("19_co00u")
+
 [node name="Statsbox" type="Sprite2D" parent="."]
 position = Vector2(490, -50)
 scale = Vector2(10, 10)
-texture = ExtResource("16_7esao")
+texture = ExtResource("20_o4ct8")
+
+[node name="StatsBoxBorderFrame004" type="Sprite2D" parent="Statsbox"]
+position = Vector2(0, -0.500002)
+texture = ExtResource("21_plas7")
 
 [node name="Action_left" type="Label" parent="Statsbox"]
 offset_left = -14.0
@@ -382,7 +399,7 @@ vertical_alignment = 1
 [node name="NameBarFrame004" type="Sprite2D" parent="."]
 position = Vector2(-590, -255)
 scale = Vector2(10, 10)
-texture = ExtResource("17_ifcss")
+texture = ExtResource("22_2o0j1")
 centered = false
 
 [node name="map" type="Button" parent="NameBarFrame004"]

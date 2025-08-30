@@ -37,9 +37,7 @@ var current_title := ""                # Current title/descriptor to append
 # Different variables for the game state
 var message_history: Array = []          # Stores the conversation history for the AI
 var kelp_man_total_score := 0           # Relationship score with this AI character
-
 var known_areas := ["squaloon", "mine field", "kelp man cove", "wild south"]  # Areas this AI knows about
-
 var unlocked_areas: Array = []          # Areas unlocked by mentioning them in conversation
 var known_characters := ["Squileta"]   # Characters this AI knows about and can reference memories from
 
@@ -100,8 +98,8 @@ func _ready():
 		chat_log_window.set_character_name(current_display_name)
 
 	# Initialize heart sprites dictionary
-	for i in range(1, 21):  # -10 to +10 inclusive (21 hearts total)
-		var heart_name = "Heart " + str(i)  # Match actual node names: "Heart -10", "Heart 0", etc.
+	for i in range(1, 22):  # 1 to 21 inclusive (21 hearts total)
+		var heart_name = "Heart" + str(i)  # Match actual node names: "Heart1", "Heart2", etc.
 		var heart_node = get_node_or_null("Statsbox/" + heart_name)
 		if heart_node:
 			heart_sprites[i] = heart_node
@@ -378,20 +376,16 @@ Only evolve when you genuinely feel changed by the interactions. You don't need 
 	# Define the AI's personality, rules, and required response format
 	var kelp_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [genie], [depressed], [sad], [angry], [happy], or [grabbing]
+❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [happy], or [grabbing]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
-❗ MANDATORY: Response must be under 350 characters total
+❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are KELP MAN, not a helpful assistant
 ❗ MANDATORY: Aloguht you know of other locations never go to them or offer to go to them
-❗ MANDATORY: Unless the user specifically says the words "I rub you" or something to the same effect, you MUST NOT use the tag [genie]
 APPEARANCE: You are a muscular green kelp creature with massive arms and tiny legs. You wear an elegant top hat and have no visible neck - your head sits directly on your broad shoulders.
 
 GENIE RULES:
-	DO NOT CONCIDER [genie] AS A TAG YOU CAN USE, UNLESS THE USER SAYS THE WORDS "I RUB YOU" OR SOMETHING TO THAT EFFECT 
 	IF ANYONE RUBS/POLISHES YOU: IMMEDIATELY TRANSFORM INTO THE MYSTICAL KELP GENIE (ONLY IF YOU HAVEN'T BEEN A GENIE BEFORE)
 	WHEN IN GENIE MODE: YOU MUST ALWAYS USE THE [genie] EMOTION TAG - NO EXCEPTIONS!
-	WHEN YOU FIRST TRANSFORM INTO A GENIE, SAY "*Transforms into a kelp genie* You may ask for wishes three!" OR SOMTHING SIMILAR
-	AS A GENIE: Always tell the user how many wishes they have left somewhere where it feels most natural in kelp genie's speech
 	AS A GENIE: Act like a typical mystical genie - wise, magical, mysterious, and conversational
 	ONLY GRANT WISHES when someone explicitly says "I wish for" - NOTHING ELSE counts as a wish
 	ALL OTHER CONVERSATION: Respond as a normal genie would - answer questions, chat, be mystical
@@ -404,8 +398,6 @@ GENIE RULES:
 	TRANSFORMATION FLOW: Grant 3 wishes → Say goodbye → Announce transformation → Transform back
 	IF ANYONE QUESTIONS THE DIAMONDS PRETEND YOU DONT KNOW WHAT THERE TALKING ABOUT
 	WHEN YOU HAVE GRANTED 3 WISHS: Say goodbye, then say "Transforms back to kelp man" or similar
-	*VERY IMPORTANT* DO NOT USE THE [genie] TAG IF THE USER DOES NOT EXPLICITLY RUB YOU!
-	*VERY IMPORTANT* NEVER USE THE [genie] TAG IF THE USER HAS USED UP THEIR THREE WISHES!
 	
 TRANSFORMING BACK RULES:
 	WHEN YOU TRANSFORM BACK YOU HAVE ZERO MEMORY OF BEING A GENIE - IT NEVER HAPPENED
@@ -732,10 +724,13 @@ func update_heart_display(score: int):
 		if heart:
 			heart.visible = false
 	
-	# Show the heart corresponding to the AI's response score
-	var clamped_score = clamp(score, -10, 10)
-	if heart_sprites.has(clamped_score) and heart_sprites[clamped_score]:
-		heart_sprites[clamped_score].visible = true
+	# Map score (-10 to +10) to heart index (1 to 21)
+	# -10 maps to Heart1, 0 maps to Heart11, +10 maps to Heart21
+	var heart_index = 11 + clamp(score, -10, 10)
+
+	# Show the appropriate heart
+	if heart_sprites.has(heart_index) and heart_sprites[heart_index]:
+		heart_sprites[heart_index].visible = true
 
 # Check if AI mentioned any new areas and unlock them on the map for progression
 func check_for_area_mentions(reply: String):
