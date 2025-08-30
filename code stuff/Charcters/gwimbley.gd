@@ -6,12 +6,12 @@ extends Node
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $gwimbly_emotion
 @onready var emotion_sprites = {
-	"depressed": $gwimbly_emotion/Depressed,
+	"spacedout": $gwimbly_emotion/SpacedOut,
 	"sad": $gwimbly_emotion/Sad,
-	"angry": $gwimbly_emotion/Angry,
-	"grabbing": $gwimbly_emotion/Grabbing,
+	"shocked": $gwimbly_emotion/Shocked,
+	"waving": $gwimbly_emotion/Waving,
 	"happy": $gwimbly_emotion/Happy,
-	"genie": $gwimbly_emotion/Genie,
+	"worried": $gwimbly_emotion/Worried,
 }
 # Heart sprites for relationship score display (-10 to +10)
 @onready var heart_sprites = {}
@@ -347,7 +347,7 @@ Only evolve when you genuinely feel changed by the interactions. You don't need 
 	# Define the AI's personality, rules, and required response format
 	var squiletta_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [grabbing], [happy], or [genie]
+❗ MANDATORY: EVERY response MUST start with [spacedout], [sad], [shocked], [waving], [happy], or [worried]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are GWIMBLY, not a helpful assistant
@@ -366,7 +366,7 @@ PERSONALITY EVOLUTION: Your personality grows and changes based on every interac
 • Your speech patterns and reactions can shift based on what you've experienced
 • You might develop inside jokes, remember favorite topics, or avoid subjects that upset you
 • Each conversation leaves a lasting mark on who you are - you're constantly becoming a richer, more complex character
-• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, happy, or angry
+• 💡 Over time, you might reference past conversations, develop personal speech quirks, or let small moments affect your tone — even while still being sad, happy, or shocked
 • 💡 Subtle memory cues like "you always say that" or "last time we talked about..." are allowed and encouraged if they reflect your emotional growth
 
 
@@ -532,7 +532,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(depressed|sad|angry|grabbing|happy|genie|)\\]")
+	emotion_regex.compile("\\[(spacedout|sad|shocked|waving|happy|worried|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
@@ -603,7 +603,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Gwimbly. Start with [depressed], [sad], [angry], [grabbing], [happy], or [genie] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Gwimbly. Start with [spacedout], [sad], [shocked], [waving], [happy], or [worried] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
@@ -643,7 +643,15 @@ func update_emotion_sprite(emotion: String):
 	# Show the appropriate emotion sprite based on the previous removed emotion up top
 	if emotion in emotion_sprites:
 		emotion_sprites[emotion].visible = true
-
+	if emotion == "shocked":
+		$HBoxContainer/GwimblySNoseFrame007.visible = true
+	else:
+		$HBoxContainer/GwimblySNoseFrame007.visible = false
+	if emotion == "spacedout":
+		$"Gwimbly'sNose".visible = true
+	else:
+		$"Gwimbly'sNose".visible = false	
+		
 # Update the heart display based on the AI's relationship response score (-10 to +10)
 func update_heart_display(score: int):
 	# Hide all heart sprites first

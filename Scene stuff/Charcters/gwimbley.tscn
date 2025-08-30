@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dd7b3cffgwag0"]
+[gd_scene load_steps=67 format=3 uid="uid://dd7b3cffgwag0"]
 
 [ext_resource type="Script" path="res://code stuff/Charcters/gwimbley.gd" id="1_wcrmc"]
 [ext_resource type="PackedScene" uid="uid://j0vdrtytuegj" path="res://emotion/Gwimbley_s Grotto/gwimbly_emotion.tscn" id="2_wcrmc"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cbdbi6f7wwdsm" path="res://UI STUFF/Grotto/Enter_frame007.png" id="12_mvrwq"]
 [ext_resource type="Texture2D" uid="uid://h36cfrissupl" path="res://UI STUFF/Grotto/Gwimbly_s nose_frame007.png" id="13_ry618"]
 [ext_resource type="Texture2D" uid="uid://d1vfnu83wr1ml" path="res://UI STUFF/Wild South/Next Day Highlighted_frame006.png" id="14_auh8x"]
+[ext_resource type="Texture2D" uid="uid://esyfxnlsdy0q" path="res://UI STUFF/Grotto/Gwimbly's Nose.png" id="14_pp4ge"]
 [ext_resource type="Texture2D" uid="uid://dvanay85phtuo" path="res://UI STUFF/Wild South/Next Day_frame006.png" id="15_j0j1y"]
 [ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="16_d8x3i"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="17_yo6ha"]
@@ -244,6 +245,11 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_5po65")
 visible = false
 position = Vector2(-40.9, -8.49999)
 texture = ExtResource("13_ry618")
+
+[node name="Gwimbly\'sNose" type="Sprite2D" parent="."]
+position = Vector2(-28.9999, 235)
+scale = Vector2(10, 10)
+texture = ExtResource("14_pp4ge")
 
 [node name="DayCompleteButton" type="Button" parent="."]
 visible = false

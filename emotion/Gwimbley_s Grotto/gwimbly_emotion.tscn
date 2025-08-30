@@ -10,20 +10,20 @@
 [node name="gwimbly_emotion" type="Node2D"]
 scale = Vector2(10, 10)
 
-[node name="Depressed" type="Sprite2D" parent="."]
+[node name="Sad" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("1_rc74q")
 
-[node name="Sad" type="Sprite2D" parent="."]
-visible = false
+[node name="SpacedOut" type="Sprite2D" parent="."]
 position = Vector2(0.500002, 7.62939e-06)
 texture = ExtResource("2_5kwft")
 
-[node name="Angry" type="Sprite2D" parent="."]
+[node name="Shocked" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 texture = ExtResource("3_6og4y")
 
-[node name="Grabbing" type="Sprite2D" parent="."]
+[node name="Waving" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("4_05ge1")
@@ -33,7 +33,7 @@ visible = false
 position = Vector2(0.999996, 1.5)
 texture = ExtResource("5_q20ya")
 
-[node name="Genie" type="Sprite2D" parent="."]
+[node name="Worried" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1, 2)
 texture = ExtResource("6_lrnc5")
