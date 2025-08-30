@@ -6,9 +6,9 @@ extends Node
 @onready var response_label = $AIResponsePanel/RichTextLabel
 @onready var emotion_sprite_root = $gwimbly_emotion
 @onready var emotion_sprites = {
-	"waving": $gwimbly_emotion/Waving,
+	"depressed": $gwimbly_emotion/Depressed,
 	"sad": $gwimbly_emotion/Sad,
-	"outofit": $gwimbly_emotion/Outofit,
+	"angry": $gwimbly_emotion/Angry,
 	"grabbing": $gwimbly_emotion/Grabbing,
 	"happy": $gwimbly_emotion/Happy,
 	"genie": $gwimbly_emotion/Genie,
@@ -347,7 +347,7 @@ Only evolve when you genuinely feel changed by the interactions. You don't need 
 	# Define the AI's personality, rules, and required response format
 	var squiletta_prompt := """
 CRITICAL FORMAT REQUIREMENTS - MUST FOLLOW EXACTLY:
-❗ MANDATORY: EVERY response MUST start with [waving], [sad], [angry], [grabbing], [happy], or [genie]
+❗ MANDATORY: EVERY response MUST start with [depressed], [sad], [angry], [grabbing], [happy], or [genie]
 ❗ MANDATORY: EVERY response MUST end with (RELATIONSHIP: X) where X is -10 to 10
 ❗ MANDATORY: Response must be under 400 characters total
 ❗ FORBIDDEN: Generic responses - you are GWIMBLY, not a helpful assistant
@@ -532,7 +532,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 	# Parse emotion tag from response (required format: [emotion]) then removes it so user cant see
 	var emotion_regex := RegEx.new()
-	emotion_regex.compile("\\[(waving|sad|angry|grabbing|happy|genie|)\\]")
+	emotion_regex.compile("\\[(depressed|sad|angry|grabbing|happy|genie|)\\]")
 	var match = emotion_regex.search(reply)
 
 	if match:
@@ -603,7 +603,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		# Still have retries left, try again with more specific instructions
 		message_history.append({
 			"role": "system",
-			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Gwimbly. Start with [waving], [sad], [angry], [grabbing], [happy], or [genie] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
+			"content": "Your last response failed format or exceeded 400 characters. This is critical - you MUST respond in character as Gwimbly. Start with [depressed], [sad], [angry], [grabbing], [happy], or [genie] and end with (RELATIONSHIP: X) where X is -10 to 10. Keep it under 400 characters and stay in character. Do not refuse to respond or say you cannot help."
 		})
 		send_request()
 		return
