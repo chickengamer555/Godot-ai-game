@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" path="res://code stuff/Charcters/squilleta.gd" id="1_uftsj"]
 [ext_resource type="Texture2D" uid="uid://edcxa42qicno" path="res://UI STUFF/Squileta's Squaloon/Background_frame006.png" id="2_uftsj"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="Shader" path="res://Other/underwater.gdshader" id="4_1j01k"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://da82kym2qlgm6" path="res://UI STUFF/Squileta's Squaloon/Character text box_frame006.png" id="5_uftsj"]
 [ext_resource type="FontFile" uid="uid://ca5uyoxsavb66" path="res://Other/Jersey10-Regular.ttf" id="6_1j01k"]
 [ext_resource type="FontFile" uid="uid://bm5o7wdxohasl" path="res://Other/Tiny5-Regular.ttf" id="6_n2vuv"]
