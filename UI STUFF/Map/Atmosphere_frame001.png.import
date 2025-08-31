@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tpgyfgs6eymc"
-path="res://.godot/imported/outline.png-debab4a8cd1a3a42bc39cc1123fe4c25.ctex"
+uid="uid://k2ckoxleyx42"
+path="res://.godot/imported/Atmosphere_frame001.png-97aba868e5daf77e0dfd1fbd457aa474.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/outline.png"
-dest_files=["res://.godot/imported/outline.png-debab4a8cd1a3a42bc39cc1123fe4c25.ctex"]
+source_file="res://UI STUFF/Map/Atmosphere_frame001.png"
+dest_files=["res://.godot/imported/Atmosphere_frame001.png-97aba868e5daf77e0dfd1fbd457aa474.ctex"]
 
 [params]
 

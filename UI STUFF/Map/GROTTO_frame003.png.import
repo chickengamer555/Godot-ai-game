@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w1wvfnkbkppr"
-path="res://.godot/imported/COVE_frame002.png-6bfd3761e571741bf4ac63f7560f2539.ctex"
+uid="uid://cdxccr3u1xxoy"
+path="res://.godot/imported/GROTTO_frame003.png-ccdbdb3a20c62f985fb773176f974a73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/COVE_frame002.png"
-dest_files=["res://.godot/imported/COVE_frame002.png-6bfd3761e571741bf4ac63f7560f2539.ctex"]
+source_file="res://UI STUFF/Map/GROTTO_frame003.png"
+dest_files=["res://.godot/imported/GROTTO_frame003.png-ccdbdb3a20c62f985fb773176f974a73.ctex"]
 
 [params]
 

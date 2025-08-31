@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clee1g1gitnjc"
-path="res://.godot/imported/SQUALOON_frame002.png-3d5b368c99899551772aba7558065a4d.ctex"
+uid="uid://bo7qn3eert5ow"
+path="res://.godot/imported/FIELD_frame002.png-9f174902dfc36a148bec7a46482a49fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SQUALOON_frame002.png"
-dest_files=["res://.godot/imported/SQUALOON_frame002.png-3d5b368c99899551772aba7558065a4d.ctex"]
+source_file="res://UI STUFF/Map/FIELD_frame002.png"
+dest_files=["res://.godot/imported/FIELD_frame002.png-9f174902dfc36a148bec7a46482a49fe.ctex"]
 
 [params]
 

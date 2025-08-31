@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm71kvx7wl8ee"
-path="res://.godot/imported/SOUTH_frame003.png-41ae36a92695cbcdfe329e3b7d70b476.ctex"
+uid="uid://tpgyfgs6eymc"
+path="res://.godot/imported/outline.png-5c3803db43813879a01deb7a4fccec12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SOUTH_frame003.png"
-dest_files=["res://.godot/imported/SOUTH_frame003.png-41ae36a92695cbcdfe329e3b7d70b476.ctex"]
+source_file="res://UI STUFF/Map/outline.png"
+dest_files=["res://.godot/imported/outline.png-5c3803db43813879a01deb7a4fccec12.ctex"]
 
 [params]
 

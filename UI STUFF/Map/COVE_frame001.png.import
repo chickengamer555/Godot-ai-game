@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l5dk2xcqhmaa"
-path="res://.godot/imported/SQUALOON_frame003.png-35066dfd5269a7f939f615db265db5af.ctex"
+uid="uid://ba6mr8uw3y4p2"
+path="res://.godot/imported/COVE_frame001.png-09a4f959db21db1297dae426978b580d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SQUALOON_frame003.png"
-dest_files=["res://.godot/imported/SQUALOON_frame003.png-35066dfd5269a7f939f615db265db5af.ctex"]
+source_file="res://UI STUFF/Map/COVE_frame001.png"
+dest_files=["res://.godot/imported/COVE_frame001.png-09a4f959db21db1297dae426978b580d.ctex"]
 
 [params]
 

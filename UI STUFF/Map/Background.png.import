@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cohmpctlq11cb"
-path="res://.godot/imported/SOUTH_frame001.png-7c6b096f63762ca8418f93b5c45871be.ctex"
+uid="uid://dx1muqngerug4"
+path="res://.godot/imported/Background.png-c1f71acfdfc0d5280dbbf0c20d3b4425.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SOUTH_frame001.png"
-dest_files=["res://.godot/imported/SOUTH_frame001.png-7c6b096f63762ca8418f93b5c45871be.ctex"]
+source_file="res://UI STUFF/Map/Background.png"
+dest_files=["res://.godot/imported/Background.png-c1f71acfdfc0d5280dbbf0c20d3b4425.ctex"]
 
 [params]
 

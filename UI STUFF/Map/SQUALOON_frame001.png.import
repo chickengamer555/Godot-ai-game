@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsucun4rkwc6s"
-path="res://.godot/imported/SQUALOON_frame001.png-d2ae5e0d52a1bc7b92cd242e186d3453.ctex"
+path="res://.godot/imported/SQUALOON_frame001.png-b9bd4b99a1858c1ee13dd8b4fbf3890e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SQUALOON_frame001.png"
-dest_files=["res://.godot/imported/SQUALOON_frame001.png-d2ae5e0d52a1bc7b92cd242e186d3453.ctex"]
+source_file="res://UI STUFF/Map/SQUALOON_frame001.png"
+dest_files=["res://.godot/imported/SQUALOON_frame001.png-b9bd4b99a1858c1ee13dd8b4fbf3890e.ctex"]
 
 [params]
 

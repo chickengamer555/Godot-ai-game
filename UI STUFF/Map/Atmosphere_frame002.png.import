@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6mr8uw3y4p2"
-path="res://.godot/imported/COVE_frame001.png-be092e9cd8c670a63b33a568fd455977.ctex"
+uid="uid://dxw8bl05muhe3"
+path="res://.godot/imported/Atmosphere_frame002.png-ff16e1b1c400295c05655ee55a2c0c5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/COVE_frame001.png"
-dest_files=["res://.godot/imported/COVE_frame001.png-be092e9cd8c670a63b33a568fd455977.ctex"]
+source_file="res://UI STUFF/Map/Atmosphere_frame002.png"
+dest_files=["res://.godot/imported/Atmosphere_frame002.png-ff16e1b1c400295c05655ee55a2c0c5d.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bx6p8bsutpuvg"]
 
-[ext_resource type="Script" path="res://code stuff/Main/main_menu_setting.gd" id="1_klp4d"]
+[ext_resource type="Script" path="res://code stuff/Main/Main Menu/main_menu_setting.gd" id="1_klp4d"]
 [ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://UI STUFF/Menu&Settings/Day_Complete.png" id="2_83i7k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ev0w3"]

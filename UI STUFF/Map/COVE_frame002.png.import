@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doygotk6ja44n"
-path="res://.godot/imported/SOUTH_frame002.png-25d38d0c2a04dfecdfbaf0976fdfbca9.ctex"
+uid="uid://w1wvfnkbkppr"
+path="res://.godot/imported/COVE_frame002.png-50049273d88a12b8d8d63ef2ccfca501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/SOUTH_frame002.png"
-dest_files=["res://.godot/imported/SOUTH_frame002.png-25d38d0c2a04dfecdfbaf0976fdfbca9.ctex"]
+source_file="res://UI STUFF/Map/COVE_frame002.png"
+dest_files=["res://.godot/imported/COVE_frame002.png-50049273d88a12b8d8d63ef2ccfca501.ctex"]
 
 [params]
 

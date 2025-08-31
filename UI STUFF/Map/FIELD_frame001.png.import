@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lprrsffkjk4n"
-path="res://.godot/imported/GROTTO_frame001.png-543d4adfd523a60a949642c367c95bf1.ctex"
+uid="uid://le2bj4cuuubg"
+path="res://.godot/imported/FIELD_frame001.png-ea3bd3333c52360da3fd3ad64fd42621.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/GROTTO_frame001.png"
-dest_files=["res://.godot/imported/GROTTO_frame001.png-543d4adfd523a60a949642c367c95bf1.ctex"]
+source_file="res://UI STUFF/Map/FIELD_frame001.png"
+dest_files=["res://.godot/imported/FIELD_frame001.png-ea3bd3333c52360da3fd3ad64fd42621.ctex"]
 
 [params]
 

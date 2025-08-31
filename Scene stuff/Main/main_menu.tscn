@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c17mkmrioiovk"]
 
-[ext_resource type="Script" path="res://code stuff/Main/main_menu.gd" id="1_aer7q"]
+[ext_resource type="Script" path="res://code stuff/Main/Main Menu/main_menu.gd" id="1_aer7q"]
 [ext_resource type="Texture2D" uid="uid://dijsu0ys2pqxh" path="res://UI STUFF/Menu&Settings/Background_frame002.png" id="2_5f627"]
 [ext_resource type="Texture2D" uid="uid://brf8751gfd1jb" path="res://UI STUFF/Menu&Settings/FISH GAME_frame002.png" id="3_vqfpy"]
 [ext_resource type="Texture2D" uid="uid://dlqbqiicmuhwa" path="res://UI STUFF/Menu&Settings/Fish_frame002.png" id="4_pa7ut"]

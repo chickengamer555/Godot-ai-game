@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k2ckoxleyx42"
-path="res://.godot/imported/Atmosphere_frame001.png-5a790ae7f325b0e2bcf6cdb55070728e.ctex"
+uid="uid://l5dk2xcqhmaa"
+path="res://.godot/imported/SQUALOON_frame003.png-3cff671424104e91b3368dec814d6d44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/Atmosphere_frame001.png"
-dest_files=["res://.godot/imported/Atmosphere_frame001.png-5a790ae7f325b0e2bcf6cdb55070728e.ctex"]
+source_file="res://UI STUFF/Map/SQUALOON_frame003.png"
+dest_files=["res://.godot/imported/SQUALOON_frame003.png-3cff671424104e91b3368dec814d6d44.ctex"]
 
 [params]
 

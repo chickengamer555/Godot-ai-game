@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdxccr3u1xxoy"
-path="res://.godot/imported/GROTTO_frame003.png-f707b5e66792189c168ad97a6bb0778c.ctex"
+uid="uid://clee1g1gitnjc"
+path="res://.godot/imported/SQUALOON_frame002.png-274191c0b3bead78163305d6a2801ac7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://code stuff/Main/Map/GROTTO_frame003.png"
-dest_files=["res://.godot/imported/GROTTO_frame003.png-f707b5e66792189c168ad97a6bb0778c.ctex"]
+source_file="res://UI STUFF/Map/SQUALOON_frame002.png"
+dest_files=["res://.godot/imported/SQUALOON_frame002.png-274191c0b3bead78163305d6a2801ac7.ctex"]
 
 [params]
 
