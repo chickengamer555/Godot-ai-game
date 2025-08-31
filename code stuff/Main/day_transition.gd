@@ -15,7 +15,7 @@ func _ready():
 
 func setup_transition():
 	# Calculate current day for display - fixed for 10 day system
-	current_day = 11 - GameState.days_left
+	current_day = 6 - GameState.days_left
 	is_final_day = GameState.days_left <= 1
 	
 	# Update labels based on day
@@ -68,7 +68,7 @@ func _on_next_day_pressed():
 	else:
 		# Proceed to next day
 		GameState.days_left -= 1
-		GameState.actions_left = 2
+		GameState.actions_left = 10
 		GameState.just_started_new_day = true
 		
 		# Transition to map

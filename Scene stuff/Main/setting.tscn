@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://k082tw417vme"]
+[gd_scene load_steps=8 format=3 uid="uid://k082tw417vme"]
 
 [ext_resource type="Script" path="res://code stuff/Main/setting.gd" id="1_xxxxx"]
 [ext_resource type="Texture2D" uid="uid://d4g6hhopx76uc" path="res://UI STUFF/Menu&Settings/Day_Complete.png" id="2_ht5pc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2auy1"]
 texture = ExtResource("2_ht5pc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tw5g1"]
+bg_color = Color(0.0509804, 0.105882, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14701"]
+bg_color = Color(0.0484831, 0.159167, 0.556109, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng2i5"]
+bg_color = Color(0.0509804, 0.105882, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_me7np"]
+bg_color = Color(0.0450822, 0.152158, 0.536277, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -106,12 +118,20 @@ layout_mode = 2
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Back"
+theme_override_styles/focus = SubResource("StyleBoxFlat_tw5g1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_14701")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tw5g1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tw5g1")
+text = " Back "
 
 [node name="EndButtton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "End game"
+theme_override_styles/focus = SubResource("StyleBoxFlat_ng2i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_me7np")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ng2i5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng2i5")
+text = " End game "
 
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/EndButtton" to="." method="_on_end_buttton_pressed"]

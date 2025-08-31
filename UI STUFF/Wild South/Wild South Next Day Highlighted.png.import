@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxc3iecv3sktj"
-path="res://.godot/imported/Next Day Highlighted_frame006.png-dfb0bd9fe4115f4e9e01a3613ef6651b.ctex"
+uid="uid://bpp7xegt2ojg2"
+path="res://.godot/imported/Wild South Next Day Highlighted.png-a7bf6e03ac500995e4a50bc5a961e774.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI STUFF/Mine Feild/Next Day Highlighted_frame006.png"
-dest_files=["res://.godot/imported/Next Day Highlighted_frame006.png-dfb0bd9fe4115f4e9e01a3613ef6651b.ctex"]
+source_file="res://UI STUFF/Wild South/Wild South Next Day Highlighted.png"
+dest_files=["res://.godot/imported/Wild South Next Day Highlighted.png-a7bf6e03ac500995e4a50bc5a961e774.ctex"]
 
 [params]
 

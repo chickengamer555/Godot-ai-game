@@ -9,35 +9,37 @@
 [ext_resource type="Texture2D" uid="uid://djmxmejhlx7f5" path="res://emotion/Squileta/Squiletta_big7.png" id="7_umocq"]
 
 [node name="squileta_emotion" type="Node2D"]
+scale = Vector2(10, 10)
 
 [node name="SassyHappy" type="Sprite2D" parent="."]
-position = Vector2(1, 2)
+position = Vector2(1.2666e-07, 1.78814e-07)
 texture = ExtResource("1_c1rax")
 
 [node name="Happy" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_pgang")
 
 [node name="Angry" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.500002, 7.62939e-06)
+position = Vector2(2.04891e-06, 7.62939e-06)
 texture = ExtResource("3_6q8nk")
 
 [node name="VeryAngry" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -0.5)
+position = Vector2(0, -2.23517e-08)
 texture = ExtResource("4_rj8lv")
 
 [node name="Laughing" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(-3.94136e-06, 2.5332e-07)
 texture = ExtResource("5_pb40f")
 
 [node name="OfferingDrink" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(-3.94136e-06, 2.38419e-07)
 texture = ExtResource("6_727sp")
 
 [node name="Satisfied" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1, 2)
+position = Vector2(3.72529e-08, 1.11759e-07)
 texture = ExtResource("7_umocq")

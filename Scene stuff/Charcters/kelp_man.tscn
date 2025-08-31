@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://3v4j8f6k7rre"]
+[gd_scene load_steps=70 format=3 uid="uid://3v4j8f6k7rre"]
 
 [ext_resource type="Script" path="res://code stuff/Charcters/kelp_man.gd" id="1_y08aj"]
 [ext_resource type="Texture2D" uid="uid://b46s7tpgmjd8c" path="res://UI STUFF/Kelp cove/Background_frame004.png" id="2_whl7b"]
@@ -19,29 +19,30 @@
 [ext_resource type="Texture2D" uid="uid://b0tgyegb437rw" path="res://UI STUFF/Kelp cove/Enter_frame004.png" id="12_e0bur"]
 [ext_resource type="Texture2D" uid="uid://dfssy0e4nalmh" path="res://UI STUFF/Kelp cove/Kelp_Man_Cove.png" id="12_y08aj"]
 [ext_resource type="Texture2D" uid="uid://t5wsmqiwi67u" path="res://UI STUFF/Kelp cove/Character text box border_frame004.png" id="13_klr56"]
+[ext_resource type="Texture2D" uid="uid://x2a85a6e8fg7" path="res://UI STUFF/Kelp cove/Next Day.png" id="14_b5ce1"]
 [ext_resource type="Texture2D" uid="uid://s74dewexj1g8" path="res://UI STUFF/Kelp cove/Next Day Highlighted.png" id="14_lc76r"]
-[ext_resource type="Texture2D" uid="uid://dyik45dn3x82b" path="res://UI STUFF/Heart/Heart1.png" id="20_ofsra"]
+[ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://UI STUFF/Heart/Heart1.png" id="20_ofsra"]
 [ext_resource type="Texture2D" uid="uid://bjd60oe40mqsg" path="res://UI STUFF/Kelp cove/Stats box border_frame004.png" id="20_yx5on"]
-[ext_resource type="Texture2D" uid="uid://dra5f325dmwan" path="res://UI STUFF/Heart/Heart2.png" id="21_5o702"]
-[ext_resource type="Texture2D" uid="uid://bi3h6nb02trds" path="res://UI STUFF/Heart/Heart3.png" id="22_d6bbj"]
-[ext_resource type="Texture2D" uid="uid://ca8h3pkll88jg" path="res://UI STUFF/Heart/Heart4.png" id="23_37fjx"]
-[ext_resource type="Texture2D" uid="uid://crjg6hloydhnj" path="res://UI STUFF/Heart/Heart5.png" id="24_hrkom"]
-[ext_resource type="Texture2D" uid="uid://bhd1yk0nj74pw" path="res://UI STUFF/Heart/Heart6.png" id="25_2b1di"]
-[ext_resource type="Texture2D" uid="uid://bg4em6q8l0qp6" path="res://UI STUFF/Heart/Heart7.png" id="26_0hq8g"]
-[ext_resource type="Texture2D" uid="uid://bhdep4r72bwnb" path="res://UI STUFF/Heart/Heart8.png" id="27_2xusc"]
-[ext_resource type="Texture2D" uid="uid://tir4wugpbwi0" path="res://UI STUFF/Heart/Heart9.png" id="28_puukf"]
-[ext_resource type="Texture2D" uid="uid://tkpqup6qcs3l" path="res://UI STUFF/Heart/Heart10.png" id="29_dcd8l"]
-[ext_resource type="Texture2D" uid="uid://dw164v6tuqqkf" path="res://UI STUFF/Heart/Heart11.png" id="30_h00wp"]
-[ext_resource type="Texture2D" uid="uid://du6yxm8ttt02t" path="res://UI STUFF/Heart/Heart12.png" id="31_agius"]
-[ext_resource type="Texture2D" uid="uid://y0q6l23vvyxg" path="res://UI STUFF/Heart/Heart13.png" id="32_li4q7"]
-[ext_resource type="Texture2D" uid="uid://b7ri7xw2wgpuv" path="res://UI STUFF/Heart/Heart14.png" id="33_t33iq"]
-[ext_resource type="Texture2D" uid="uid://jhjan7p8iioi" path="res://UI STUFF/Heart/Heart15.png" id="34_bf5hq"]
-[ext_resource type="Texture2D" uid="uid://p24wj5sqo1gr" path="res://UI STUFF/Heart/Heart16.png" id="35_77sa7"]
-[ext_resource type="Texture2D" uid="uid://cfcauarcpfprv" path="res://UI STUFF/Heart/Heart17.png" id="36_ktmyp"]
-[ext_resource type="Texture2D" uid="uid://c0cjogauuci8o" path="res://UI STUFF/Heart/Heart18.png" id="37_36ist"]
-[ext_resource type="Texture2D" uid="uid://bpefr3rh6f7oy" path="res://UI STUFF/Heart/Heart19.png" id="38_8iaqb"]
-[ext_resource type="Texture2D" uid="uid://csvn64lesjknn" path="res://UI STUFF/Heart/Heart20.png" id="39_2w1sp"]
-[ext_resource type="Texture2D" uid="uid://c2rjr27teifow" path="res://UI STUFF/Heart/Heart21.png" id="40_11s5c"]
+[ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://UI STUFF/Heart/Heart2.png" id="21_5o702"]
+[ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://UI STUFF/Heart/Heart3.png" id="22_d6bbj"]
+[ext_resource type="Texture2D" uid="uid://drm0jynhok06r" path="res://UI STUFF/Heart/Heart4.png" id="23_37fjx"]
+[ext_resource type="Texture2D" uid="uid://dcwhdq0vup4sh" path="res://UI STUFF/Heart/Heart5.png" id="24_hrkom"]
+[ext_resource type="Texture2D" uid="uid://71b2d7p86yad" path="res://UI STUFF/Heart/Heart6.png" id="25_2b1di"]
+[ext_resource type="Texture2D" uid="uid://btdyu5kr588hl" path="res://UI STUFF/Heart/Heart7.png" id="26_0hq8g"]
+[ext_resource type="Texture2D" uid="uid://bsikrf28eq73a" path="res://UI STUFF/Heart/Heart8.png" id="27_2xusc"]
+[ext_resource type="Texture2D" uid="uid://wm71mufnj7c1" path="res://UI STUFF/Heart/Heart9.png" id="28_puukf"]
+[ext_resource type="Texture2D" uid="uid://dp5lv3jj351yw" path="res://UI STUFF/Heart/Heart10.png" id="29_dcd8l"]
+[ext_resource type="Texture2D" uid="uid://bbuk0m1tq8rrj" path="res://UI STUFF/Heart/Heart11.png" id="30_h00wp"]
+[ext_resource type="Texture2D" uid="uid://c460sy7phsxa7" path="res://UI STUFF/Heart/Heart12.png" id="31_agius"]
+[ext_resource type="Texture2D" uid="uid://dm2efd0rhnjdv" path="res://UI STUFF/Heart/Heart13.png" id="32_li4q7"]
+[ext_resource type="Texture2D" uid="uid://m11vlovkpqot" path="res://UI STUFF/Heart/Heart14.png" id="33_t33iq"]
+[ext_resource type="Texture2D" uid="uid://bmshr1hp33dsw" path="res://UI STUFF/Heart/Heart15.png" id="34_bf5hq"]
+[ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://UI STUFF/Heart/Heart16.png" id="35_77sa7"]
+[ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://UI STUFF/Heart/Heart17.png" id="36_ktmyp"]
+[ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://UI STUFF/Heart/Heart18.png" id="37_36ist"]
+[ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://UI STUFF/Heart/Heart19.png" id="38_8iaqb"]
+[ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://UI STUFF/Heart/Heart20.png" id="39_2w1sp"]
+[ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://UI STUFF/Heart/Heart21.png" id="40_11s5c"]
 [ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta_s Squaloon/Map_button_frame006.png" id="41_86uu6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tnxu"]
@@ -73,35 +74,33 @@ texture = ExtResource("12_e0bur")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1km0"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5soc"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cnpri"]
 texture = ExtResource("14_lc76r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5soc"]
+texture = ExtResource("14_b5ce1")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x0u66"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njf6d"]
 bg_color = Color(0.533473, 0.594343, 0.774528, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_panel"]
 bg_color = Color(0.321569, 0.635294, 0.564706, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.3, 0.3, 0.4, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qu18q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc2sc"]
+bg_color = Color(0.0705882, 0.141176, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x61m3"]
+bg_color = Color(0.0705882, 0.141176, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y00yl"]
+bg_color = Color(0.0705882, 0.141176, 0.227451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_scroll"]
 bg_color = Color(0.627451, 0.878431, 0.858824, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.2, 0.2, 0.3, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86uu6"]
 
@@ -125,8 +124,7 @@ texture = ExtResource("2_whl7b")
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="kelp_emotion" parent="." instance=ExtResource("3_rh00s")]
-position = Vector2(-150, 129)
-scale = Vector2(10, 10)
+position = Vector2(-155, 145)
 
 [node name="AIResponsePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(82, 23)
@@ -153,7 +151,6 @@ scale = Vector2(0.974618, 0.893821)
 theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
 theme_override_fonts/normal_font = ExtResource("6_njf6d")
 theme_override_font_sizes/normal_font_size = 24
-text = "VvvV"
 scroll_active = false
 script = ExtResource("7_l1km0")
 max_font_size = 32
@@ -231,7 +228,7 @@ offset_right = 353.0
 offset_bottom = 293.0
 scale = Vector2(10, 10)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l1km0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g5soc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cnpri")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g5soc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_g5soc")
 
@@ -247,6 +244,8 @@ max_size = Vector2i(1920, 1080)
 content_scale_mode = 1
 content_scale_aspect = 1
 theme_override_colors/title_color = Color(0, 0, 0, 0)
+theme_override_icons/close = SubResource("PlaceholderTexture2D_x0u66")
+theme_override_icons/close_pressed = SubResource("PlaceholderTexture2D_x0u66")
 theme_override_styles/embedded_border = SubResource("StyleBoxFlat_njf6d")
 script = ExtResource("10_hjer1")
 
@@ -272,8 +271,6 @@ grow_vertical = 2
 [node name="TitleLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.911204, 0.975667, 0.98165, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32
 text = "Conversation History"
@@ -285,8 +282,6 @@ layout_mode = 2
 [node name="FontSizeLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32
 text = "Font Size:"
@@ -296,22 +291,33 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32
-text = "A-"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qu18q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uc2sc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uc2sc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uc2sc")
+text = "  -  "
 
 [node name="IncreaseFontButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32
-text = "A+"
+theme_override_styles/focus = SubResource("StyleBoxFlat_x61m3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x61m3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x61m3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_x61m3")
+text = "  +  "
 
 [node name="CloseButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 tooltip_text = "Close Chat Log"
-theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32
-text = "X"
+theme_override_styles/focus = SubResource("StyleBoxFlat_y00yl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y00yl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y00yl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y00yl")
+text = " Close "
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
@@ -334,7 +340,6 @@ scroll_following = true
 [node name="StatusLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("11_klr56")
 theme_override_font_sizes/font_size = 32

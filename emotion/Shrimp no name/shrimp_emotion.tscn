@@ -9,12 +9,13 @@
 [node name="shrimp_emotion" type="Node2D"]
 
 [node name="Sad" type="Sprite2D" parent="."]
-position = Vector2(0.500002, 7.62939e-06)
+visible = false
+position = Vector2(0.500002, 2.00001)
 texture = ExtResource("1_ifjjg")
 
 [node name="AngryPunching" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -0.5)
+position = Vector2(0, 1.5)
 texture = ExtResource("2_4y4qc")
 
 [node name="Stoic" type="Sprite2D" parent="."]
@@ -28,6 +29,5 @@ position = Vector2(0.999996, 1.5)
 texture = ExtResource("4_j5kc8")
 
 [node name="Abouttopunch" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1, 2)
 texture = ExtResource("5_kigf6")

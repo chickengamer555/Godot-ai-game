@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cxj32wq0r00m5" path="res://emotion/Sea mine/Mine_big7.png" id="7_lmxys"]
 
 [node name="sea_mine_emotion" type="Node2D"]
+scale = Vector2(10, 10)
 
 [node name="Neutral" type="Sprite2D" parent="."]
 texture = ExtResource("1_4ln0o")
@@ -19,25 +20,25 @@ texture = ExtResource("2_3xbnv")
 
 [node name="Disgruntled" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.500002, 7.62939e-06)
+position = Vector2(2.04146e-06, 7.62939e-06)
 texture = ExtResource("3_jlyqq")
 
 [node name="Really angry" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -0.5)
+position = Vector2(0, -2.23517e-08)
 texture = ExtResource("4_bfi3r")
 
 [node name="Extremly angry" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(-3.97116e-06, 2.45869e-07)
 texture = ExtResource("5_xjeya")
 
 [node name="Exploding" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(0.999996, 2.45869e-07)
 texture = ExtResource("6_ig7oo")
 
 [node name="Dead" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1, 2)
+position = Vector2(1, 1.49012e-07)
 texture = ExtResource("7_lmxys")

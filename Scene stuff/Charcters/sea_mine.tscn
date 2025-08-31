@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://pnag63vbnps0"]
+[gd_scene load_steps=78 format=3 uid="uid://pnag63vbnps0"]
 
 [ext_resource type="Script" path="res://code stuff/Charcters/sea_mine.gd" id="1_trod4"]
 [ext_resource type="Texture2D" uid="uid://dcdxbwfkj1ici" path="res://UI STUFF/Mine Feild/Background_frame006.png" id="2_k7aed"]
@@ -18,34 +18,35 @@
 [ext_resource type="Script" path="res://code stuff/UI/chatlog.gd" id="14_ka5wi"]
 [ext_resource type="AudioStream" uid="uid://cbijn1nxu78y3" path="res://Sound stuff/click-233950.mp3" id="15_0kkhj"]
 [ext_resource type="Texture2D" uid="uid://c0c6s0h65mvgu" path="res://UI STUFF/Mine Feild/Mine Get Out.png" id="15_y34wp"]
+[ext_resource type="Texture2D" uid="uid://tvrudvntwxjx" path="res://UI STUFF/Mine Feild/Mine Field Next Day Highlighted.png" id="16_hx567"]
 [ext_resource type="Texture2D" uid="uid://cxtydw3ip7jgm" path="res://UI STUFF/Mine Feild/Stats box border_frame006.png" id="18_7ctb0"]
 [ext_resource type="Texture2D" uid="uid://sysck6tryy35" path="res://UI STUFF/Mine Feild/Character text box border_frame006.png" id="18_odtcx"]
 [ext_resource type="Texture2D" uid="uid://2v223i6ltiyq" path="res://UI STUFF/Mine Feild/Stats Box_frame006.png" id="19_trod4"]
-[ext_resource type="Texture2D" uid="uid://dyik45dn3x82b" path="res://UI STUFF/Heart/Heart1.png" id="26_nx3e2"]
-[ext_resource type="Texture2D" uid="uid://dra5f325dmwan" path="res://UI STUFF/Heart/Heart2.png" id="27_by81y"]
-[ext_resource type="Texture2D" uid="uid://bi3h6nb02trds" path="res://UI STUFF/Heart/Heart3.png" id="28_up74k"]
-[ext_resource type="Texture2D" uid="uid://ca8h3pkll88jg" path="res://UI STUFF/Heart/Heart4.png" id="29_m4kr0"]
-[ext_resource type="Texture2D" uid="uid://crjg6hloydhnj" path="res://UI STUFF/Heart/Heart5.png" id="30_8h82v"]
-[ext_resource type="Texture2D" uid="uid://bhd1yk0nj74pw" path="res://UI STUFF/Heart/Heart6.png" id="31_5jlv0"]
-[ext_resource type="Texture2D" uid="uid://bg4em6q8l0qp6" path="res://UI STUFF/Heart/Heart7.png" id="32_qpkbv"]
-[ext_resource type="Texture2D" uid="uid://bhdep4r72bwnb" path="res://UI STUFF/Heart/Heart8.png" id="33_ujbs1"]
-[ext_resource type="Texture2D" uid="uid://tir4wugpbwi0" path="res://UI STUFF/Heart/Heart9.png" id="34_vjaaa"]
-[ext_resource type="Texture2D" uid="uid://tkpqup6qcs3l" path="res://UI STUFF/Heart/Heart10.png" id="35_2t37t"]
-[ext_resource type="Texture2D" uid="uid://dw164v6tuqqkf" path="res://UI STUFF/Heart/Heart11.png" id="36_lxyik"]
-[ext_resource type="Texture2D" uid="uid://du6yxm8ttt02t" path="res://UI STUFF/Heart/Heart12.png" id="37_ygqb6"]
-[ext_resource type="Texture2D" uid="uid://y0q6l23vvyxg" path="res://UI STUFF/Heart/Heart13.png" id="38_qw3xb"]
-[ext_resource type="Texture2D" uid="uid://b7ri7xw2wgpuv" path="res://UI STUFF/Heart/Heart14.png" id="39_qbx6g"]
-[ext_resource type="Texture2D" uid="uid://jhjan7p8iioi" path="res://UI STUFF/Heart/Heart15.png" id="40_06oaa"]
-[ext_resource type="Texture2D" uid="uid://bwkntsxnkr8p1" path="res://UI STUFF/Squileta_s Squaloon/Map_button_frame006.png" id="41_2iiex"]
-[ext_resource type="Texture2D" uid="uid://p24wj5sqo1gr" path="res://UI STUFF/Heart/Heart16.png" id="41_o448f"]
+[ext_resource type="Texture2D" uid="uid://b5vl3kkvwrpvj" path="res://UI STUFF/Mine Feild/Map_button_frame006.png" id="24_qgghn"]
+[ext_resource type="Texture2D" uid="uid://dxp4ri1od6pcu" path="res://UI STUFF/Mine Feild/Settings_button_frame006.png" id="25_j6pxq"]
+[ext_resource type="Texture2D" uid="uid://dbr3euryvdcwm" path="res://UI STUFF/Heart/Heart1.png" id="26_nx3e2"]
+[ext_resource type="Texture2D" uid="uid://r2rqsekoi2i0" path="res://UI STUFF/Heart/Heart2.png" id="27_by81y"]
+[ext_resource type="Texture2D" uid="uid://c2le722alipu2" path="res://UI STUFF/Heart/Heart3.png" id="28_up74k"]
+[ext_resource type="Texture2D" uid="uid://drm0jynhok06r" path="res://UI STUFF/Heart/Heart4.png" id="29_m4kr0"]
+[ext_resource type="Texture2D" uid="uid://dcwhdq0vup4sh" path="res://UI STUFF/Heart/Heart5.png" id="30_8h82v"]
+[ext_resource type="Texture2D" uid="uid://71b2d7p86yad" path="res://UI STUFF/Heart/Heart6.png" id="31_5jlv0"]
+[ext_resource type="Texture2D" uid="uid://btdyu5kr588hl" path="res://UI STUFF/Heart/Heart7.png" id="32_qpkbv"]
+[ext_resource type="Texture2D" uid="uid://bsikrf28eq73a" path="res://UI STUFF/Heart/Heart8.png" id="33_ujbs1"]
+[ext_resource type="Texture2D" uid="uid://wm71mufnj7c1" path="res://UI STUFF/Heart/Heart9.png" id="34_vjaaa"]
+[ext_resource type="Texture2D" uid="uid://dp5lv3jj351yw" path="res://UI STUFF/Heart/Heart10.png" id="35_2t37t"]
+[ext_resource type="Texture2D" uid="uid://bbuk0m1tq8rrj" path="res://UI STUFF/Heart/Heart11.png" id="36_lxyik"]
+[ext_resource type="Texture2D" uid="uid://c460sy7phsxa7" path="res://UI STUFF/Heart/Heart12.png" id="37_ygqb6"]
+[ext_resource type="Texture2D" uid="uid://dm2efd0rhnjdv" path="res://UI STUFF/Heart/Heart13.png" id="38_qw3xb"]
+[ext_resource type="Texture2D" uid="uid://m11vlovkpqot" path="res://UI STUFF/Heart/Heart14.png" id="39_qbx6g"]
+[ext_resource type="Texture2D" uid="uid://bmshr1hp33dsw" path="res://UI STUFF/Heart/Heart15.png" id="40_06oaa"]
+[ext_resource type="Texture2D" uid="uid://cnn6qtu8u802y" path="res://UI STUFF/Heart/Heart16.png" id="41_o448f"]
 [ext_resource type="Texture2D" uid="uid://eq6b2gylhhij" path="res://UI STUFF/Mine Feild/Name Bar_frame006.png" id="42_7ctb0"]
-[ext_resource type="Texture2D" uid="uid://gqxxgwwcbi57" path="res://UI STUFF/Kelp cove/Settings_button_frame004.png" id="42_av710"]
-[ext_resource type="Texture2D" uid="uid://cfcauarcpfprv" path="res://UI STUFF/Heart/Heart17.png" id="42_rfm46"]
-[ext_resource type="Texture2D" uid="uid://c0cjogauuci8o" path="res://UI STUFF/Heart/Heart18.png" id="43_gws02"]
-[ext_resource type="Texture2D" uid="uid://bpefr3rh6f7oy" path="res://UI STUFF/Heart/Heart19.png" id="44_doq60"]
-[ext_resource type="Texture2D" uid="uid://csvn64lesjknn" path="res://UI STUFF/Heart/Heart20.png" id="45_657my"]
+[ext_resource type="Texture2D" uid="uid://buswqv44uf2ch" path="res://UI STUFF/Heart/Heart17.png" id="42_rfm46"]
+[ext_resource type="Texture2D" uid="uid://dpg5ya3m33dhe" path="res://UI STUFF/Heart/Heart18.png" id="43_gws02"]
+[ext_resource type="Texture2D" uid="uid://twesxax7ks7y" path="res://UI STUFF/Heart/Heart19.png" id="44_doq60"]
+[ext_resource type="Texture2D" uid="uid://circvqnjy4f3" path="res://UI STUFF/Heart/Heart20.png" id="45_657my"]
 [ext_resource type="Texture2D" uid="uid://dr3xtrx31hokk" path="res://UI STUFF/Mine Feild/Diagram_frame006.png" id="46_8i64i"]
-[ext_resource type="Texture2D" uid="uid://c2rjr27teifow" path="res://UI STUFF/Heart/Heart21.png" id="46_x4mco"]
+[ext_resource type="Texture2D" uid="uid://dhxh4uk1wf11a" path="res://UI STUFF/Heart/Heart21.png" id="46_x4mco"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qk4g"]
 shader = ExtResource("4_trod4")
@@ -92,11 +93,8 @@ texture = ExtResource("15_y34wp")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ophuf"]
 texture = ExtResource("15_y34wp")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wbacm"]
-load_path = "res://.godot/imported/Next Day Highlighted_frame006.png-dfb0bd9fe4115f4e9e01a3613ef6651b.ctex"
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y34wp"]
-texture = SubResource("CompressedTexture2D_wbacm")
+texture = ExtResource("16_hx567")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmy06"]
 load_path = "res://.godot/imported/Next Day_frame006.png-d64241cde0f020cc01485f845ff22e2d.ctex"
@@ -104,42 +102,39 @@ load_path = "res://.godot/imported/Next Day_frame006.png-d64241cde0f020cc01485f8
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5soc"]
 texture = SubResource("CompressedTexture2D_rmy06")
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xjdg6"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njf6d"]
 bg_color = Color(0.533473, 0.594343, 0.774528, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_panel"]
-bg_color = Color(0.321569, 0.635294, 0.564706, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color(0.498039, 0.611765, 0.768627, 1)
 border_color = Color(0.3, 0.3, 0.4, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qej3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmjfn"]
+bg_color = Color(0.113725, 0.207843, 0.607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx01o"]
+bg_color = Color(0.113725, 0.207843, 0.607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f204"]
+bg_color = Color(0.113725, 0.207843, 0.607843, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat_scroll"]
-bg_color = Color(0.627451, 0.878431, 0.858824, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.2, 0.2, 0.3, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
+bg_color = Color(0.72549, 0.847059, 0.854902, 1)
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86uu6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1km0"]
-texture = ExtResource("41_2iiex")
+texture = ExtResource("24_qgghn")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8p2t1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n1a7"]
-texture = ExtResource("42_av710")
+texture = ExtResource("25_j6pxq")
 
 [node name="Sea mine" type="Node2D"]
 position = Vector2(590, 255)
@@ -152,8 +147,7 @@ texture = ExtResource("2_k7aed")
 centered = false
 
 [node name="sea_mine_emotion" parent="." instance=ExtResource("3_1le7v")]
-position = Vector2(-110, 125)
-scale = Vector2(10, 10)
+position = Vector2(-120, 145)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -192,7 +186,6 @@ scale = Vector2(0.975125, 0.893866)
 theme_override_colors/default_color = Color(0.0707859, 0.228395, 0.268522, 1)
 theme_override_fonts/normal_font = ExtResource("8_odtcx")
 theme_override_font_sizes/normal_font_size = 120
-text = "VvvV"
 scroll_active = false
 script = ExtResource("7_yjcgw")
 max_font_size = 32
@@ -225,7 +218,6 @@ theme_override_constants/caret_width = 5
 theme_override_fonts/font = ExtResource("8_odtcx")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxTexture_7ctb0")
-text = "VvvV"
 wrap_mode = 1
 indent_wrapped_lines = true
 
@@ -297,9 +289,15 @@ transient = true
 always_on_top = true
 min_size = Vector2i(500, 500)
 max_size = Vector2i(1920, 1080)
+keep_title_visible = true
 content_scale_mode = 1
 content_scale_aspect = 1
 theme_override_colors/title_color = Color(0, 0, 0, 0)
+theme_override_colors/title_outline_modulate = Color(0, 0, 0, 0)
+theme_override_constants/close_h_offset = 0
+theme_override_constants/close_v_offset = 0
+theme_override_icons/close = SubResource("PlaceholderTexture2D_xjdg6")
+theme_override_icons/close_pressed = SubResource("PlaceholderTexture2D_xjdg6")
 theme_override_styles/embedded_border = SubResource("StyleBoxFlat_njf6d")
 script = ExtResource("14_ka5wi")
 
@@ -325,10 +323,8 @@ grow_vertical = 2
 [node name="TitleLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.911204, 0.975667, 0.98165, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("6_y34wp")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "Conversation History"
 autowrap_mode = 3
 
@@ -338,10 +334,8 @@ layout_mode = 2
 [node name="FontSizeLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("6_y34wp")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "Font Size:"
 
 [node name="DecreaseFontButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
@@ -349,22 +343,37 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_fonts/font = ExtResource("6_y34wp")
 theme_override_font_sizes/font_size = 32
-text = "A-"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5qej3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qmjfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qmjfn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qmjfn")
+text = "  -  "
 
 [node name="IncreaseFontButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
 theme_override_fonts/font = ExtResource("6_y34wp")
 theme_override_font_sizes/font_size = 32
-text = "A+"
+theme_override_styles/focus = SubResource("StyleBoxFlat_mx01o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mx01o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mx01o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mx01o")
+text = "  +  "
 
 [node name="CloseButton" type="Button" parent="ChatLogWindow/ChatLogPanel/VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 tooltip_text = "Close Chat Log"
-theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 theme_override_fonts/font = ExtResource("6_y34wp")
 theme_override_font_sizes/font_size = 32
-text = "X"
+theme_override_styles/focus = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_3f204")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3f204")
+text = " Close "
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
@@ -380,17 +389,14 @@ theme_override_colors/default_color = Color(0.14902, 0.360784, 0.380392, 1)
 theme_override_fonts/normal_font = ExtResource("8_odtcx")
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "ddddddddddddddddddddddddddddffffffffffffff"
 fit_content = true
 scroll_following = true
 
 [node name="StatusLabel" type="Label" parent="ChatLogWindow/ChatLogPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0.976471, 0.980392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("6_y34wp")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "0 messages"
 horizontal_alignment = 2
 autowrap_mode = 3

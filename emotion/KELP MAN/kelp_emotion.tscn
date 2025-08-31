@@ -8,31 +8,33 @@
 [ext_resource type="Texture2D" uid="uid://d1cu3ekufryy2" path="res://emotion/KELP MAN/Kelp_man_big–Very-Happy.png" id="6_y882p"]
 
 [node name="kelp_emotion" type="Node2D"]
+scale = Vector2(10, 10)
 
 [node name="Depressed" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(1, 0)
 texture = ExtResource("1_mbstq")
 
 [node name="Sad" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.500002, 7.62939e-06)
 texture = ExtResource("2_lx8og")
 
 [node name="Angry" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -0.5)
+position = Vector2(1, 0)
 texture = ExtResource("3_lx8og")
 
 [node name="Grabbing" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(0.499996, 2.38419e-07)
 texture = ExtResource("5_mbstq")
 
 [node name="Happy" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0.999996, 1.5)
+position = Vector2(0.499996, 1.19209e-07)
 texture = ExtResource("1_lx8og")
 
 [node name="Genie" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1, 2)
+position = Vector2(0.5, 1)
 texture = ExtResource("6_y882p")
